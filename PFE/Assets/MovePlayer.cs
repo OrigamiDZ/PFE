@@ -5,6 +5,8 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour {
 
     public float speed;
+    public float rotationSpeed;
+
 
     private Rigidbody rb;
 
@@ -13,12 +15,17 @@ public class MovePlayer : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        Move();
+    }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.transform.position = movement * speed;
+    void Move()
+    {
+        float inputHorizontal = Input.GetAxis("Horizontal");
+        float inputVertical = Input.GetAxis("Vertical");
+
+        transform.Rotate(Vector3.up * inputHorizontal * rotationSpeed);
+        transform.position = transform.position + transform.forward * speed * inputVertical;
     }
 }
