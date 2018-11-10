@@ -9,7 +9,8 @@ public class Interval
 }
 
 public class BihouMove : MonoBehaviour {
-
+    [SerializeField]
+    private float distanceToTeleport;
     [SerializeField]
     private Interval directionChangeTimeInterval;
     [SerializeField]
@@ -66,8 +67,20 @@ public class BihouMove : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        TeleportForwardPlayer();
+    }
+
+    void TeleportForwardPlayer()
+    {
+        Vector3 newPosition = player.transform.position + player.transform.forward * 10.0f;
+        transform.position = new Vector3(newPosition.x, 2.0f, newPosition.z);
+    }
+
     void Update()
     {
+
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
             latestDirectionChangeTime = Time.time;
@@ -77,6 +90,15 @@ public class BihouMove : MonoBehaviour {
         CheckNotOutofBoundary();
 
         transform.position = transform.position + movementPerSecond * Time.deltaTime;
+
+        float distanceBetweenBihouAndPlayer = Mathf.Sqrt(
+    Mathf.Pow(player.transform.position.x - transform.position.x, 2) +
+    Mathf.Pow(player.transform.position.z - transform.position.z, 2)
+);
+        if (distanceToTeleport <= distanceBetweenBihouAndPlayer)
+        {
+            TeleportForwardPlayer();
+        }
 
     }
 }
