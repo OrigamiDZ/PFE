@@ -70,6 +70,7 @@ public class BihouMove : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         TeleportForwardPlayer();
+        Debug.Log("Collision");
     }
 
     void TeleportForwardPlayer()
