@@ -35,16 +35,40 @@ public class SceneManagerCanvas : MonoBehaviour {
 
     public void NextSceneButton()
     {
-        Debug.Log("next scene = " + (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
-        Debug.Log("scene count = " + SceneManager.sceneCountInBuildSettings);
-        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 2)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            Debug.Log("next scene = " + (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+            Debug.Log("scene count = " + SceneManager.sceneCountInBuildSettings);
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+        }
     }
 
     public void PreviousSceneButton()
     {
-        Debug.Log("previous scene = " + (SceneManager.GetActiveScene().buildIndex - 1) % SceneManager.sceneCountInBuildSettings);
-        Debug.Log("scene count = " + SceneManager.sceneCountInBuildSettings);
-        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex - 1) % SceneManager.sceneCountInBuildSettings);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
+        }
+        else
+        {
+            Debug.Log("previous scene = " + (SceneManager.GetActiveScene().buildIndex - 1) % SceneManager.sceneCountInBuildSettings);
+            Debug.Log("scene count = " + SceneManager.sceneCountInBuildSettings);
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex - 1) % SceneManager.sceneCountInBuildSettings);
+        }
     }
 
+
+    public void toMainApp()
+    {
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
+    }
+
+    public void toTests()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
