@@ -39,6 +39,13 @@ public class BihouMovesAR : MonoBehaviour
     [SerializeField]
     private float coefDepth;
 
+    private Vector3 targetPlane;
+    public Vector3 TargetPlane
+    {
+        get { return targetPlane; }
+        set { targetPlane = value; }
+    }
+
 
     void Start()
     {
@@ -105,9 +112,41 @@ public class BihouMovesAR : MonoBehaviour
         transform.LookAt(cameraPlayer.transform);
     }
 
+    public void CalculateTarget()
+    {
+        if(targetPlane != new Vector3(0, 0, 0))
+        {
+            if (isInCameraFieldOfView())
+            {
+                targetPosition = targetPlane;
+            }
+            else
+            {
+                targetPlane = new Vector3(0, 0, 0);
+                targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+            }
+        }
+        else
+        {
+            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+        }
+    }
+
+    private bool isInCameraFieldOfView()
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraPlayer);
+        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds))
+        {
+            return true;
+        }
+        else { 
+            return false;
+        }
+}
+
     void Update()
     {
-        targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+        CalculateTarget();
         transform.LookAt(cameraPlayer.transform);
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
