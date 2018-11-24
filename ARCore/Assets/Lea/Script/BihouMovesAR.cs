@@ -135,13 +135,7 @@ public class BihouMovesAR : MonoBehaviour
     private bool isInCameraFieldOfView()
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraPlayer);
-        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds))
-        {
-            return true;
-        }
-        else { 
-            return false;
-        }
+        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds);
 }
 
     void Update()

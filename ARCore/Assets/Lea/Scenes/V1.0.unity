@@ -696,6 +696,24 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf498fc35b538884db557f7a9a2c0ef9, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &829310837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1515131468178288, guid: 9a9968bfa8d78a44eb96605dd2ecc934,
+    type: 2}
+  m_PrefabInternal: {fileID: 1653945346}
+--- !u!136 &829310838
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829310837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &854829197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1050,7 @@ GameObject:
   - component: {fileID: 1284200625}
   - component: {fileID: 1284200624}
   m_Layer: 0
-  m_Name: Example Controller
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,6 +1071,7 @@ MonoBehaviour:
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 2}
   SearchingForPlaneUI: {fileID: 133456327}
+  Bihou: {fileID: 829310837}
 --- !u!4 &1284200625
 Transform:
   m_ObjectHideFlags: 0
