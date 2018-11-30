@@ -5,16 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/HelloAR0.unity
     guid: 182626eb1a6836149822468c52bee8da
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/HelloAR1-OFC.unity
     guid: d76432b1a19985d49be1e584b87ed157
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/HelloAR2-IR.unity
     guid: efa9afdab2dfe854cb57bf6ac8ed213f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/V1.0.unity
     guid: 347cffc2ecda5764fabacae8de48eaac
+  - enabled: 1
+    path: Assets/AndroidUltimatePlugin/Scenes/Demo.unity
+    guid: 258d176a125780a42b60264fc79cf1c8
+  - enabled: 0
+    path: Assets/Louis/DemoLouis.unity
+    guid: 239553edd5ba1c942ae95c15635d383b
+  - enabled: 0
+    path: Assets/AndroidUltimatePlugin/Scenes/Demo2.unity
+    guid: 3b9d9bf8462d0844c81f4cf607b4a3d8
   m_configObjects: {}
