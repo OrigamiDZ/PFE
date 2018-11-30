@@ -125,6 +125,7 @@ public class BihouMovesAR : MonoBehaviour
             if (isInCameraFieldOfView())
             {
                 targetPosition = targetPlane;
+                isOnPlane = true;
             }
             else
             {
