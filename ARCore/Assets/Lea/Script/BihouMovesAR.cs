@@ -55,7 +55,7 @@ public class BihouMovesAR : MonoBehaviour
 
     void Start()
     {
-        targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+        targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(8 * Screen.width / 10, Screen.height / 2, distToCamOrigin));
         transform.position = targetPosition;
         transform.LookAt(cameraPlayer.transform);
         latestDirectionChangeTime = 0.0f;
@@ -130,13 +130,13 @@ public class BihouMovesAR : MonoBehaviour
             else
             {
                 targetPlane = new Vector3(0, 0, 0);
-                targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+                targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(8*Screen.width / 10, Screen.height / 2, distToCamOrigin));
                 isOnPlane = false;
             }
         }
         else
         {
-            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(8*Screen.width / 10, Screen.height / 2, distToCamOrigin));
             isOnPlane = false;
         }
     }
@@ -151,6 +151,7 @@ public class BihouMovesAR : MonoBehaviour
     {
         CalculateTarget();
         transform.LookAt(cameraPlayer.transform);
+        transform.Rotate(new Vector3(-90, 0, 0));
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
             latestDirectionChangeTime = Time.time;
