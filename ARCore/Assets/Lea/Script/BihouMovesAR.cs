@@ -45,6 +45,12 @@ public class BihouMovesAR : MonoBehaviour
         get { return targetPlane; }
         set { targetPlane = value; }
     }
+    private bool isOnPlane = false;
+    public bool IsOnPlane
+    {
+        get { return isOnPlane; }
+        set{ isOnPlane = value; }
+    }
 
 
     void Start()
@@ -119,23 +125,26 @@ public class BihouMovesAR : MonoBehaviour
             if (isInCameraFieldOfView())
             {
                 targetPosition = targetPlane;
+                isOnPlane = true;
             }
             else
             {
                 targetPlane = new Vector3(0, 0, 0);
                 targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+                isOnPlane = false;
             }
         }
         else
         {
             targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, distToCamOrigin));
+            isOnPlane = false;
         }
     }
 
     private bool isInCameraFieldOfView()
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraPlayer);
-        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds);
+        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds); 
 }
 
     void Update()

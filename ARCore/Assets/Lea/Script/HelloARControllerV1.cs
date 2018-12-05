@@ -90,7 +90,9 @@ namespace GoogleARCore.Examples.HelloAR
 
             SearchingForPlaneUI.SetActive(showSearchingUI);
 
-
+            /*
+             * Touch to place on plane
+             * 
             //Bihou goes to plan after touching it
             // If the player has not touched the screen, we are done with this update.
             Touch touch;
@@ -105,6 +107,91 @@ namespace GoogleARCore.Examples.HelloAR
                 TrackableHitFlags.FeaturePointWithSurfaceNormal;
 
             if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
+            {
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) &&
+                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
+                        hit.Pose.rotation * Vector3.up) < 0)
+                {
+                    Debug.Log("Hit at back of the current DetectedPlane");
+                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
+                    }
+                }
+
+            }
+            */
+
+
+            //Automatic raycasting 
+
+            TrackableHit hit;
+            TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
+
+            //Raycast from the middle of the screen
+            if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(Screen.width / 2, Screen.height / 2, raycastFilter, out hit))
+            {
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) &&
+                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
+                        hit.Pose.rotation * Vector3.up) < 0)
+                {
+                    Debug.Log("Hit at back of the current DetectedPlane");
+                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
+                    }
+                }
+
+            }
+
+            //Raycast from the left of the screen
+            if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
+            {
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) &&
+                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
+                        hit.Pose.rotation * Vector3.up) < 0)
+                {
+                    Debug.Log("Hit at back of the current DetectedPlane");
+                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
+                    }
+                }
+
+            }
+
+            //Raycast from the right of the screen
+            if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(3 * Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
             {
                 // Use hit pose and camera pose to check if hittest is from the
                 // back of the plane, if it is, no need to create the anchor.
