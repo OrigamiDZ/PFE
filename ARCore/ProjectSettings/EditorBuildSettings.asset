@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lea/Scenes/HelloAR2-IR.unity
     guid: efa9afdab2dfe854cb57bf6ac8ed213f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/V1.0.unity
     guid: 347cffc2ecda5764fabacae8de48eaac
   - enabled: 0
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Louis/Arcore0Speech.unity
     guid: be7314309c0d9ac429ed8c0ee2fa9470
+  - enabled: 1
+    path: Assets/Aurelia/Scene/TestAure.unity
+    guid: 5ef6e9d836afead44b52188e028fc189
   m_configObjects: {}
