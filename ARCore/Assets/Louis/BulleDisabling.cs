@@ -12,16 +12,18 @@ public class BulleDisabling : MonoBehaviour {
     void Start () {
         oldText = textResult;
         lastChangeTime = Time.time;
-        gameObject.GetComponent<Renderer>().enabled = false;
+        //gameObject.SetActive(false);
     }
     void Update () {
 		if (oldText != textResult) {
             lastChangeTime = Time.time;
-            gameObject.GetComponent<Renderer>().enabled = true;
+            //gameObject.SetActive(true);
+
         }
         oldText = textResult;
         if (Time.time - lastChangeTime > 10) {
-            gameObject.GetComponent<Renderer>().enabled = false;
+            //gameObject.SetActive(false);
+
         }
     }
 }
