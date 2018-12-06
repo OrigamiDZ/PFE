@@ -251,7 +251,12 @@ public class SpeechRecognizer : MonoBehaviour {
 
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
-                    resultText.text = string.Format("Result: {0}", whatToSay);
+
+                    if (whatToSay.Contains("blague") || whatToSay.Contains("Blague") ||
+                        whatToSay.Contains("joke") || whatToSay.Contains("Joke"))
+                        resultText.text = "Ceci est une blague... \n (rires)";
+                    else 
+                        resultText.text = string.Format("Result: {0}", whatToSay);
                 }
             }
         );
