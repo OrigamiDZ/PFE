@@ -17,12 +17,12 @@ public class SceneManagerCanvas : MonoBehaviour {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
-                sceneNameText.text = "Hello AR";
+                sceneNameText.text = "ARCore";
                 Debug.Log("Scene = " + SceneManager.GetActiveScene().buildIndex);
                 break;
 
             case 1:
-                sceneNameText.text = "Object in Front Camera";
+                sceneNameText.text = "Speech recognition";
                 Debug.Log("Scene = " + SceneManager.GetActiveScene().buildIndex);
                 break;
 
@@ -30,12 +30,17 @@ public class SceneManagerCanvas : MonoBehaviour {
                 sceneNameText.text = "Image recognition";
                 Debug.Log("Scene = " + SceneManager.GetActiveScene().buildIndex);
                 break;
+
+            case 3:
+                sceneNameText.text = "V1.0";
+                Debug.Log("Scene = " + SceneManager.GetActiveScene().buildIndex);
+                break;
         }
     }
 
     public void NextSceneButton()
     {
-        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 2)
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             SceneManager.LoadScene(0);
         }
@@ -51,7 +56,7 @@ public class SceneManagerCanvas : MonoBehaviour {
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
+            SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
         }
         else
         {
