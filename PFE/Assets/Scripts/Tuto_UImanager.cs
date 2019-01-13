@@ -7,6 +7,9 @@ public class Tuto_UImanager : MonoBehaviour {
 
     [SerializeField]
     GameObject[] tutoSlides;
+    [SerializeField]
+    GameObject testingPhaseGameobject;
+
 
     private GameObject currentSlide;
     private int currentSlideId;
@@ -23,6 +26,29 @@ public class Tuto_UImanager : MonoBehaviour {
 
     public void OnClickNextButton()
     {
-        
+        if(currentSlideId < tutoSlides.Length - 1)
+        {
+            currentSlide.SetActive(false);
+            currentSlideId++;
+            currentSlide = tutoSlides[currentSlideId];
+            currentSlide.SetActive(true);
+        }
+    }
+
+    public void OnClickPreviousButton()
+    {
+        if (currentSlideId > 0)
+        {
+            currentSlide.SetActive(false);
+            currentSlideId--;
+            currentSlide = tutoSlides[currentSlideId];
+            currentSlide.SetActive(true);
+        }
+    }
+
+    public void OnClickStartTestingPhaseButton()
+    {
+        currentSlide.SetActive(false);
+        testingPhaseGameobject.SetActive(true);
     }
 }
