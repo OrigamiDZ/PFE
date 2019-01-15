@@ -140,7 +140,7 @@ namespace GoogleARCore.Examples.AugmentedImage
 
 
             //Step 2 : find the flyer
-            if (stepTestUI >= 2)
+            if (stepTestUI >= 2 && stepTestUI < 4)
             {
                 planesGenerator.SetActive(false);
                 pointsCloud.SetActive(false);
@@ -169,6 +169,8 @@ namespace GoogleARCore.Examples.AugmentedImage
                         return;
                     }
                 }
+
+
                 if (stepTestUI == 2)
                 {
                     if (!flyerFound)
@@ -216,18 +218,25 @@ namespace GoogleARCore.Examples.AugmentedImage
                     }
 
                     // Raycast against the location the player touched to search for planes.
-                    TrackableHit Hit;
-                    TrackableHitFlags RaycastFilter = TrackableHitFlags.PlaneWithinPolygon |
-                        TrackableHitFlags.FeaturePointWithSurfaceNormal;
+                    RaycastHit hit;
 
-                    if (Frame.Raycast(touch.position.x, touch.position.y, RaycastFilter, out Hit))
+                    if (Physics.Raycast(new Vector3(touch.position.x, touch.position.y,0), transform.forward, out hit))
                     {
                         // Use hit pose and camera pose to check if hittest is from the
                         // back of the plane, if it is, no need to create the anchor.
-                        if (Hit.Trackable is AugmentedImage)
+                        if (hit.collider.tag == "Tuto_AugmentedObject")
                         {
+                            foreach (var image in m_TempAugmentedImages)
+                            {
+                                Tutorial_ImageVisualizer visualizer = null;
+                                m_Visualizers.TryGetValue(image.DatabaseIndex, out visualizer);
+                                m_Visualizers.Remove(image.DatabaseIndex);
+                                GameObject.Destroy(visualizer.gameObject);
+                                Debug.Log("Image tracking has stopped");
+                                return;
+                            }
                             Bihou.SetActive(true);
-                            Bihou.transform.position = Hit.Pose.position;
+                            Bihou.transform.position = hit.collider.transform.position;
                             stepTestUI = 4;
                         }
 

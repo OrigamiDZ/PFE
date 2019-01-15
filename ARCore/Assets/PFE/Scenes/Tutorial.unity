@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70206afa12f57cb4385db2893a55e2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstPersonCamera: {fileID: 0}
+  FirstPersonCamera: {fileID: 1242660200}
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 2}
   TutorialTestUI: {fileID: 1277931071}
@@ -1634,6 +1634,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 2}
+--- !u!20 &1242660200 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20860857616959102, guid: 72f6c25fc92dc1e4ca0b5aff9ac8eb1d,
+    type: 2}
+  m_PrefabInternal: {fileID: 688246506}
 --- !u!1 &1258641506
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/PFE/Scenes/Tutorial.unity
     guid: a452a5464bbf56c4d88ce046da06af05
   - enabled: 0
-    path: Assets/PFE/Scenes/TestTuto.unity
-    guid: ce8c00e6a5060574bb6b4c08bb632acd
+    path: Assets/Aurelia/Scene/TestAure.unity
+    guid: 5ef6e9d836afead44b52188e028fc189
   m_configObjects: {}

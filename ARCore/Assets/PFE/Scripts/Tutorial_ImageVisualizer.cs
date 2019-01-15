@@ -38,7 +38,7 @@ namespace GoogleARCore.Examples.AugmentedImage
         public AugmentedImage Image;
 
         /// <summary>
-        /// A logo to place when an image is detected.
+        /// An object to place when an image is detected.
         /// </summary>
         public GameObject Egg;
 

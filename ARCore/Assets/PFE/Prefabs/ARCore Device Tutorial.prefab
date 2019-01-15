@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4222820091161292}
   - component: {fileID: 114840005525014168}
   m_Layer: 0
-  m_Name: ARCore Device PFE
+  m_Name: ARCore Device Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
