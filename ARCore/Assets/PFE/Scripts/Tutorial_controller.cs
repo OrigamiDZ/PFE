@@ -92,28 +92,46 @@ namespace GoogleARCore.Examples.AugmentedImage
 
         private bool flyerFound = false;
 
+        [SerializeField]
+        GameObject pointsCloud;
+        [SerializeField]
+        GameObject planesGenerator;
+        [SerializeField]
+        GameObject UI_slides;
+
+        private int timerUI = 0;
+
+
+
+
 
         private void Start()
         {
             tutorialTestUIText = "En recherche de plans...";
             stepTestUI = 1;
             Bihou.SetActive(false);
+            UI_slides.SetActive(false);
+            FitToScanOverlay.SetActive(false);
         }
         public void Update()
         {
             _UpdateApplicationLifecycle();
+            TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
 
             // Step 1 : find a plan
-            Session.GetTrackables<DetectedPlane>(m_AllPlanes);
             if (stepTestUI == 1)
             {
+                Session.GetTrackables<DetectedPlane>(m_AllPlanes);
                 for (int i = 0; i < m_AllPlanes.Count; i++)
                 {
                     if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
                     {
                         tutorialTestUIText = "Plans trouvés !";
-                        TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
-                        stepTestUI = 2;
+                        timerUI++;
+                        if (timerUI > 100)
+                        {
+                            stepTestUI = 2;
+                        }
                         break;
                     }
                 }
@@ -122,52 +140,11 @@ namespace GoogleARCore.Examples.AugmentedImage
 
 
             //Step 2 : find the flyer
-            if (stepTestUI == 2)
+            if (stepTestUI >= 2)
             {
-                if (!flyerFound)
-                {
-                    tutorialTestUIText = "Scannez le flyer";
-                    TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
-                    // Show the fit-to-scan overlay if there are no images that are Tracking.
-                    foreach (var visualizer in m_Visualizers.Values)
-                    {
-                        if (visualizer.Image.TrackingState == TrackingState.Tracking)
-                        {
-                            FitToScanOverlay.SetActive(false);
-                            return;
-                        }
-                    }
+                planesGenerator.SetActive(false);
+                pointsCloud.SetActive(false);
 
-                    FitToScanOverlay.SetActive(true);
-                }
-                else
-                {
-                    tutorialTestUIText = "Scan effectué";
-                    TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
-                    stepTestUI = 3;
-                }
-
-                foreach (var image in m_TempAugmentedImages)
-                {
-                    if (image.TrackingState == TrackingState.Tracking)
-                    {
-                        flyerFound = true;
-                    }
-                }
-
-                // Check that motion tracking is tracking.
-                if (Session.Status != SessionStatus.Tracking)
-                {
-                    Debug.Log("Session.Satus != Tracking");
-                    return;
-                }
-            }
-
-
-
-            //Step 3 : augment the flyer
-            if (stepTestUI == 3)
-            {
                 // Get updated augmented images for this frame.
                 Session.GetTrackables<AugmentedImage>(m_TempAugmentedImages, TrackableQueryFilter.Updated);
                 // Create visualizers and anchors for updated augmented images that are tracking and do not previously
@@ -192,42 +169,86 @@ namespace GoogleARCore.Examples.AugmentedImage
                         return;
                     }
                 }
-                tutorialTestUIText = "Touchez l'oeuf pour faire apparaître Bihou";
-                TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
-
-                Touch touch;
-                if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+                if (stepTestUI == 2)
                 {
-                    return;
-                }
-
-                // Raycast against the location the player touched to search for planes.
-                TrackableHit Hit;
-                TrackableHitFlags RaycastFilter = TrackableHitFlags.PlaneWithinPolygon |
-                    TrackableHitFlags.FeaturePointWithSurfaceNormal;
-
-                if (Frame.Raycast(touch.position.x, touch.position.y, RaycastFilter, out Hit))
-                {
-                    // Use hit pose and camera pose to check if hittest is from the
-                    // back of the plane, if it is, no need to create the anchor.
-                    if (Hit.Trackable is AugmentedImage)
+                    if (!flyerFound)
                     {
-                        Bihou.SetActive(true);
-                        Bihou.transform.position = Hit.Pose.position;
-                        stepTestUI = 4;
+                        tutorialTestUIText = "Scannez le flyer";
+
+                        // Show the fit-to-scan overlay if there are no images that are Tracking.
+                        foreach (var visualizer in m_Visualizers.Values)
+                        {
+                            if (visualizer.Image.TrackingState == TrackingState.Tracking)
+                            {
+                                flyerFound = true;
+                                return;
+                            }
+                        }
+                        FitToScanOverlay.SetActive(true);
+
+                    }
+                    else
+                    {
+                        tutorialTestUIText = "Scan effectué";
+                        FitToScanOverlay.SetActive(false);
+                        stepTestUI = 3;
                     }
 
+                    // Check that motion tracking is tracking.
+                    if (Session.Status != SessionStatus.Tracking)
+                    {
+                        tutorialTestUIText = "Session track pas :(";
+                        Debug.Log("Session.Satus != Tracking");
+                        return;
+                    }
                 }
+
+
+                //Step 3 : augment the flyer
+                if (stepTestUI == 3)
+                {
+                    tutorialTestUIText = "Touchez l'oeuf pour faire apparaître Bihou";
+
+                    Touch touch;
+                    if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+                    {
+                        return;
+                    }
+
+                    // Raycast against the location the player touched to search for planes.
+                    TrackableHit Hit;
+                    TrackableHitFlags RaycastFilter = TrackableHitFlags.PlaneWithinPolygon |
+                        TrackableHitFlags.FeaturePointWithSurfaceNormal;
+
+                    if (Frame.Raycast(touch.position.x, touch.position.y, RaycastFilter, out Hit))
+                    {
+                        // Use hit pose and camera pose to check if hittest is from the
+                        // back of the plane, if it is, no need to create the anchor.
+                        if (Hit.Trackable is AugmentedImage)
+                        {
+                            Bihou.SetActive(true);
+                            Bihou.transform.position = Hit.Pose.position;
+                            stepTestUI = 4;
+                        }
+
+                    }
+                }
+
+
             }
+   
 
 
-            //Step 4 : Hello Bihou
+            //Step 4 : ???
             if(stepTestUI == 4)
             {
+                planesGenerator.SetActive(false);
+                pointsCloud.SetActive(false);
                 tutorialTestUIText = "Bonjour Bihou !";
-                TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
                 Debug.Log("Fin du tuto");
             }
+
+            //Step 5 : profit
         }
 
 
