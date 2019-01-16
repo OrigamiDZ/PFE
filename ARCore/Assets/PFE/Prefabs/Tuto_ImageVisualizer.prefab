@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114301260933651698}
   m_Layer: 0
   m_Name: Tuto_ImageVisualizer
-  m_TagString: Untagged
+  m_TagString: Tuto_AugmentedObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 122257044482267618}
   m_Layer: 0
   m_Name: Egg
-  m_TagString: Untagged
+  m_TagString: Tuto_AugmentedObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

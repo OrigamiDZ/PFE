@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PFE/Scenes/Test.unity
     guid: e0adddff7ed01914ba5947bc63ebcc04
+  - enabled: 0
+    path: Assets/Lea/Scenes/V1.0.unity
+    guid: 347cffc2ecda5764fabacae8de48eaac
   m_configObjects: {}

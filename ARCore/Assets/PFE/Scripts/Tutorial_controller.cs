@@ -99,8 +99,9 @@ namespace GoogleARCore.Examples.AugmentedImage
         [SerializeField]
         GameObject UI_slides;
 
-        private int timerUI = 0;
 
+        private int timerUI = 0;
+        private Anchor anchorEgg;
 
 
 
@@ -118,7 +119,7 @@ namespace GoogleARCore.Examples.AugmentedImage
             _UpdateApplicationLifecycle();
             TutorialTestUI.GetComponent<Text>().text = tutorialTestUIText;
 
-            // Step 1 : find a plan
+            // Step 1 : find a plane
             if (stepTestUI == 1)
             {
                 Session.GetTrackables<DetectedPlane>(m_AllPlanes);
@@ -157,6 +158,7 @@ namespace GoogleARCore.Examples.AugmentedImage
                     {
                         // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                         Anchor anchor = image.CreateAnchor(image.CenterPose);
+                        anchorEgg = anchor;
                         visualizer = (Tutorial_ImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchor.transform);
                         visualizer.Image = image;
                         m_Visualizers.Add(image.DatabaseIndex, visualizer);
@@ -210,36 +212,27 @@ namespace GoogleARCore.Examples.AugmentedImage
                 if (stepTestUI == 3)
                 {
                     tutorialTestUIText = "Touchez l'oeuf pour faire apparaître Bihou";
-
                     Touch touch;
-                    if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+                    if (Input.touchCount > 0)
                     {
-                        return;
-                    }
-
-                    // Raycast against the location the player touched to search for planes.
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(new Vector3(touch.position.x, touch.position.y,0), transform.forward, out hit))
-                    {
-                        // Use hit pose and camera pose to check if hittest is from the
-                        // back of the plane, if it is, no need to create the anchor.
-                        if (hit.collider.tag == "Tuto_AugmentedObject")
+                        // Raycast against the location the player touched to search for planes.
+                        touch = Input.GetTouch(0);
+                        if (touch.phase == TouchPhase.Began)
                         {
-                            foreach (var image in m_TempAugmentedImages)
+                            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit))
                             {
-                                Tutorial_ImageVisualizer visualizer = null;
-                                m_Visualizers.TryGetValue(image.DatabaseIndex, out visualizer);
-                                m_Visualizers.Remove(image.DatabaseIndex);
-                                GameObject.Destroy(visualizer.gameObject);
-                                Debug.Log("Image tracking has stopped");
-                                return;
-                            }
-                            Bihou.SetActive(true);
-                            Bihou.transform.position = hit.collider.transform.position;
-                            stepTestUI = 4;
-                        }
+                                if (hit.collider.tag == "Tuto_AugmentedObject")
+                                {
+                                    Bihou.SetActive(true);
+                                    Bihou.transform.position = hit.point;
+                                    Destroy(hit.transform.gameObject);
+                                    stepTestUI = 4;
+                                }
 
+                            }
+                        }
                     }
                 }
 
