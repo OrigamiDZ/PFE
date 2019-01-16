@@ -1085,26 +1085,6 @@ Prefab:
       propertyPath: FirstPersonCamera
       value: 
       objectReference: {fileID: 1242660200}
-    - target: {fileID: 1312191846756630, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550746132489708, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550746132489708, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.022
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550746132489708, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550746132489708, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.025
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18d8e620bd351a4d9f85793f6193053, type: 2}
   m_IsPrefabAsset: 0

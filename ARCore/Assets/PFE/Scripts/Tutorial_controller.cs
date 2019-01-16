@@ -22,16 +22,9 @@ namespace GoogleARCore.Examples.AugmentedImage
 {
     using System.Collections.Generic;
     using GoogleARCore;
-    using System.Runtime.InteropServices;
-    using GoogleARCore.Examples.Common;
     using UnityEngine;
     using UnityEngine.UI;
-    //using GoogleARCore.Examples.AugmentedImage;
 
-#if UNITY_EDITOR
-    // Set up touch input propagation while using Instant Preview in the editor.
-    using Input = InstantPreviewInput;
-#endif
 
     /// <summary>
     /// Controls the HelloAR example.
@@ -52,11 +45,6 @@ namespace GoogleARCore.Examples.AugmentedImage
         /// A gameobject parenting UI for displaying the "searching for planes" snackbar.
         /// </summary>
         public GameObject TutorialTestUI;
-
-        /// <summary>
-        /// The rotation in degrees need to apply to model when the Andy model is placed.
-        /// </summary>
-        private const float k_ModelRotation = 180.0f;
 
         /// <summary>
         /// A list to hold all planes ARCore is tracking in the current frame. This object is used across
@@ -90,8 +78,6 @@ namespace GoogleARCore.Examples.AugmentedImage
 
         private List<AugmentedImage> m_TempAugmentedImages = new List<AugmentedImage>();
 
-        private bool flyerFound = false;
-
         [SerializeField]
         GameObject pointsCloud;
         [SerializeField]
@@ -100,6 +86,7 @@ namespace GoogleARCore.Examples.AugmentedImage
         GameObject UI_slides;
 
 
+        private bool flyerFound = false;
         private int timerUI = 0;
         private Anchor anchorEgg;
 
