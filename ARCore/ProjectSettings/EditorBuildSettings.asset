@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Aurelia/Scene/TestAure.unity
     guid: 5ef6e9d836afead44b52188e028fc189
+  - enabled: 0
+    path: Assets/PFE/Scenes/Test.unity
+    guid: e0adddff7ed01914ba5947bc63ebcc04
   m_configObjects: {}
