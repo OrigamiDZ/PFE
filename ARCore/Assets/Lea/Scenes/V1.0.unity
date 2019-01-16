@@ -1683,7 +1683,13 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114699122975807872, guid: fb8ca80f502d44409b653917173f5e26,
+        type: 2}
+      propertyPath: cameraPlayer
+      value: 
+      objectReference: {fileID: 1387101018}
+    m_RemovedComponents:
+    - {fileID: 114699122975807872, guid: fb8ca80f502d44409b653917173f5e26, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fb8ca80f502d44409b653917173f5e26, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2029066887

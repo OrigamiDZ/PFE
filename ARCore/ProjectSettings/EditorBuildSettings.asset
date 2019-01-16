@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Lea/Scenes/V1.0.unity
-    guid: 347cffc2ecda5764fabacae8de48eaac
-  - enabled: 1
-    path: Assets/Louis/Arcore0Speech.unity
-    guid: be7314309c0d9ac429ed8c0ee2fa9470
-  - enabled: 1
+    path: Assets/PFE/Scenes/Tutorial.unity
+    guid: a452a5464bbf56c4d88ce046da06af05
+  - enabled: 0
     path: Assets/Aurelia/Scene/TestAure.unity
     guid: 5ef6e9d836afead44b52188e028fc189
-  - enabled: 1
-    path: Assets/Scenes/DemoGlobale.unity
-    guid: 9e4ba61bd37a5714ebbf4d5d84214d7d
+  - enabled: 0
+    path: Assets/PFE/Scenes/Test.unity
+    guid: e0adddff7ed01914ba5947bc63ebcc04
+  - enabled: 0
+    path: Assets/Lea/Scenes/V1.0.unity
+    guid: 347cffc2ecda5764fabacae8de48eaac
   m_configObjects: {}
