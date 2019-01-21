@@ -26,6 +26,21 @@ public class UI_MenuManager : MonoBehaviour {
     private GameObject currentUI = null;
 
 
+
+    private void Start()
+    {
+        currentUI = InGameUI;
+    }
+
+
+    private void Update()
+    {
+        if(currentUI.activeSelf == false)
+        {
+            currentUI.SetActive(true);
+        }
+    }
+
     public void BackToGame()
     {
         if (currentUI != null)
