@@ -64,6 +64,8 @@
         GameObject planesGenerator;
         [SerializeField]
         GameObject UI_slides;
+        [SerializeField]
+        GameObject speechRecoPrefab;
 
 
         private bool flyerFound = false;
@@ -213,11 +215,15 @@
             {
                 planesGenerator.SetActive(false);
                 pointsCloud.SetActive(false);
-                tutorialTestUIText = "Bonjour Bihou !";
-                Debug.Log("Fin du tuto");
+                tutorialTestUIText = "Appuyez sur le bouton et dites \"bonjour\" à Bihou!";
+                stepTestUI = 5;
             }
 
             //Step 5 : profit
+            if(stepTestUI == 5)
+            {
+                speechRecoPrefab.SetActive(true);
+            }
         }
 
 

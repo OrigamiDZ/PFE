@@ -200,7 +200,7 @@ MonoBehaviour:
   numberOfObjectsInVisualizer: 3
   environmentHnS: {fileID: 1148352683629236, guid: 8072a43660adf9243aaf3203fc176356,
     type: 2}
-  BihouDeltaHiding: {x: -0.02, y: 1.5, z: 0}
+  BihouDeltaHiding: {x: -0.05, y: 1.5, z: 0}
   deltaEnvironmentToGround: -1
   AugmentedImageVisualizerPrefab: {fileID: 114283864302119436, guid: 8072a43660adf9243aaf3203fc176356,
     type: 2}
@@ -305,6 +305,10 @@ Prefab:
     - target: {fileID: 4712520885455562, guid: 8072a43660adf9243aaf3203fc176356, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800738802590874, guid: 8072a43660adf9243aaf3203fc176356, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8072a43660adf9243aaf3203fc176356, type: 2}
