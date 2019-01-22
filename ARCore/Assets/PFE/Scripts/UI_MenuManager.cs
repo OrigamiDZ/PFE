@@ -22,7 +22,10 @@ public class UI_MenuManager : MonoBehaviour {
     [SerializeField]
     GameObject[] InfoPagesUI_array;
 
+    [SerializeField]
+    AudioSource MenuMainTheme;
 
+    private bool alreadyInMainMenu = false;
     private GameObject currentUI = null;
 
 
@@ -43,6 +46,8 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void BackToGame()
     {
+        MenuMainTheme.Stop();
+        alreadyInMainMenu = false;
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -53,6 +58,11 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToMainMenu()
     {
+        if (!alreadyInMainMenu)
+        {
+            MenuMainTheme.Play();
+            alreadyInMainMenu = true;
+        }
         if(currentUI != null)
         {
             currentUI.SetActive(false);
