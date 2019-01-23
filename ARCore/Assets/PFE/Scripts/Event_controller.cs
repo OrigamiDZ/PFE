@@ -16,10 +16,6 @@
         [SerializeField]
         int nbObjective;
 
-        [SerializeField]
-        Text debugTextUI;
-
-
 
         /// <summary>
         /// A prefab for visualizing an AugmentedImage.
@@ -66,7 +62,7 @@
                 ImageObjectiveAchieved.TryGetValue(image.DatabaseIndex, out alreadyDone);
                 if (image.TrackingState == TrackingState.Tracking && visualizer == null && !alreadyDone)
                 {
-                    UItext_notification.text = "Affiche trouvée";
+                    UItext_notification.text = "Affiche trouvée \nTouchez l'objet agumenté"; //later -> make Bihou do an animation
                     ImageObjectiveAchieved.Add(image.DatabaseIndex, false);
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
@@ -88,23 +84,19 @@
                     {
                         if (hit.collider.tag == "AugmentedObject")
                         {
-                            UItext_notification.text = "Touché !";
                             foreach (KeyValuePair<int, Event_ImageVisualizer> pair in m_Visualizers)
                             {
-                                UItext_notification.text = m_Visualizers.Count.ToString();
-                                debugTextUI.text += "\n" + pair.Key;
                                 if (pair.Value.gameObject == hit.collider.gameObject)
                                 {
-                                    UItext_notification.text = "Ladies and gentlemen, we got him";
                                     bool isAlreadyAchieved = false;
                                     ImageObjectiveAchieved.TryGetValue(pair.Key, out isAlreadyAchieved);
                                     if (!isAlreadyAchieved)
                                     {
-                                        UItext_notification.text = "Sbrré";
                                         Destroy(hit.collider.gameObject);
                                         m_Visualizers.Remove(pair.Key);
                                         ImageObjectiveAchieved[pair.Key] = true;
                                         nbObjectiveDone++;
+                                        UItext_notification.text = "Trouvez les affiches restantes";
                                         return;
                                     }
                                 }
@@ -128,11 +120,6 @@
                 UItext_objectiveNb.color = Color.red;
             }
 
-            debugTextUI.text = "";
-            foreach (KeyValuePair<int, Event_ImageVisualizer> pair in m_Visualizers)
-            {
-                debugTextUI.text += "\n" + pair.Key;
-            }
         }
     }
 }
