@@ -184,7 +184,6 @@
                     Touch touch;
                     if (Input.touchCount > 0)
                     {
-                        // Raycast against the location the player touched to search for planes.
                         touch = Input.GetTouch(0);
                         if (touch.phase == TouchPhase.Began)
                         {
