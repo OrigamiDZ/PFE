@@ -5,16 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lea/Scenes/V1.0.unity
     guid: 347cffc2ecda5764fabacae8de48eaac
-  - enabled: 1
+  - enabled: 0
     path: Assets/Louis/Arcore0Speech.unity
     guid: be7314309c0d9ac429ed8c0ee2fa9470
-  - enabled: 1
+  - enabled: 0
     path: Assets/Aurelia/Scene/TestAure.unity
     guid: 5ef6e9d836afead44b52188e028fc189
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DemoGlobale.unity
     guid: 9e4ba61bd37a5714ebbf4d5d84214d7d
+  - enabled: 0
+    path: Assets/Louis/testGPS.unity
+    guid: dc042e8c8f075a144beda65a8acdcee2
+  - enabled: 1
+    path: Assets/Louis/GPSScene.unity
+    guid: 9d8af6c27f7a5f143a63dd7b8fa051ee
   m_configObjects: {}
