@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 public class UI_MenuManager : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class UI_MenuManager : MonoBehaviour {
 
     [SerializeField]
     GameObject[] MissionPagesUI_array;
+    //page 0 -> mission
+    //page 1 -> event
     [SerializeField]
     GameObject[] InfoPagesUI_array;
 
@@ -33,6 +36,8 @@ public class UI_MenuManager : MonoBehaviour {
     private void Start()
     {
         currentUI = InGameUI;
+        if(SceneManager.GetActiveScene().name == "Sandbox") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
+        else { InGameUI.transform.Find("VocalButton").gameObject.SetActive(false); }
     }
 
 
@@ -42,6 +47,12 @@ public class UI_MenuManager : MonoBehaviour {
         {
             currentUI.SetActive(true);
         }
+
+        if (AppController.control.missionDone) { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(true); }
+        else { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(false); }
+
+        if (AppController.control.eventDone) { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(true); }
+        else { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(false); }
     }
 
     public void BackToGame()
