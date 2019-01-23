@@ -141,5 +141,10 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = InfoPagesUI_array[id_page];
     }
 
+    public void OnClickToSpeechRecoPhase()
+    {
+
+    }
+
 
 }

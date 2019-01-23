@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using AUP;
 
-public class Discovery_SpeechRecognizer : MonoBehaviour
+public class GlobalSpeechRecognizer : MonoBehaviour
 {
 
     private const string TAG = "[SpeechRecognizerDemo]: ";
