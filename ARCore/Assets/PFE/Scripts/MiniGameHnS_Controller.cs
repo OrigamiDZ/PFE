@@ -93,6 +93,7 @@
                             {
                                 Destroy(visualizer);
                                 UItext_notification.text = "Bien joué !";
+                                AppController.control.missionDone = true;
                             }
 
                         }

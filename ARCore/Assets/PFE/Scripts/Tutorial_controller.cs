@@ -222,6 +222,12 @@
             if(stepTestUI == 5)
             {
                 speechRecoPrefab.SetActive(true);
+                if(speechRecoPrefab.GetComponent<Tutorial_SpeechRecognizer>().hello == true)
+                {
+                    tutorialTestUIText = "Bihou est content";
+                    AppController.control.tutorialDone = true;
+                    enabled = false; //TODO : replace with a switch scene to Sandbox
+                }
             }
         }
 

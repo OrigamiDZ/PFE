@@ -113,6 +113,7 @@
             {
                 UItext_objectiveNb.color = Color.green;
                 UItext_notification.text = "Evènement complété";
+                AppController.control.eventDone = true;
                 enabled = false;
             }
             else

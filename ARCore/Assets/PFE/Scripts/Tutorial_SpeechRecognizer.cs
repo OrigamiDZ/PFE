@@ -14,6 +14,8 @@ public class Tutorial_SpeechRecognizer : MonoBehaviour
     public Text partialResultText;
     public Text statusText;
 
+    public bool hello = false;
+
     private Dispatcher dispatcher;
     private UtilsPlugin utilsPlugin;
 
@@ -292,7 +294,7 @@ public class Tutorial_SpeechRecognizer : MonoBehaviour
                     string whatToSay = results.GetValue(0).ToString();
 
                     if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
-                        resultText.text = "Bihou est content";
+                        hello = true;
                     else
                         resultText.text = string.Format("Result: {0}", whatToSay);
                 }

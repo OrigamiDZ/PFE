@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 public class UI_MenuManager : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class UI_MenuManager : MonoBehaviour {
 
     [SerializeField]
     GameObject[] MissionPagesUI_array;
+    //page 0 -> mission
+    //page 1 -> event
     [SerializeField]
     GameObject[] InfoPagesUI_array;
 
@@ -27,21 +30,30 @@ public class UI_MenuManager : MonoBehaviour {
 
     private bool alreadyInMainMenu = false;
     private GameObject currentUI = null;
-
+    private GameObject sceneTheme;
 
 
     private void Start()
     {
         currentUI = InGameUI;
+        if (SceneManager.GetActiveScene().name == "Sandbox") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
+        else { InGameUI.transform.Find("VocalButton").gameObject.SetActive(false); }
+        sceneTheme = GameObject.FindGameObjectsWithTag("SceneThemeAudio")[0];
     }
 
 
     private void Update()
     {
-        if(currentUI.activeSelf == false)
+        if (currentUI.activeSelf == false)
         {
             currentUI.SetActive(true);
         }
+
+        if (AppController.control.missionDone) { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(true); }
+        else { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(false); }
+
+        if (AppController.control.eventDone) { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(true); }
+        else { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(false); }
     }
 
     public void BackToGame()
@@ -53,6 +65,8 @@ public class UI_MenuManager : MonoBehaviour {
             currentUI.SetActive(false);
         }
         currentUI = InGameUI;
+        Time.timeScale = 1;
+        sceneTheme.GetComponent<AudioSource>().Play();
     }
 
 
@@ -60,10 +74,12 @@ public class UI_MenuManager : MonoBehaviour {
     {
         if (!alreadyInMainMenu)
         {
-            MenuMainTheme.Play();
             alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            sceneTheme.GetComponent<AudioSource>().Stop();
         }
-        if(currentUI != null)
+        if (currentUI != null)
         {
             currentUI.SetActive(false);
         }
@@ -124,5 +140,6 @@ public class UI_MenuManager : MonoBehaviour {
         InfoPagesUI_array[id_page].SetActive(true);
         currentUI = InfoPagesUI_array[id_page];
     }
+
 
 }
