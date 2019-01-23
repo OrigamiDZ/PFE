@@ -4,6 +4,7 @@
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
 
 
     /// <summary>
@@ -38,9 +39,9 @@
         private bool m_IsQuitting = false;
 
 
-
         public GameObject Bihou;
         private string tutorialTestUIText;
+
         private int stepTestUI = 0;
 
         /// <summary>
@@ -71,6 +72,7 @@
         private bool flyerFound = false;
         private int timerUI = 0;
         private Anchor anchorEgg;
+        private int timerSwitch = 0;
 
 
 
@@ -226,7 +228,11 @@
                 {
                     tutorialTestUIText = "Bihou est content";
                     AppController.control.tutorialDone = true;
-                    enabled = false; //TODO : replace with a switch scene to Sandbox
+                    timerSwitch++;
+                    if (timerSwitch > 300)
+                    {
+                        SceneManager.LoadScene("LocationScene");
+                    }
                 }
             }
         }

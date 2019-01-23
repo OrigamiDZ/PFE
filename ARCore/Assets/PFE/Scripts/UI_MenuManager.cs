@@ -36,9 +36,9 @@ public class UI_MenuManager : MonoBehaviour {
     private void Start()
     {
         currentUI = InGameUI;
-        if (SceneManager.GetActiveScene().name == "Sandbox") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
+        if (SceneManager.GetActiveScene().name == "Discovery") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
         else { InGameUI.transform.Find("VocalButton").gameObject.SetActive(false); }
-        sceneTheme = GameObject.FindGameObjectsWithTag("SceneThemeAudio")[0];
+        if (GameObject.FindGameObjectsWithTag("SceneThemeAudio").Length > 0) { sceneTheme = GameObject.FindGameObjectsWithTag("SceneThemeAudio")[0]; }
     }
 
 

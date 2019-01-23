@@ -11,6 +11,7 @@ public class AppController : MonoBehaviour {
     public bool tutorialDone;
     public bool missionDone;
     public bool eventDone;
+    public double targetPointGPS;
 
     void Awake () {
         if(control == null)
