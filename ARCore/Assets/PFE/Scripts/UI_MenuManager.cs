@@ -30,20 +30,21 @@ public class UI_MenuManager : MonoBehaviour {
 
     private bool alreadyInMainMenu = false;
     private GameObject currentUI = null;
-
+    private GameObject sceneTheme;
 
 
     private void Start()
     {
         currentUI = InGameUI;
-        if(SceneManager.GetActiveScene().name == "Sandbox") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
+        if (SceneManager.GetActiveScene().name == "Sandbox") { InGameUI.transform.Find("VocalButton").gameObject.SetActive(true); }
         else { InGameUI.transform.Find("VocalButton").gameObject.SetActive(false); }
+        sceneTheme = GameObject.FindGameObjectsWithTag("SceneThemeAudio")[0];
     }
 
 
     private void Update()
     {
-        if(currentUI.activeSelf == false)
+        if (currentUI.activeSelf == false)
         {
             currentUI.SetActive(true);
         }
@@ -64,6 +65,8 @@ public class UI_MenuManager : MonoBehaviour {
             currentUI.SetActive(false);
         }
         currentUI = InGameUI;
+        Time.timeScale = 1;
+        sceneTheme.GetComponent<AudioSource>().Play();
     }
 
 
@@ -71,10 +74,12 @@ public class UI_MenuManager : MonoBehaviour {
     {
         if (!alreadyInMainMenu)
         {
-            MenuMainTheme.Play();
             alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            sceneTheme.GetComponent<AudioSource>().Stop();
         }
-        if(currentUI != null)
+        if (currentUI != null)
         {
             currentUI.SetActive(false);
         }
@@ -135,5 +140,6 @@ public class UI_MenuManager : MonoBehaviour {
         InfoPagesUI_array[id_page].SetActive(true);
         currentUI = InfoPagesUI_array[id_page];
     }
+
 
 }

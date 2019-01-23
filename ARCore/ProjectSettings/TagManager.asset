@@ -8,6 +8,7 @@ TagManager:
   - Bihou
   - Minigame_HnS
   - AugmentedObject
+  - SceneThemeAudio
   layers:
   - Default
   - TransparentFX
