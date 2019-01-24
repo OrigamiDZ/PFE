@@ -5,24 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/PFE/Scenes/Tutorial.unity
     guid: a452a5464bbf56c4d88ce046da06af05
-  - enabled: 0
+  - enabled: 1
+    path: Assets/PFE/Scenes/LocationScene.unity
+    guid: 19e0cf5b28020474bb5885bab360b4c2
+  - enabled: 1
     path: Assets/PFE/Scenes/MiniGame_hidenseek.unity
     guid: e569698618cc79d4d96199c2e3602bef
-  - enabled: 0
-    path: Assets/Louis/Arcore0Speech.unity
-    guid: be7314309c0d9ac429ed8c0ee2fa9470
-  - enabled: 0
-    path: Assets/Mapbox/Examples/0_PrefabScenes/Location-basedGame.unity
-    guid: 42f6aa7ce7a604f16ade319663f46ceb
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Aurelia/Scene/LocationBasedGame_Aure.unity
-    guid: 030b1b1c53b4fa941885da6e44f6fb45
-=======
-    path: Assets/Louis/locationScene.unity
-    guid: 26ef1cb935baee04681c0654c086469f
->>>>>>> 935509fa83299a2bd7216c211f4ed7248828c2cf
   m_configObjects: {}
