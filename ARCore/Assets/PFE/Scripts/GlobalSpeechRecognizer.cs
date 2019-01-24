@@ -14,8 +14,6 @@ public class GlobalSpeechRecognizer : MonoBehaviour
     public Text partialResultText;
     public Text statusText;
 
-    public bool hello = false;
-
     private Dispatcher dispatcher;
     private UtilsPlugin utilsPlugin;
 
@@ -294,12 +292,50 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     string whatToSay = results.GetValue(0).ToString();
 
                     if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
-                        hello = true;
+                    {
+                        resultText.text = "Hello there!";
+                    }
+                    else if(whatToSay.Contains("looping") || whatToSay.Contains("Looping"))
+                    {
+                        resultText.text = "You spin me right round baby right round";
+                    }
+                    else if (whatToSay.Contains("blague") || whatToSay.Contains("Blague"))
+                    {
+                        resultText.text = "Quelle est la différence entre un pigeon ? Il ne sait ni voler !";
+                    } 
+                    else if (whatToSay.Contains("mission") || whatToSay.Contains("Mission"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
+                    }
+                    else if (whatToSay.Contains("événement") || whatToSay.Contains("Événement"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
+                    }
+                    else if (whatToSay.Contains("retour") || whatToSay.Contains("Retour"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().BackToGame();
+                    }
+                    else if (whatToSay.Contains("option") || whatToSay.Contains("Option"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToOptionMenu();
+                    }
+                    else if (whatToSay.Contains("info") || whatToSay.Contains("info"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToInfoMenu();
+                    }
                     else
+                    {
                         resultText.text = string.Format("Result: {0}", whatToSay);
+                    }
                 }
             }
         );
+    }
+
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(2);
     }
 
     private void onPartialResults(string data)
