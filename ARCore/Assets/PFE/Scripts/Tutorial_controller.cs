@@ -229,9 +229,9 @@
                     tutorialTestUIText = "Bihou est content";
                     AppController.control.tutorialDone = true;
                     timerSwitch++;
-                    if (timerSwitch > 300)
+                    if (timerSwitch > 100)
                     {
-                        SceneManager.LoadScene("LocationScene");
+                        SceneManager.LoadScene("Discovery");
                     }
                 }
             }

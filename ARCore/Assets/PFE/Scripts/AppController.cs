@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class AppController : MonoBehaviour {
 
@@ -29,6 +30,14 @@ public class AppController : MonoBehaviour {
     public void Start()
     {
         Load();
+        if (!tutorialDone)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            SceneManager.LoadScene("Discovery");
+        }
     }
 
     public void OnApplicationQuit()

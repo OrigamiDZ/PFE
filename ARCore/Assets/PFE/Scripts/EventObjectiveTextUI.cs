@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoutenanceObjective : MonoBehaviour {
+public class EventObjectiveTextUI : MonoBehaviour {
 
     int totalObjective = 3;
     int currentObjective;

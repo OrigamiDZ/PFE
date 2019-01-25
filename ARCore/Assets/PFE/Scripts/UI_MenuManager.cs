@@ -185,4 +185,10 @@ public class UI_MenuManager : MonoBehaviour {
         SceneManager.LoadScene("EventMiniGame");
     }
 
+    public void StartTutorial()
+    {
+        AppController.control.tutorialDone = false;
+        SceneManager.LoadScene("Tutorial");
+    }
+
 }
