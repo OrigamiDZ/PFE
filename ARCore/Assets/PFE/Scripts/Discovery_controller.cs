@@ -51,7 +51,7 @@
         GameObject speechRecoPrefab;
         */
         [SerializeField]
-        Text notifText;
+        Text debugText;
 
 
         int timer = 0;
@@ -59,7 +59,7 @@
 
         private void Start()
         {
-            notifText.text = "En recherche de plans...";
+            debugText.text = "En recherche de plans...";
         }
         public void Update()
         {
@@ -71,11 +71,11 @@
             {
                 if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
                 {
-                    notifText.text = "Plans trouvés !";
+                    debugText.text = "Plans trouvés !";
                 }
                 else
                 {
-                    notifText.text = "En recherche de plans...";
+                    debugText.text = "En recherche de plans...";
                 }
             }
 

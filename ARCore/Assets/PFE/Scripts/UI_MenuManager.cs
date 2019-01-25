@@ -175,4 +175,14 @@ public class UI_MenuManager : MonoBehaviour {
     }
 
 
+    public void StartMission()
+    {
+        SceneManager.LoadScene("MissionMiniGame");
+    }
+
+    public void StartEvent()
+    {
+        SceneManager.LoadScene("EventMiniGame");
+    }
+
 }

@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstPersonCamera: {fileID: 1634569953}
-  notifText: {fileID: 1184224847}
+  debugText: {fileID: 0}
 --- !u!4 &40619706
 Transform:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &828724830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -699,15 +699,6 @@ Prefab:
     - target: {fileID: 4531670077565490, guid: 5a74014810802944980d712e3d18b879, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1845674602595446, guid: 5a74014810802944980d712e3d18b879, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224739176865265552, guid: 5a74014810802944980d712e3d18b879,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a74014810802944980d712e3d18b879, type: 2}

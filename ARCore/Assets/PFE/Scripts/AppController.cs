@@ -12,6 +12,7 @@ public class AppController : MonoBehaviour {
     public bool missionDone;
     public bool eventDone;
     public double targetPointGPS;
+    public int currentObjectiveDoneEvent;
 
     void Awake () {
         if(control == null)
@@ -54,6 +55,7 @@ public class AppController : MonoBehaviour {
         data.tutorialDone = tutorialDone;
         data.missionDone = missionDone;
         data.eventDone = eventDone;
+        data.currentObjectiveDoneEvent = currentObjectiveDoneEvent;
 
         bf.Serialize(file, data);
         file.Close();
@@ -73,6 +75,7 @@ public class AppController : MonoBehaviour {
             tutorialDone = data.tutorialDone;
             missionDone = data.missionDone;
             eventDone = data.eventDone;
+            currentObjectiveDoneEvent = data.currentObjectiveDoneEvent;
         }
     }
 
@@ -85,4 +88,5 @@ class PlayerData
     public bool tutorialDone;
     public bool missionDone;
     public bool eventDone;
+    public int currentObjectiveDoneEvent;
 }
