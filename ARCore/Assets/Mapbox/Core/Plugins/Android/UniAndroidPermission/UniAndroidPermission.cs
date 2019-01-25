@@ -37,7 +37,7 @@ public class UniAndroidPermission : MonoBehaviour
             onDenyAndNeverAskAgainCallback = onDenyAndNeverAskAgain;
         }
 #else
-        Debug.LogWarning("UniAndroidPermission works only Androud Devices.");
+        Debug.LogWarning("UniAndroidPermission works only Android Devices.");
 #endif
     }
 

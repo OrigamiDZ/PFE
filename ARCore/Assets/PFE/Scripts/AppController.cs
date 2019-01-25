@@ -5,6 +5,9 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
+#if PLATFORM_ANDROID
+using UnityEditor.Android;
+#endif
 
 public class AppController : MonoBehaviour {
 
@@ -16,10 +19,12 @@ public class AppController : MonoBehaviour {
     public int currentObjectiveDoneEvent;
 
     void Awake () {
+        //1st time running app
         if(control == null)
         {
             DontDestroyOnLoad(gameObject);
             control = this;
+            RequestAndroidPermissions();
         }
         else if (control != this)
         {
@@ -40,9 +45,12 @@ public class AppController : MonoBehaviour {
         }
     }
 
-    public void OnApplicationQuit()
+    private void OnApplicationPause(bool pause)
     {
-        Save();
+        if (pause)
+        {
+            Save();
+        }
     }
 
 
@@ -51,14 +59,7 @@ public class AppController : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
-        {
-            file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
-        }
-        else
-        {
-            file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
-        }
+        file = File.Create(Application.persistentDataPath + "/CIRAInfo.dat");
 
         PlayerData data = new PlayerData();
         data.tutorialDone = tutorialDone;
@@ -74,10 +75,10 @@ public class AppController : MonoBehaviour {
 
     public void Load()
     {
-        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        if(File.Exists(Application.persistentDataPath + "/CIRAInfo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/CIRAInfo.dat", FileMode.Open);
             PlayerData data = (PlayerData) bf.Deserialize(file);
             file.Close();
 
@@ -88,7 +89,23 @@ public class AppController : MonoBehaviour {
         }
     }
 
+
+
+    private void RequestAndroidPermissions()
+    {
+
+        if(!Application.HasUserAuthorization(UserAuthorization.WebCam))
+        if (!AndroidPermission.HasUserAuthorizedPermission(AndroidPermission.Microphone))
+        {
+            AndroidPermission.RequestUserPermission(AndroidPermission.Microphone);
+            dialog = new GameObject();
+        }
+        i
+    }
+
 }
+
+
 
 
 [Serializable]

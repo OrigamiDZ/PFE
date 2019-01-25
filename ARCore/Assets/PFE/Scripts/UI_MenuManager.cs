@@ -68,7 +68,10 @@ public class UI_MenuManager : MonoBehaviour {
         }
         currentUI = InGameUI;
         Time.timeScale = 1;
-        sceneTheme.GetComponent<AudioSource>().Play();
+        if (sceneTheme != null)
+        {
+            sceneTheme.GetComponent<AudioSource>().Play();
+        }
     }
 
 

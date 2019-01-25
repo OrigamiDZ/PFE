@@ -79,7 +79,7 @@
 
         private void Start()
         {
-            tutorialTestUIText = "En recherche de plans...";
+            tutorialTestUIText = "Scannez autour de vous pour trouver des plans";
             stepTestUI = 1;
             Bihou.SetActive(false);
             UI_slides.SetActive(false);
