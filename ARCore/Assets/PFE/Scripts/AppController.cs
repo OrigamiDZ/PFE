@@ -94,13 +94,6 @@ public class AppController : MonoBehaviour {
     private void RequestAndroidPermissions()
     {
 
-        if(!Application.HasUserAuthorization(UserAuthorization.WebCam))
-        if (!AndroidPermission.HasUserAuthorizedPermission(AndroidPermission.Microphone))
-        {
-            AndroidPermission.RequestUserPermission(AndroidPermission.Microphone);
-            dialog = new GameObject();
-        }
-        i
     }
 
 }
