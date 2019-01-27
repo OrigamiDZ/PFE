@@ -5,9 +5,6 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
-#if PLATFORM_ANDROID
-using UnityEditor.Android;
-#endif
 
 public class AppController : MonoBehaviour {
 

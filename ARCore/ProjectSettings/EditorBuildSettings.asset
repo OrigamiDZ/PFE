@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/PFE/Scenes/Tutorial.unity
     guid: a452a5464bbf56c4d88ce046da06af05
   - enabled: 1
     path: Assets/PFE/Scenes/Discovery.unity
     guid: 8b2e5cc345b87c8488dd28ea226018d5
-  - enabled: 1
+  - enabled: 0
     path: Assets/PFE/Scenes/LocationScene.unity
     guid: 19e0cf5b28020474bb5885bab360b4c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/PFE/Scenes/EventMiniGame.unity
     guid: 72d2e3a6c16857544b8dc8946b90fa85
-  - enabled: 1
+  - enabled: 0
     path: Assets/PFE/Scenes/MissionMiniGame.unity
     guid: e569698618cc79d4d96199c2e3602bef
   m_configObjects: {}

@@ -151,7 +151,6 @@ public class BihouMovesAR : MonoBehaviour
     {
         CalculateTarget();
         transform.LookAt(cameraPlayer.transform);
-        transform.Rotate(new Vector3(-90, 0, 0));
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
             latestDirectionChangeTime = Time.time;

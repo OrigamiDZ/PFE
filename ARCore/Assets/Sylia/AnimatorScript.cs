@@ -1,10 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimatorScript : MonoBehaviour {
 
     public Animator animator;
+
+    public bool land = false;
+    public bool takeoff = false;
+    public bool confused = false;
+    public bool looping = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +19,10 @@ public class AnimatorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //GESTION DE L'ATERRISSAGE
-        if (Input.GetKey("down"))
+        if (land)
         {
             animator.SetBool("isLanding", true);
+            land = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Landing"))
         {
@@ -24,9 +30,10 @@ public class AnimatorScript : MonoBehaviour {
         }
 
         //GESTION DU DÉCOLLAGE
-        if (Input.GetKey("up"))
+        if (takeoff)
         {
             animator.SetBool("isTakingOff", true);
+            takeoff = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeOff"))
         {
@@ -34,7 +41,7 @@ public class AnimatorScript : MonoBehaviour {
         }
 
         //GESTION DE L'EXPRESSION D'INCOMPRÉHENSION
-        if (Input.GetKey("left") && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
+        if (confused && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
         {
             animator.SetBool("isMisunderstanding", true);
         }
@@ -44,7 +51,7 @@ public class AnimatorScript : MonoBehaviour {
         }
 
         //GESTION DU LOOPING
-        if (Input.GetKey("right") && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
+        if (looping && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
         {
             animator.SetBool("isLooping", true);
         }

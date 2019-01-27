@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 4770366070794142}
   - component: {fileID: 95345405927936184}
   - component: {fileID: 114688532289597552}
+  - component: {fileID: 114280173954621904}
   m_Layer: 0
   m_Name: PrefabAvatar
   m_TagString: Bihou
@@ -410,7 +411,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533173812206652}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: -0.0000001872535}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
@@ -427,7 +428,7 @@ Transform:
   - {fileID: 4937830819406098}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &4842807704127272
 Transform:
   m_ObjectHideFlags: 1
@@ -557,6 +558,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114280173954621904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533173812206652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c9a9060a2186649a2f1e2a8ecb2cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToTeleport: 5
+  directionChangeTimeInterval:
+    min: 1
+    max: 5
+  distanceToPlayerInterval:
+    min: 0.5
+    max: 5
+  bihouSpeedInterval:
+    min: 0.25
+    max: 1
+  cameraPlayer: {fileID: 0}
+  bihouSpeed: 0.8
+  distToCamOrigin: 2
+  marginTarget: 0.05
+  coefDepth: 1
 --- !u!114 &114688532289597552
 MonoBehaviour:
   m_ObjectHideFlags: 1
