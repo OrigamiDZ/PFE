@@ -17,6 +17,8 @@ public class UI_MenuManager : MonoBehaviour {
     GameObject InfoMenuUI;
     [SerializeField]
     GameObject OptionMenuUI;
+    [SerializeField]
+    GameObject SpeechRecoPhase;
 
     [SerializeField]
     GameObject[] MissionPagesUI_array;
@@ -30,7 +32,7 @@ public class UI_MenuManager : MonoBehaviour {
 
     private bool alreadyInMainMenu = false;
     private GameObject currentUI = null;
-    private GameObject sceneTheme;
+    private GameObject sceneTheme = null;
 
 
     private void Start()
@@ -66,7 +68,10 @@ public class UI_MenuManager : MonoBehaviour {
         }
         currentUI = InGameUI;
         Time.timeScale = 1;
-        sceneTheme.GetComponent<AudioSource>().Play();
+        if (sceneTheme != null)
+        {
+            sceneTheme.GetComponent<AudioSource>().Play();
+        }
     }
 
 
@@ -77,7 +82,7 @@ public class UI_MenuManager : MonoBehaviour {
             alreadyInMainMenu = true;
             Time.timeScale = 0;
             MenuMainTheme.Play();
-            sceneTheme.GetComponent<AudioSource>().Stop();
+            if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
         }
         if (currentUI != null)
         {
@@ -89,6 +94,13 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToMissionMenu()
     {
+        if (!alreadyInMainMenu)
+        {
+            alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
+        }
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -99,6 +111,13 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToInfoMenu()
     {
+        if (!alreadyInMainMenu)
+        {
+            alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
+        }
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -109,6 +128,13 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToOptionMenu()
     {
+        if (!alreadyInMainMenu)
+        {
+            alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
+        }
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -143,8 +169,29 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToSpeechRecoPhase()
     {
-
+        if (currentUI != null)
+        {
+            currentUI.SetActive(false);
+        }
+        SpeechRecoPhase.SetActive(true);
+        currentUI = SpeechRecoPhase;
     }
 
+
+    public void StartMission()
+    {
+        SceneManager.LoadScene("MissionMiniGame");
+    }
+
+    public void StartEvent()
+    {
+        SceneManager.LoadScene("EventMiniGame");
+    }
+
+    public void StartTutorial()
+    {
+        AppController.control.tutorialDone = false;
+        SceneManager.LoadScene("Tutorial");
+    }
 
 }

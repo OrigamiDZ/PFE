@@ -4,19 +4,13 @@
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
-    public class MiniGameHnS_Controller : MonoBehaviour
+    public class MissionMiniGame_Controller : MonoBehaviour
     {
 
         [SerializeField]
         GameObject Bihou;
         [SerializeField]
         Text UItext_notification;
-        [SerializeField]
-        int numberOfObjectsInVisualizer;
-        [SerializeField]
-        GameObject environmentHnS; //forest
-        [SerializeField]
-        Vector3 BihouDeltaHiding;
         [SerializeField]
         float deltaEnvironmentToGround;
 
@@ -37,8 +31,6 @@
         private Vector3 anchorEnvironment;
         private bool anchored = false;
         private MiniGameHnS_ImageVisualizer visualizer = null;
-        private int id_ObjectHiding;
-        private GameObject objectHiding;
         private bool HnS_found = false;
     
 
@@ -48,8 +40,6 @@
         {
             UItext_notification.text = "Trouvez l'affiche cachée";
             FitToScanOverlay.SetActive(true);
-            id_ObjectHiding = Random.Range(0, numberOfObjectsInVisualizer + 1);
-            objectHiding = environmentHnS.transform.GetChild(id_ObjectHiding).gameObject;
         }
 
         // Update is called once per frame
@@ -70,8 +60,8 @@
                         visualizer = (MiniGameHnS_ImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchorEnvironment + new Vector3(0,deltaEnvironmentToGround,0), Quaternion.identity);
                         UItext_notification.text = "Trouvez Bihou !";
                         FitToScanOverlay.SetActive(false);
-                        Bihou.SetActive(true);
-                        Bihou.transform.position = objectHiding.transform.position + BihouDeltaHiding;
+                        //Bihou.SetActive(true);
+                        //Bihou.transform.position = objectHiding.transform.position + BihouDeltaHiding;
                         anchored = true;
                         return;
                     }
