@@ -392,7 +392,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
 
     IEnumerator waiterBihouOutput()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         outputBihou.SetActive(false);
     }
 
