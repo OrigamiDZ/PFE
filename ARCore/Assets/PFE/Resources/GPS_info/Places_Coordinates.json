@@ -1,0 +1,42 @@
+{
+	"targetToPlace" : [
+		{
+			"place" : "gymnase"/*,
+			"targets": [
+				{
+					"latitude": 48.625843,
+					"longitude": 2.44165
+				}
+			]*/
+		},
+		{
+			"place" : "ensiie"/*,
+			"targets" : [
+				{
+					"latitude": 48.626704,
+					"longitude": 2.432356
+				}*/
+				/*{
+					"latitude" : 48.625986,
+					"longitude": 2.432257
+				},
+				{
+					"latitude": 48.625863, 
+					"longitude": 2.433811
+				},
+				{
+					"latitude": 48.625075,
+					"longitude": 2.433790
+				},
+				{
+					"latitude": 48.625093,
+					"longitude": 2.437291
+				},
+				{
+					"latitude": 48.624522,
+					"longitude": 2.439917
+				}*/
+			//]
+		}
+	]
+}
