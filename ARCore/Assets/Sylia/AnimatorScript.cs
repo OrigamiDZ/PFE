@@ -18,6 +18,7 @@ public class AnimatorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         //GESTION DE L'ATERRISSAGE
         if (land)
         {

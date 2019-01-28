@@ -14,6 +14,7 @@ public class AppController : MonoBehaviour {
     public bool eventDone;
     public double targetPointGPS;
     public int currentObjectiveDoneEvent;
+    public bool inSpeechRecoMode;
 
     void Awake () {
         //1st time running app

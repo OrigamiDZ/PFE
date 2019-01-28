@@ -175,6 +175,7 @@ public class UI_MenuManager : MonoBehaviour {
         }
         SpeechRecoPhase.SetActive(true);
         currentUI = SpeechRecoPhase;
+        AppController.control.inSpeechRecoMode = true;
     }
 
 

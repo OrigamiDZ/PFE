@@ -103,35 +103,42 @@ public class AvatarController : MonoBehaviour
 
     public void CalculateTarget()
     {
-        if (planeInSight)
+        if (AppController.control.inSpeechRecoMode)
         {
-            debugText.text = "Plane in sight";
-            if (!isOnPlane)
-            {
-                debugText.text = "Landing on plane";
-                targetPosition = targetPlane + landingOffsetVect;
-                GetComponent<AnimatorScript>().land = true;
-                isOnPlane = true;
-            }
-            else if (!isInCameraFieldOfView())
-            {
-                debugText.text = "Not in sight so move yo ass";
-                targetPlane = new Vector3(0, 0, 0);
-                targetPosition = cameraPlayer.ScreenToWorldPoint(basicPosition);
-                GetComponent<AnimatorScript>().takeoff = true;
-                isOnPlane = false;
-                planeInSight = false;
-            }
+            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 3, distToCamOrigin/1.1f));
         }
         else
         {
-            debugText.text = "No plane in sight";
-            if (isOnPlane)
+            if (planeInSight)
             {
-                GetComponent<AnimatorScript>().takeoff = true;
+                debugText.text = "Plane in sight";
+                if (!isOnPlane)
+                {
+                    debugText.text = "Landing on plane";
+                    targetPosition = targetPlane + landingOffsetVect;
+                    GetComponent<AnimatorScript>().land = true;
+                    isOnPlane = true;
+                }
+                else if (!isInCameraFieldOfView())
+                {
+                    debugText.text = "Not in sight so move yo ass";
+                    targetPlane = new Vector3(0, 0, 0);
+                    targetPosition = cameraPlayer.ScreenToWorldPoint(basicPosition);
+                    GetComponent<AnimatorScript>().takeoff = true;
+                    isOnPlane = false;
+                    planeInSight = false;
+                }
             }
-            targetPosition = cameraPlayer.ScreenToWorldPoint(basicPosition);
-            isOnPlane = false;
+            else
+            {
+                debugText.text = "No plane in sight";
+                if (isOnPlane)
+                {
+                    GetComponent<AnimatorScript>().takeoff = true;
+                }
+                targetPosition = cameraPlayer.ScreenToWorldPoint(basicPosition);
+                isOnPlane = false;
+            }
         }
     }
 
@@ -145,107 +152,106 @@ public class AvatarController : MonoBehaviour
 
     void Update()
     {
+            //Automatic raycasting 
 
-        //Automatic raycasting 
-
-        TrackableHit hit;
-        TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
-        //Raycast from the middle of the screen
-        if (Frame.Raycast(Screen.width / 2, Screen.height / 2, raycastFilter, out hit))
-        {
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
+            TrackableHit hit;
+            TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
+            //Raycast from the middle of the screen
+            if (Frame.Raycast(Screen.width / 2, Screen.height / 2, raycastFilter, out hit))
             {
-                targetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                 {
                     targetPlane = new Vector3(0, 0, 0);
                 }
                 else
                 {
-                    targetPlane = hit.Pose.position;
-                    planeInSight = true;
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        targetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        targetPlane = hit.Pose.position;
+                        planeInSight = true;
+                    }
                 }
+
             }
 
-        }
-
-        //Raycast from the left of the screen
-        if (Frame.Raycast(Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
-        {
-            debugText.text = "Raycast left";
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
+            //Raycast from the left of the screen
+            if (Frame.Raycast(Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
             {
-                debugText.text = "Hit at back of the current DetectedPlane";
-                targetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
+                debugText.text = "Raycast left";
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                 {
+                    debugText.text = "Hit at back of the current DetectedPlane";
                     targetPlane = new Vector3(0, 0, 0);
                 }
                 else
                 {
-                    targetPlane = hit.Pose.position;
-                    planeInSight = true;
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        targetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        targetPlane = hit.Pose.position;
+                        planeInSight = true;
+                    }
                 }
+
             }
 
-        }
-
-        //Raycast from the right of the screen
-        if (Frame.Raycast(3 * Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
-        {
-            debugText.text = "Raycast right";
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
+            //Raycast from the right of the screen
+            if (Frame.Raycast(3 * Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
             {
-                debugText.text = "Hit at back of the current DetectedPlane";
-                targetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
+                debugText.text = "Raycast right";
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) && Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                 {
+                    debugText.text = "Hit at back of the current DetectedPlane";
                     targetPlane = new Vector3(0, 0, 0);
                 }
                 else
                 {
-                    targetPlane = hit.Pose.position;
-                    planeInSight = true;
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        targetPlane = new Vector3(0, 0, 0);
+                    }
+                    else
+                    {
+                        targetPlane = hit.Pose.position;
+                        planeInSight = true;
+                    }
                 }
+
             }
 
-        }
+            CalculateTarget();
 
-        CalculateTarget();
+            transform.LookAt(cameraPlayer.transform);
+            if (Time.time - latestDirectionChangeTime > directionChangeTime)
+            {
+                latestDirectionChangeTime = Time.time;
+                CalcuateNewMovementVector();
+            }
 
-        transform.LookAt(cameraPlayer.transform);
-        if (Time.time - latestDirectionChangeTime > directionChangeTime)
-        {
-            latestDirectionChangeTime = Time.time;
-            CalcuateNewMovementVector();
-        }
+            CheckNotOutofBoundary();
 
-        CheckNotOutofBoundary();
+            transform.position = transform.position + movementPerSecond * Time.deltaTime;
 
-        transform.position = transform.position + movementPerSecond * Time.deltaTime;
-
-        float distanceBetweenBihouAndPlayer = Mathf.Sqrt(
-        Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
-        Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2));
-        if (distanceToTeleport <= distanceBetweenBihouAndPlayer)
-        {
-            TeleportForwardPlayer();
-        }
-
+            float distanceBetweenBihouAndPlayer = Mathf.Sqrt(
+            Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
+            Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2));
+            if (distanceToTeleport <= distanceBetweenBihouAndPlayer)
+            {
+                TeleportForwardPlayer();
+            }
+        
     }
 }
