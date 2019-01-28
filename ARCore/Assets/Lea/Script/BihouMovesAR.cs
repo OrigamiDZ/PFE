@@ -1,12 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public class Interval
-{
-    public float min, max;
-}
+using GoogleARCore;
 
 public class BihouMovesAR : MonoBehaviour
 {
@@ -62,18 +57,7 @@ public class BihouMovesAR : MonoBehaviour
         CalcuateNewMovementVector();
     }
 
-    /*
-    void CalcuateRandoms()
-    {
-        directionChangeTime = Random.Range(directionChangeTimeInterval.min, directionChangeTimeInterval.max);
-        bihouSpeed = Random.Range(0.0f, bihouSpeedInterval.max);
 
-        if (bihouSpeed < bihouSpeedInterval.min)
-        {
-            bihouSpeed = 0.0f;
-        }
-    }
-    */
 
     void CalcuateNewMovementVector()
     {
@@ -102,18 +86,9 @@ public class BihouMovesAR : MonoBehaviour
         }
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        TeleportForwardPlayer();
-        Debug.Log("Collision");
-    }
-    */
 
     void TeleportForwardPlayer()
     {
-        //For now, teleports in front of camera, will later teleport just near it to come into screen
-        //Vector3 newPosition = 
         transform.position = targetPosition;
         transform.LookAt(cameraPlayer.transform);
     }
@@ -130,13 +105,13 @@ public class BihouMovesAR : MonoBehaviour
             else
             {
                 targetPlane = new Vector3(0, 0, 0);
-                targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(8*Screen.width / 10, Screen.height / 2, distToCamOrigin));
+                targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(7*Screen.width / 10, Screen.height / 2, distToCamOrigin));
                 isOnPlane = false;
             }
         }
         else
         {
-            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(8*Screen.width / 10, Screen.height / 2, distToCamOrigin));
+            targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(7*Screen.width / 10, Screen.height / 2, distToCamOrigin));
             isOnPlane = false;
         }
     }
@@ -147,11 +122,95 @@ public class BihouMovesAR : MonoBehaviour
         return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds); 
 }
 
+
+
     void Update()
     {
+        //Automatic raycasting 
+
+        TrackableHit hit;
+        TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
+
+        //Raycast from the middle of the screen
+        if (isOnPlane && Frame.Raycast(Screen.width / 2, Screen.height / 2, raycastFilter, out hit))
+        {
+            // Use hit pose and camera pose to check if hittest is from the
+            // back of the plane, if it is, no need to create the anchor.
+            if ((hit.Trackable is DetectedPlane) &&
+                Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position,
+                    hit.Pose.rotation * Vector3.up) < 0)
+            {
+                Debug.Log("Hit at back of the current DetectedPlane");
+                targetPlane = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                if (hit.Trackable is FeaturePoint)
+                {
+                    targetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    targetPlane = hit.Pose.position;
+                }
+            }
+
+        }
+
+        //Raycast from the left of the screen
+        if (isOnPlane && Frame.Raycast(Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
+        {
+            // Use hit pose and camera pose to check if hittest is from the
+            // back of the plane, if it is, no need to create the anchor.
+            if ((hit.Trackable is DetectedPlane) &&
+                Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position,
+                    hit.Pose.rotation * Vector3.up) < 0)
+            {
+                Debug.Log("Hit at back of the current DetectedPlane");
+                targetPlane = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                if (hit.Trackable is FeaturePoint)
+                {
+                    targetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    targetPlane = hit.Pose.position;
+                }
+            }
+
+        }
+
+        //Raycast from the right of the screen
+        if (isOnPlane && Frame.Raycast(3 * Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
+        {
+            // Use hit pose and camera pose to check if hittest is from the
+            // back of the plane, if it is, no need to create the anchor.
+            if ((hit.Trackable is DetectedPlane) &&
+                Vector3.Dot(cameraPlayer.transform.position - hit.Pose.position,
+                    hit.Pose.rotation * Vector3.up) < 0)
+            {
+                Debug.Log("Hit at back of the current DetectedPlane");
+                targetPlane = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                if (hit.Trackable is FeaturePoint)
+                {
+                    targetPlane = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    targetPlane = hit.Pose.position;
+                }
+            }
+
+        }
+
         CalculateTarget();
         transform.LookAt(cameraPlayer.transform);
-        transform.Rotate(new Vector3(-90, 0, 0));
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
             latestDirectionChangeTime = Time.time;
@@ -163,9 +222,8 @@ public class BihouMovesAR : MonoBehaviour
         transform.position = transform.position + movementPerSecond * Time.deltaTime;
 
         float distanceBetweenBihouAndPlayer = Mathf.Sqrt(
-    Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
-    Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2)
-);
+        Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
+        Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2));
         if (distanceToTeleport <= distanceBetweenBihouAndPlayer)
         {
             TeleportForwardPlayer();

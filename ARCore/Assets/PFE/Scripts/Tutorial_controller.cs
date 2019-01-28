@@ -67,6 +67,8 @@
         GameObject UI_slides;
         [SerializeField]
         GameObject speechRecoPrefab;
+        [SerializeField]
+        Vector3 offsetBihou;
 
 
         private bool flyerFound = false;
@@ -79,7 +81,7 @@
 
         private void Start()
         {
-            tutorialTestUIText = "En recherche de plans...";
+            tutorialTestUIText = "Scannez autour de vous pour trouver des plans";
             stepTestUI = 1;
             Bihou.SetActive(false);
             UI_slides.SetActive(false);
@@ -196,7 +198,9 @@
                                 if (hit.collider.tag == "Tuto_AugmentedObject")
                                 {
                                     Bihou.SetActive(true);
-                                    Bihou.transform.position = hit.point;
+                                    Bihou.GetComponent<AnimatorScript>().land = true;
+                                    Bihou.transform.position = hit.point + offsetBihou;
+                                    Bihou.transform.LookAt(FirstPersonCamera.transform);
                                     Destroy(hit.transform.gameObject);
                                     stepTestUI = 4;
                                 }
@@ -227,11 +231,13 @@
                 if(speechRecoPrefab.GetComponent<Tutorial_SpeechRecognizer>().hello == true)
                 {
                     tutorialTestUIText = "Bihou est content";
+                    Bihou.GetComponent<AnimatorScript>().takeoff = true;
+                    Bihou.GetComponent<AnimatorScript>().looping = true;
                     AppController.control.tutorialDone = true;
                     timerSwitch++;
-                    if (timerSwitch > 300)
+                    if (timerSwitch > 200)
                     {
-                        SceneManager.LoadScene("LocationScene");
+                        SceneManager.LoadScene("Discovery");
                     }
                 }
             }

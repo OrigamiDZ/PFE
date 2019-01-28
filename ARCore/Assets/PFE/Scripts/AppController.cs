@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class AppController : MonoBehaviour {
 
@@ -12,12 +13,16 @@ public class AppController : MonoBehaviour {
     public bool missionDone;
     public bool eventDone;
     public double targetPointGPS;
+    public int currentObjectiveDoneEvent;
+    public bool inSpeechRecoMode;
 
     void Awake () {
+        //1st time running app
         if(control == null)
         {
             DontDestroyOnLoad(gameObject);
             control = this;
+            RequestAndroidPermissions();
         }
         else if (control != this)
         {
@@ -28,11 +33,22 @@ public class AppController : MonoBehaviour {
     public void Start()
     {
         Load();
+        if (!tutorialDone)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            SceneManager.LoadScene("Discovery");
+        }
     }
 
-    public void OnApplicationQuit()
+    private void OnApplicationPause(bool pause)
     {
-        Save();
+        if (pause)
+        {
+            Save();
+        }
     }
 
 
@@ -41,19 +57,13 @@ public class AppController : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
-        {
-            file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
-        }
-        else
-        {
-            file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
-        }
+        file = File.Create(Application.persistentDataPath + "/CIRAInfo.dat");
 
         PlayerData data = new PlayerData();
         data.tutorialDone = tutorialDone;
         data.missionDone = missionDone;
         data.eventDone = eventDone;
+        data.currentObjectiveDoneEvent = currentObjectiveDoneEvent;
 
         bf.Serialize(file, data);
         file.Close();
@@ -63,20 +73,30 @@ public class AppController : MonoBehaviour {
 
     public void Load()
     {
-        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        if(File.Exists(Application.persistentDataPath + "/CIRAInfo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/CIRAInfo.dat", FileMode.Open);
             PlayerData data = (PlayerData) bf.Deserialize(file);
             file.Close();
 
             tutorialDone = data.tutorialDone;
             missionDone = data.missionDone;
             eventDone = data.eventDone;
+            currentObjectiveDoneEvent = data.currentObjectiveDoneEvent;
         }
     }
 
+
+
+    private void RequestAndroidPermissions()
+    {
+
+    }
+
 }
+
+
 
 
 [Serializable]
@@ -85,4 +105,5 @@ class PlayerData
     public bool tutorialDone;
     public bool missionDone;
     public bool eventDone;
+    public int currentObjectiveDoneEvent;
 }

@@ -13,16 +13,41 @@ public class GlobalSpeechRecognizer : MonoBehaviour
     public Text resultText;
     public Text partialResultText;
     public Text statusText;
-
-    public bool hello = false;
+    public GameObject outputBihou;
 
     private Dispatcher dispatcher;
     private UtilsPlugin utilsPlugin;
 
+    private GameObject Bihou;
+
+    private String[] jokes =
+        { "Quelle est la différence entre un pigeon ? Il ne sait ni voler !",
+         "Quelle est la différence entre un pigeon ? Il a les 2 pattes de la même longueur, surtout la gauche !",
+         "Quel dinosaure était toujours rejeté par les femelles ? Le tyranosaure ex !",
+         "Que dit un dinosaure lorsqu'il ne comprend rien à la conversation ? Il dit qu'il ne voit pas le raptor !",
+         "C'est l'histoire d'un pingouin qui respire par les fesses. Un jour il s'asseoit et il meurt.",
+         "C'est l'histoire d'un canibale. Il court, il court, et il se mange !",
+         "Qu'est-ce qu'un oiseau migrateur ? Un oiseau qui se gratte que d'un seul côté !",
+         "Pourquoi les canards sont toujours à l'heure ? Parce qu'ils sont dans l'étang.",
+         "C'est quoi un petit pois avec une épée face à une carotte avec une épée ? Un bon duel.",
+         "Pourquoi les belges prennent du pain pour aller aux toilettes ? C’est pour nourrir le canard WC !",
+         "Vous avez vu les canards ? Il y en a dans le coin-coin.",
+         "Deux canards discutent \"Coin!\" \"J'allais le dire!\"",
+         "Qu'est ce qui fait \"nioc nioc\" ? Un canard qui parle en verlan.",
+         "Un jour un bonhomme voit un canard mort au bord de la route. Il s'est dit que c'était un signe, mais en fait c'était un canard.",
+         "C'est deux grains de sable qui discutent dans un désert. L'un dit à l'autre : \"Te retourne pas, je crois qu'on est suivis !\"",
+         "Je n'ai pas compris votre question. Nan je rigole, c'était une blague !"
+        };
+
+    private int jokeID;
+    public AudioSource easterEggAutobus;
+    public AudioSource easterEggRaptor;
 
     // Use this for initialization
     void Start()
     {
+        Bihou = GameObject.FindGameObjectWithTag("Bihou");
+
         dispatcher = Dispatcher.GetInstance();
         // for accessing audio
         utilsPlugin = UtilsPlugin.GetInstance();
@@ -294,13 +319,83 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     string whatToSay = results.GetValue(0).ToString();
 
                     if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
-                        hello = true;
+                    {
+                        outputBihou.SetActive(true);
+                        outputBihou.GetComponentInChildren<Text>().text = "Coucou !";
+                        StartCoroutine("waiterBihouOutput");
+                    }
+                    else if(whatToSay.Contains("looping") || whatToSay.Contains("Looping"))
+                    {
+                        Bihou.GetComponent<AnimatorScript>().looping = true;
+                    }
+                    else if (whatToSay.Contains("blague") || whatToSay.Contains("Blague"))
+                    {
+                        int prevJokeID = jokeID;
+                        jokeID = UnityEngine.Random.Range(0, jokes.Length);
+                        while(prevJokeID == jokeID)
+                        {
+                            jokeID = UnityEngine.Random.Range(0, jokes.Length);
+                        }
+                        outputBihou.SetActive(true);
+                        String str = jokes[jokeID];
+                        outputBihou.GetComponentInChildren<Text>().text = str;
+                        StartCoroutine("waiterBihouOutput");
+                    } 
+                    else if (whatToSay.Contains("mission") || whatToSay.Contains("Mission"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
+                        AppController.control.inSpeechRecoMode = false;
+                    }
+                    else if (whatToSay.Contains("événement") || whatToSay.Contains("Événement"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
+                        AppController.control.inSpeechRecoMode = false;
+                    }
+                    else if (whatToSay.Contains("retour") || whatToSay.Contains("Retour"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().BackToGame();
+                        AppController.control.inSpeechRecoMode = false;
+                    }
+                    else if (whatToSay.Contains("option") || whatToSay.Contains("Option"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToOptionMenu();
+                        AppController.control.inSpeechRecoMode = false;
+                    }
+                    else if (whatToSay.Contains("info") || whatToSay.Contains("Info"))
+                    {
+                        transform.GetComponentInParent<UI_MenuManager>().OnClickToInfoMenu();
+                        AppController.control.inSpeechRecoMode = false;
+                    }
+                    else if (whatToSay.Contains("autobus") || whatToSay.Contains("Autobus"))
+                    {
+                        easterEggAutobus.Play();
+                    }
+                    else if (whatToSay.Contains("raptor") || whatToSay.Contains("Raptor"))
+                    {
+                        easterEggRaptor.Play();
+                    }
                     else
+                    {
                         resultText.text = string.Format("Result: {0}", whatToSay);
+                        Bihou.GetComponent<AnimatorScript>().confused = true;
+                    }
                 }
             }
         );
     }
+
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(2);
+    }
+
+    IEnumerator waiterBihouOutput()
+    {
+        yield return new WaitForSeconds(6);
+        outputBihou.SetActive(false);
+    }
+
 
     private void onPartialResults(string data)
     {
