@@ -19,8 +19,6 @@ public class SpeechRecognizer : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
-    #if PLATFORM_ANDROID
         
     if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
         AndroidRuntimePermissions.RequestPermission("android.permission.RECORD_AUDIO");
