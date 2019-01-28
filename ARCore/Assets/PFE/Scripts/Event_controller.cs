@@ -96,6 +96,7 @@
                                         m_Visualizers.Remove(pair.Key);
                                         ImageObjectiveAchieved[pair.Key] = true;
                                         nbObjectiveDone++;
+                                        AppController.control.currentObjectiveDoneEvent++;
                                         UItext_notification.text = "Trouvez les affiches restantes";
                                         return;
                                     }

@@ -79,7 +79,7 @@
 
         private void Start()
         {
-            tutorialTestUIText = "En recherche de plans...";
+            tutorialTestUIText = "Scannez autour de vous pour trouver des plans";
             stepTestUI = 1;
             Bihou.SetActive(false);
             UI_slides.SetActive(false);
@@ -229,9 +229,9 @@
                     tutorialTestUIText = "Bihou est content";
                     AppController.control.tutorialDone = true;
                     timerSwitch++;
-                    if (timerSwitch > 300)
+                    if (timerSwitch > 100)
                     {
-                        SceneManager.LoadScene("LocationScene");
+                        SceneManager.LoadScene("Discovery");
                     }
                 }
             }

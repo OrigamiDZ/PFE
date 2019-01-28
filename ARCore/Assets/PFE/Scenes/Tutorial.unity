@@ -2381,6 +2381,13 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114322894730458258, guid: a0695832b50c6cd4bac1d0c1f6b322de,
+        type: 2}
+      propertyPath: m_Text
+      value: '
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 1535559707628866, guid: a0695832b50c6cd4bac1d0c1f6b322de, type: 2}
       propertyPath: m_IsActive
       value: 0
