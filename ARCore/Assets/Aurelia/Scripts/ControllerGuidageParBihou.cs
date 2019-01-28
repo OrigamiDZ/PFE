@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 using GoogleARCore;
-using GoogleARCore.Examples.Common;
-using UnityEngine;
 
 public class ControllerGuidageParBihou : MonoBehaviour {
     /// <summary>
