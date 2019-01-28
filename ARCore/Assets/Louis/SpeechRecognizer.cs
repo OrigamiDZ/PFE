@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 using AUP;
 
+
 public class SpeechRecognizer : MonoBehaviour {
 
     private const string TAG = "[SpeechRecognizerDemo]: ";
@@ -16,9 +17,14 @@ public class SpeechRecognizer : MonoBehaviour {
     private Dispatcher dispatcher;
     private UtilsPlugin utilsPlugin;
 
-
     // Use this for initialization
     void Start() {
+
+    #if PLATFORM_ANDROID
+        
+    if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
+        AndroidRuntimePermissions.RequestPermission("android.permission.RECORD_AUDIO");
+    }
         dispatcher = Dispatcher.GetInstance();
         // for accessing audio
         utilsPlugin = UtilsPlugin.GetInstance();
