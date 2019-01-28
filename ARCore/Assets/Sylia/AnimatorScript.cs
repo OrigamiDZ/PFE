@@ -22,22 +22,22 @@ public class AnimatorScript : MonoBehaviour {
         if (land)
         {
             animator.SetBool("isLanding", true);
-            land = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Landing"))
         {
             animator.SetBool("isLanding", false);
+            land = false;
         }
 
         //GESTION DU DÉCOLLAGE
         if (takeoff)
         {
             animator.SetBool("isTakingOff", true);
-            takeoff = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeOff"))
         {
             animator.SetBool("isTakingOff", false);
+            takeoff = false;
         }
 
         //GESTION DE L'EXPRESSION D'INCOMPRÉHENSION
@@ -48,6 +48,7 @@ public class AnimatorScript : MonoBehaviour {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Misunderstanding"))
         {
             animator.SetBool("isMisunderstanding", false);
+            confused = false;
         }
 
         //GESTION DU LOOPING
@@ -58,6 +59,7 @@ public class AnimatorScript : MonoBehaviour {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Looping"))
         {
             animator.SetBool("isLooping", false);
+            looping = false;
         }
     }
 }
