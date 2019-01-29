@@ -15,30 +15,25 @@
         /// <summary>
         /// The AugmentedImage to visualize.
         /// </summary>
-        public List<AugmentedImage> AugmentedImagesList = new List<AugmentedImage>();
+        public AugmentedImage Image;
 
         /// <summary>
         /// An object to place when an image is detected.
         /// </summary>
-        public GameObject[] AugmentedObject;
+        public GameObject[] AugmentedObjectsList;
 
         /// <summary>
         /// The Unity Update method.
         /// </summary>
         public void Update()
         {
-            foreach (var image in AugmentedImagesList)
-            {
-                if (image == null || image.TrackingState != TrackingState.Tracking)
+            if (Image == null || Image.TrackingState != TrackingState.Tracking)
                 {
-                    AugmentedObject[image.DatabaseIndex].SetActive(false);
+                    AugmentedObjectsList[Image.DatabaseIndex].SetActive(false);
 
                     return;
                 }
-
-
-                AugmentedObject[image.DatabaseIndex].SetActive(true);
+                AugmentedObjectsList[Image.DatabaseIndex].SetActive(true);
             }
-        }
     }
 }

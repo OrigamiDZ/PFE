@@ -68,7 +68,7 @@
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
                     visualizer = (Event_ImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchor.transform);
-                    visualizer.AugmentedImagesList.Add(image);
+                    visualizer.Image = image;
                     m_Visualizers.Add(image.DatabaseIndex, visualizer);
                 }
             }
@@ -87,12 +87,16 @@
                         {
                             foreach (KeyValuePair<int, Event_ImageVisualizer> pair in m_Visualizers)
                             {
-                                if (pair.Value.gameObject == hit.collider.gameObject)
+                                UItext_notification.text = "foreach";
+                                //UItext_notification.text += "\n" + pair.Key + " " + pair.Value.gameObject.transform.GetChild(pair.Key).name + " " + hit.collider.gameObject.name;
+                                if (pair.Value.gameObject.transform.GetChild(pair.Key).name == hit.collider.gameObject.name)
                                 {
+                                    UItext_notification.text = "1e if";
                                     bool isAlreadyAchieved = false;
                                     ImageObjectiveAchieved.TryGetValue(pair.Key, out isAlreadyAchieved);
                                     if (!isAlreadyAchieved)
                                     {
+                                        UItext_notification.text = "2e if";
                                         Destroy(hit.collider.gameObject);
                                         m_Visualizers.Remove(pair.Key);
                                         ImageObjectiveAchieved[pair.Key] = true;
