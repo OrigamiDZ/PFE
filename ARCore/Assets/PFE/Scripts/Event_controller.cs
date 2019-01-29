@@ -68,7 +68,7 @@
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
                     visualizer = (Event_ImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchor.transform);
-                    visualizer.Image = image;
+                    visualizer.AugmentedImagesList.Add(image);
                     m_Visualizers.Add(image.DatabaseIndex, visualizer);
                 }
             }
