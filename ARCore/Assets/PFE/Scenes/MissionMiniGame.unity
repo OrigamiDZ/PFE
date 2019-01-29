@@ -198,7 +198,7 @@ MonoBehaviour:
   Bihou: {fileID: 1694381270387830, guid: eb2087fe7440d7346b6a5c6455db30f5, type: 2}
   UItext_notification: {fileID: 1678832241}
   deltaEnvironmentToGround: -1.2
-  AugmentedImageVisualizerPrefab: {fileID: 114247529828986020, guid: 882bb0dfa46f71443a0bc3fe71ed3f13,
+  AugmentedImageVisualizerPrefab: {fileID: 114088105808334950, guid: 882bb0dfa46f71443a0bc3fe71ed3f13,
     type: 2}
   FitToScanOverlay: {fileID: 1962271288}
 --- !u!1 &486606592
@@ -845,6 +845,11 @@ Prefab:
     - target: {fileID: 4531670077565490, guid: 5a74014810802944980d712e3d18b879, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224036008621838198, guid: 5a74014810802944980d712e3d18b879,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a74014810802944980d712e3d18b879, type: 2}
