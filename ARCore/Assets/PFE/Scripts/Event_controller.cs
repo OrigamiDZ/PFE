@@ -62,7 +62,8 @@
                 ImageObjectiveAchieved.TryGetValue(image.DatabaseIndex, out alreadyDone);
                 if (image.TrackingState == TrackingState.Tracking && visualizer == null && !alreadyDone)
                 {
-                    UItext_notification.text = "Affiche trouvée \nTouchez l'objet agumenté"; //later -> make Bihou do an animation
+                    UItext_notification.text = "Affiche trouvée \nTouchez l'objet agumenté";
+                    Bihou.GetComponent<AnimatorScript>().land = true;
                     ImageObjectiveAchieved.Add(image.DatabaseIndex, false);
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
@@ -97,6 +98,8 @@
                                         ImageObjectiveAchieved[pair.Key] = true;
                                         nbObjectiveDone++;
                                         AppController.control.currentObjectiveDoneEvent++;
+                                        Bihou.GetComponent<AnimatorScript>().takeoff = true;
+                                        Bihou.GetComponent<AnimatorScript>().looping = true;
                                         UItext_notification.text = "Trouvez les affiches restantes";
                                         return;
                                     }

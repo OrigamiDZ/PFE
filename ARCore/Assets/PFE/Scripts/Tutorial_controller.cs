@@ -198,9 +198,9 @@
                                 if (hit.collider.tag == "Tuto_AugmentedObject")
                                 {
                                     Bihou.SetActive(true);
+                                    Bihou.GetComponent<AnimatorScript>().looping = true;
                                     Bihou.GetComponent<AnimatorScript>().land = true;
                                     Bihou.transform.position = hit.point + offsetBihou;
-                                    Bihou.transform.LookAt(FirstPersonCamera.transform);
                                     Destroy(hit.transform.gameObject);
                                     stepTestUI = 4;
                                 }
@@ -228,7 +228,7 @@
             if(stepTestUI == 5)
             {
                 speechRecoPrefab.SetActive(true);
-                if(speechRecoPrefab.GetComponent<Tutorial_SpeechRecognizer>().hello == true)
+                if (speechRecoPrefab.GetComponent<Tutorial_SpeechRecognizer>().hello == true)
                 {
                     tutorialTestUIText = "Bihou est content";
                     Bihou.GetComponent<AnimatorScript>().takeoff = true;
