@@ -47,6 +47,13 @@ public class GlobalSpeechRecognizer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
+            AndroidRuntimePermissions.RequestPermission("android.permission.RECORD_AUDIO");
+        }
+        if (AndroidRuntimePermissions.CheckPermission("android.permission.WRITE_EXTERNAL_STORAGE") != AndroidRuntimePermissions.Permission.Granted) {
+            AndroidRuntimePermissions.RequestPermission("android.permission.WRITE_EXTERNAL_STORAGE");
+        }
+
         Bihou = GameObject.FindGameObjectWithTag("Bihou");
 
         dispatcher = Dispatcher.GetInstance();
