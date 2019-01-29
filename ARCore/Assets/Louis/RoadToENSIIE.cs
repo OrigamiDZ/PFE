@@ -26,7 +26,11 @@ public class RoadToENSIIE : MonoBehaviour {
             SceneManager.LoadScene(nextScene);*/
     }
 
-
+    void Awake() {
+        if (AndroidRuntimePermissions.CheckPermission("android.permission.ACCESS_FINE_LOCATION") != AndroidRuntimePermissions.Permission.Granted) {
+            AndroidRuntimePermissions.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
+        }
+    }
 
     void Start() {
         targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.624522, 2.439917));//first step
