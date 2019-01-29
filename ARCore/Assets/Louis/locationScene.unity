@@ -212,6 +212,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 136406287}
   smoothFactor: 0.5
+--- !u!1001 &9973871
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586164248857342, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07ea226d822d5ed44b6ef3e94dc95ff5, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &136406287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4606757810357246, guid: 91946a45aa137434fbe9ce142e5da6f3,
@@ -853,6 +895,10 @@ Prefab:
         type: 2}
       propertyPath: targetsLatLong.Array.data[7].y
       value: 2.442733
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021584800421150, guid: ce1bbc89e225eb1468ff250178c8b784, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce1bbc89e225eb1468ff250178c8b784, type: 2}

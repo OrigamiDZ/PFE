@@ -33,12 +33,14 @@ public class RoadToENSIIE : MonoBehaviour {
     }
 
     void Start() {
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.624522, 2.439917));//first step
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625093, 2.437291));
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625075, 2.433790));
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625863, 2.433811));
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625986, 2.432257));
-        targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.626704, 2.432356));//ensiie point
+        if (targetsLatLong.Count == 0) {
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.624522, 2.439917));//first step
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625093, 2.437291));
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625075, 2.433790));
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625863, 2.433811));
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.625986, 2.432257));
+            targetsLatLong.Add(new Mapbox.Utils.Vector2d(48.626704, 2.432356));//ensiie point
+        }
 
         player = GameObject.FindGameObjectWithTag("Player");
 
