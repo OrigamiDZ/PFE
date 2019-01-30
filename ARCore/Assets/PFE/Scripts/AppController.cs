@@ -5,6 +5,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AppController : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class AppController : MonoBehaviour {
     public double targetPointGPS;
     public int currentObjectiveDoneEvent;
     public bool inSpeechRecoMode;
+    public bool soundOff;
 
     void Awake () {
         //1st time running app
@@ -22,7 +24,6 @@ public class AppController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             control = this;
-            RequestAndroidPermissions();
         }
         else if (control != this)
         {
@@ -33,6 +34,8 @@ public class AppController : MonoBehaviour {
     public void Start()
     {
         Load();
+        //soundOff = true;
+        if (soundOff) { AudioListener.volume = 0f; } else { AudioListener.volume = 1f; }
         if (!tutorialDone)
         {
             SceneManager.LoadScene("Tutorial");
@@ -41,6 +44,11 @@ public class AppController : MonoBehaviour {
         {
             SceneManager.LoadScene("Discovery");
         }
+    }
+
+    private void Update()
+    {
+        if (soundOff) { AudioListener.volume = 0f; } else { AudioListener.volume = 1f; }
     }
 
     private void OnApplicationPause(bool pause)
@@ -57,41 +65,38 @@ public class AppController : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        file = File.Create(Application.persistentDataPath + "/CIRAInfo.dat");
+        file = File.Create(Application.persistentDataPath + "/CIRA-Info.dat");
 
         PlayerData data = new PlayerData();
         data.tutorialDone = tutorialDone;
         data.missionDone = missionDone;
         data.eventDone = eventDone;
         data.currentObjectiveDoneEvent = currentObjectiveDoneEvent;
+        data.soundOff = soundOff;
 
         bf.Serialize(file, data);
         file.Close();
+        
     }
 
 
 
     public void Load()
     {
-        if(File.Exists(Application.persistentDataPath + "/CIRAInfo.dat"))
+        if(File.Exists(Application.persistentDataPath + "/CIRA-Info.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/CIRAInfo.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/CIRA-Info.dat", FileMode.Open);
             PlayerData data = (PlayerData) bf.Deserialize(file);
-            file.Close();
 
             tutorialDone = data.tutorialDone;
             missionDone = data.missionDone;
             eventDone = data.eventDone;
             currentObjectiveDoneEvent = data.currentObjectiveDoneEvent;
+            soundOff = data.soundOff;
+
+            file.Close();
         }
-    }
-
-
-
-    private void RequestAndroidPermissions()
-    {
-
     }
 
 }
@@ -106,4 +111,5 @@ class PlayerData
     public bool missionDone;
     public bool eventDone;
     public int currentObjectiveDoneEvent;
+    public bool soundOff;
 }

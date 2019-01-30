@@ -29,6 +29,8 @@ public class UI_MenuManager : MonoBehaviour {
 
     [SerializeField]
     AudioSource MenuMainTheme;
+    [SerializeField]
+    Slider soundSlider;
 
     private bool alreadyInMainMenu = false;
     private GameObject currentUI = null;
@@ -56,6 +58,7 @@ public class UI_MenuManager : MonoBehaviour {
 
         if (AppController.control.eventDone) { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(true); }
         else { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(false); }
+
     }
 
     public void BackToGame()
@@ -68,7 +71,7 @@ public class UI_MenuManager : MonoBehaviour {
         }
         currentUI = InGameUI;
         Time.timeScale = 1;
-        if (sceneTheme != null)
+        if (sceneTheme != null /*&& !AppController.control.soundOff*/)
         {
             sceneTheme.GetComponent<AudioSource>().Play();
         }
@@ -128,6 +131,7 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToOptionMenu()
     {
+        if (AppController.control.soundOff) { soundSlider.value = 0; } else { soundSlider.value = 1; }
         if (!alreadyInMainMenu)
         {
             alreadyInMainMenu = true;
@@ -195,4 +199,16 @@ public class UI_MenuManager : MonoBehaviour {
         SceneManager.LoadScene("Tutorial");
     }
 
+
+    public void SoundOptionManager(Slider slider)
+    {
+        if(slider.value == 1)
+        {
+            AppController.control.soundOff = false;
+        }
+        else if (slider.value == 0)
+        {
+            AppController.control.soundOff = true;
+        }
+    }
 }
