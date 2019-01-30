@@ -106,6 +106,7 @@ public class AvatarController : MonoBehaviour
         if (AppController.control.inSpeechRecoMode)
         {
             targetPosition = cameraPlayer.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 3, distToCamOrigin/1.1f));
+            GetComponent<AnimatorScript>().takeoff = true;
         }
         else
         {

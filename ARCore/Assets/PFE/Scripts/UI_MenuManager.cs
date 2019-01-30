@@ -19,6 +19,8 @@ public class UI_MenuManager : MonoBehaviour {
     GameObject OptionMenuUI;
     [SerializeField]
     GameObject SpeechRecoPhase;
+    [SerializeField]
+    GameObject ListCommandUI;
 
     [SerializeField]
     GameObject[] MissionPagesUI_array;
@@ -173,6 +175,7 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToSpeechRecoPhase()
     {
+        Time.timeScale = 1;
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -211,4 +214,29 @@ public class UI_MenuManager : MonoBehaviour {
             AppController.control.soundOff = true;
         }
     }
+    
+
+    public void OnClickToListCommand()
+    {
+        if (!alreadyInMainMenu)
+        {
+            alreadyInMainMenu = true;
+            Time.timeScale = 0;
+            MenuMainTheme.Play();
+            if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
+        }
+        if (currentUI != null)
+        {
+            currentUI.SetActive(false);
+        }
+        ListCommandUI.SetActive(true);
+        currentUI = ListCommandUI;
+    }
+
+   public void OnClickButtonListCommand(string str)
+    {
+        OnClickToSpeechRecoPhase();
+        SpeechRecoPhase.GetComponent<GlobalSpeechRecognizer>().onResults(str);
+    }
+
 }
