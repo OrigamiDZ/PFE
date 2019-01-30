@@ -73,10 +73,7 @@ public class UI_MenuManager : MonoBehaviour {
         }
         currentUI = InGameUI;
         Time.timeScale = 1;
-        if (sceneTheme != null /*&& !AppController.control.soundOff*/)
-        {
-            sceneTheme.GetComponent<AudioSource>().Play();
-        }
+        if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Play(); }
     }
 
 
@@ -176,6 +173,7 @@ public class UI_MenuManager : MonoBehaviour {
     public void OnClickToSpeechRecoPhase()
     {
         Time.timeScale = 1;
+        if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Stop(); }
         if (currentUI != null)
         {
             currentUI.SetActive(false);
@@ -236,6 +234,8 @@ public class UI_MenuManager : MonoBehaviour {
    public void OnClickButtonListCommand(string str)
     {
         OnClickToSpeechRecoPhase();
+        MenuMainTheme.Stop();
+        alreadyInMainMenu = false;
         SpeechRecoPhase.GetComponent<GlobalSpeechRecognizer>().onResults(str);
     }
 

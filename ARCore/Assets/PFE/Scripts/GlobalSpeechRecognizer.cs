@@ -43,8 +43,12 @@ public class GlobalSpeechRecognizer : MonoBehaviour
     private int jokeID;
     public AudioSource easterEggAutobus;
     public AudioSource easterEggRaptor;
+    private GameObject sceneTheme = null;
 
-    // Use this for initialization
+    private void Awake()
+    {
+        dispatcher = Dispatcher.GetInstance();
+    }
     void Start()
     {
         if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
@@ -53,6 +57,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         if (AndroidRuntimePermissions.CheckPermission("android.permission.WRITE_EXTERNAL_STORAGE") != AndroidRuntimePermissions.Permission.Granted) {
             AndroidRuntimePermissions.RequestPermission("android.permission.WRITE_EXTERNAL_STORAGE");
         }
+        if (GameObject.FindGameObjectsWithTag("SceneThemeAudio").Length > 0) { sceneTheme = GameObject.FindGameObjectsWithTag("SceneThemeAudio")[0]; }
 
         Bihou = GameObject.FindGameObjectWithTag("Bihou");
 
@@ -421,7 +426,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
 
     IEnumerator waiterBihouOutputSound()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(8);
         AppController.control.soundOff = true;
     }
 
