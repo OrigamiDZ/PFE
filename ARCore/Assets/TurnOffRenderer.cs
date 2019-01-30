@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnOffRenderer : MonoBehaviour {
 
-    public MeshRenderer[] meshs;
+    private MeshRenderer[] meshs;
 
     void Update()
     {

@@ -9,7 +9,7 @@ public class BihouGuidage : MonoBehaviour {
     [SerializeField]
     private Interval distanceToPlayerInterval;
     [SerializeField]
-    private Interval bihouSpeedInterval; // not used
+    private Interval bihouSpeedInterval;
     [SerializeField]
     private Camera cameraPlayer;
     [SerializeField]
@@ -22,15 +22,18 @@ public class BihouGuidage : MonoBehaviour {
     private float coefDepth;
     [SerializeField]
     private GetDirection GPS;
+    [SerializeField]
+    private float directionChangeTime;
+
 
     private float dirx = 0, diry = 0, dirz = 0;
 
     private float BihouDistanceToPlayer; // we calculate it
-    private float directionChangeTime;
     private float latestDirectionChangeTime;
     private Vector3 movementDirection;
     private Vector3 movementPerSecond;
     private Vector3 targetPosition;
+    private bool reachedTarget;
 
     void Start()
     {
@@ -38,14 +41,12 @@ public class BihouGuidage : MonoBehaviour {
         transform.position = targetPosition;
         transform.LookAt(cameraPlayer.transform);
         latestDirectionChangeTime = 0.0f;
+        reachedTarget = false;
         CalculateNewMovementVector();
     }
 
     void CalculateNewMovementVector()
     {
-        //CalcuateRandoms();
-
-        //movementDirection = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f)).normalized;
         dirx = 0; diry = 0; dirz = 0;
         if (transform.position.x >= targetPosition.x + marginTarget) { dirx = -1; }
         if (transform.position.x <= targetPosition.x - marginTarget) { dirx = 1; }
@@ -73,9 +74,7 @@ public class BihouGuidage : MonoBehaviour {
 
     void TeleportForwardPlayer()
     {
-        //For now, teleports in front of camera, will later teleport just near it to come into screen
-        //Vector3 newPosition = 
-        transform.position = targetPosition;
+        transform.position = cameraPlayer.transform.position + cameraPlayer.transform.forward * 2;
         transform.LookAt(cameraPlayer.transform);
     }
 
@@ -85,8 +84,17 @@ public class BihouGuidage : MonoBehaviour {
         Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
 
         targetPosition = cameraPlayer.transform.position + direction * distanceToPlayerInterval.max;
+    }
 
+    public void AdjustSpeed()
+    {
+        if (Vector3.Distance(targetPosition, transform.position) >= 5 )
+            if (bihouSpeed + 0.02f < bihouSpeedInterval.max)
+                bihouSpeed += 0.01f;
 
+        if (Vector3.Distance(targetPosition, transform.position) <= 2)
+            if (bihouSpeed - 0.02f > bihouSpeedInterval.min)
+                bihouSpeed -= 0.01f;
     }
 
     private float ReturnMedium(float gyrometre)
@@ -112,40 +120,58 @@ public class BihouGuidage : MonoBehaviour {
             medium = 288;
         else if (gyrometre >= 306 && gyrometre < 342)
             medium = 324;
-
-
         return medium;
     }
 
-    private bool isInCameraFieldOfView()
+    void CheckIfTargetReached()
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraPlayer);
-        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds);
+        if (Vector3.Distance(targetPosition, transform.position) < 0.1)
+            reachedTarget = true;
+        else
+            reachedTarget = false;
     }
 
-    void Update()
+    void TeleportIfTooFar()
     {
-        CalculateTarget();
-        transform.LookAt(cameraPlayer.transform);
-        transform.Rotate(new Vector3(-90, 0, 0));
-        if (Time.time - latestDirectionChangeTime > directionChangeTime)
-        {
-            latestDirectionChangeTime = Time.time;
-            CalculateNewMovementVector();
-        }
-
-        CheckNotOutofBoundary();
-
-        transform.position = transform.position + movementPerSecond * Time.deltaTime;
-
         BihouDistanceToPlayer = Mathf.Sqrt(
-    Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
-    Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2)
-);
+        Mathf.Pow(cameraPlayer.transform.position.x - transform.position.x, 2) +
+        Mathf.Pow(cameraPlayer.transform.position.z - transform.position.z, 2)
+    );
         if (distanceToTeleport <= BihouDistanceToPlayer)
         {
             TeleportForwardPlayer();
         }
+    }
+
+    void Update()
+    {
+
+        CalculateTarget();
+
+        CheckIfTargetReached();
+
+        if (reachedTarget)
+        {
+            transform.LookAt(cameraPlayer.transform);
+        }
+        else
+        {
+            transform.LookAt(targetPosition);
+
+            AdjustSpeed();
+
+            if (Time.time - latestDirectionChangeTime > directionChangeTime)
+            {
+                latestDirectionChangeTime = Time.time;
+                CalculateNewMovementVector();
+            }
+
+            CheckNotOutofBoundary();
+
+            transform.position = transform.position + movementPerSecond * Time.deltaTime;
+        }
+
+        TeleportIfTooFar();
 
     }
 }
