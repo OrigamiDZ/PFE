@@ -24,101 +24,27 @@ public class ControllerGuidageParBihou : MonoBehaviour {
     /// </summary>
     private bool m_IsQuitting = false;
 
+
     /// <summary>
     /// The Unity Update() method.
     /// </summary>
     /// 
 
     public GameObject Bihou;
+    private BihouGuidage bihouGuidage;
+
+    public void Start()
+    {
+        bihouGuidage = Bihou.GetComponent<BihouGuidage>();
+    }
+
     public void Update()
     {
         _UpdateApplicationLifecycle();
 
-        // Hide snackbar when currently tracking at least one plane.
-        Session.GetTrackables<DetectedPlane>(m_AllPlanes);
+        // Set target
 
-        //Automatic raycasting 
 
-        TrackableHit hit;
-        TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
-
-        //Raycast from the middle of the screen
-        if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(Screen.width / 2, Screen.height / 2, raycastFilter, out hit))
-        {
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) &&
-                Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                    hit.Pose.rotation * Vector3.up) < 0)
-            {
-                Debug.Log("Hit at back of the current DetectedPlane");
-                Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-                }
-                else
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
-                }
-            }
-
-        }
-
-        //Raycast from the left of the screen
-        if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
-        {
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) &&
-                Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                    hit.Pose.rotation * Vector3.up) < 0)
-            {
-                Debug.Log("Hit at back of the current DetectedPlane");
-                Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-                }
-                else
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
-                }
-            }
-
-        }
-
-        //Raycast from the right of the screen
-        if (!Bihou.GetComponent<BihouMovesAR>().IsOnPlane && Frame.Raycast(3 * Screen.width / 4, Screen.height / 2, raycastFilter, out hit))
-        {
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
-            if ((hit.Trackable is DetectedPlane) &&
-                Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                    hit.Pose.rotation * Vector3.up) < 0)
-            {
-                Debug.Log("Hit at back of the current DetectedPlane");
-                Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                if (hit.Trackable is FeaturePoint)
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = new Vector3(0, 0, 0);
-                }
-                else
-                {
-                    Bihou.GetComponent<BihouMovesAR>().TargetPlane = hit.Pose.position;
-                }
-            }
-
-        }
     }
 
     /// <summary>
