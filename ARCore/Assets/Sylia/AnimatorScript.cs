@@ -5,11 +5,16 @@ using UnityEngine;
 public class AnimatorScript : MonoBehaviour {
 
     public Animator animator;
+    public AudioSource audioLooping;
+    public AudioSource audioIdle;
+    public AudioSource audioMisunderstand;
 
     public bool land = false;
     public bool takeoff = false;
     public bool confused = false;
     public bool looping = false;
+
+    private bool isAudioPlayingIdle = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,10 +24,15 @@ public class AnimatorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !isAudioPlayingIdle) {
+            audioIdle.enabled =true;
+        }
+
         //GESTION DE L'ATERRISSAGE
         if (land)
         {
             animator.SetBool("isLanding", true);
+            audioIdle.enabled = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Landing"))
         {
@@ -45,6 +55,8 @@ public class AnimatorScript : MonoBehaviour {
         if (confused && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
         {
             animator.SetBool("isMisunderstanding", true);
+            audioMisunderstand.Play();
+            audioIdle.enabled = false;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Misunderstanding"))
         {
@@ -56,6 +68,7 @@ public class AnimatorScript : MonoBehaviour {
         if (looping && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")))
         {
             animator.SetBool("isLooping", true);
+            audioLooping.Play();
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Looping"))
         {
