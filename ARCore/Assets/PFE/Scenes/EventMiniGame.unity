@@ -768,8 +768,7 @@ MonoBehaviour:
   UItext_notification: {fileID: 1081830385}
   UItext_objectiveNb: {fileID: 2107817627}
   nbObjective: 3
-  AugmentedImageVisualizerPrefab: {fileID: 114714434272526582, guid: 33762c19208772e4a97ea81560ae5194,
-    type: 2}
+  AugmentedImageVisualizerPrefab: {fileID: 2025928291}
 --- !u!4 &1882273069
 Transform:
   m_ObjectHideFlags: 0
@@ -995,6 +994,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d7e5a972b552184ea5539b82e6b393c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2025928291 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114437899202065824, guid: 1d7e5a972b552184ea5539b82e6b393c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2025928290}
+  m_Script: {fileID: 11500000, guid: edf55153cf2d56344800f622d08b691f, type: 3}
 --- !u!1 &2107817625
 GameObject:
   m_ObjectHideFlags: 0

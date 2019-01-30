@@ -54,3 +54,7 @@ MonoBehaviour:
   tutorialDone: 0
   missionDone: 0
   eventDone: 0
+  targetPointGPS: 0
+  currentObjectiveDoneEvent: 0
+  inSpeechRecoMode: 0
+  soundOff: 0

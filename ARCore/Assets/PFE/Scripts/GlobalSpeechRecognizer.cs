@@ -127,6 +127,9 @@ public class GlobalSpeechRecognizer : MonoBehaviour
 
     public void StartListening()
     {
+        outputBihou.SetActive(false);
+        StopAllCoroutines();
+
         bool isSupported = speechPlugin.CheckSpeechRecognizerSupport();
 
         if (isSupported)
@@ -300,7 +303,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         );
     }
 
-    private void onResults(string data)
+    public void onResults(string data)
     {
         dispatcher.InvokeAction(
             () => {
@@ -376,11 +379,29 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     }
                     else if (whatToSay.Contains("autobus") || whatToSay.Contains("Autobus"))
                     {
-                        easterEggAutobus.Play();
+                        if (AppController.control.soundOff)
+                        {
+                            AppController.control.soundOff = false;
+                            easterEggAutobus.Play();
+                            StartCoroutine("waiterBihouOutputSound");
+                        }
+                        else
+                        {
+                            easterEggAutobus.Play();
+                        }
                     }
                     else if (whatToSay.Contains("raptor") || whatToSay.Contains("Raptor"))
                     {
-                        easterEggRaptor.Play();
+                        if (AppController.control.soundOff)
+                        {
+                            AppController.control.soundOff = false;
+                            easterEggRaptor.Play();
+                            StartCoroutine("waiterBihouOutputSound");
+                        }
+                        else
+                        {
+                            easterEggRaptor.Play();
+                        }
                     }
                     else
                     {
@@ -392,18 +413,17 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         );
     }
 
-
-    IEnumerator waiter()
-    {
-        yield return new WaitForSeconds(2);
-    }
-
     IEnumerator waiterBihouOutput()
     {
         yield return new WaitForSeconds(6);
         outputBihou.SetActive(false);
     }
 
+    IEnumerator waiterBihouOutputSound()
+    {
+        yield return new WaitForSeconds(2);
+        AppController.control.soundOff = true;
+    }
 
     private void onPartialResults(string data)
     {
