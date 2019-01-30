@@ -6,6 +6,7 @@ public class GetDirection : MonoBehaviour {
 
     public GameObject player;
     public GameObject target;
+    public Camera cameraPlayer;
     private float angle = 0;
 
     // Use this for initialization
@@ -17,6 +18,11 @@ public class GetDirection : MonoBehaviour {
     public float GetAngle()
     {
         return angle;
+    }
+
+    public void CalculateCameraOffSet()
+    {
+
     }
 
     public void CalculateAngle()
@@ -33,7 +39,6 @@ public class GetDirection : MonoBehaviour {
         if (target != null)
         {
             CalculateAngle();
-            Debug.Log(angle);
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class BihouGuidage : MonoBehaviour {
 
     [SerializeField]
+    private GuidageController controller;
+    [SerializeField]
     private float distanceToTeleport;
     [SerializeField]
     private Interval distanceToPlayerInterval;
@@ -80,9 +82,8 @@ public class BihouGuidage : MonoBehaviour {
 
     public void CalculateTarget()
     {
-        float angle = GPS.GetAngle();
-        Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-
+        float angle = ReturnMedium(GPS.GetAngle()) + controller.GetCameraOffset();
+        Vector3 direction = new Vector3(Mathf.Cos(angle * Mathf.PI / 180), 0, Mathf.Sin(angle * Mathf.PI / 180));
         targetPosition = cameraPlayer.transform.position + direction * distanceToPlayerInterval.max;
     }
 
@@ -99,35 +100,14 @@ public class BihouGuidage : MonoBehaviour {
 
     private float ReturnMedium(float gyrometre)
     {
-        float medium = 0;
-        if (gyrometre >= 342 || gyrometre < 18)
-            medium = 0;
-        else if (gyrometre >= 18 && gyrometre < 54)
-            medium = 36;
-        else if (gyrometre >= 54 && gyrometre < 90)
-            medium = 72;
-        else if (gyrometre >= 90 && gyrometre < 126)
-            medium = 108;
-        else if (gyrometre >= 126 && gyrometre < 162)
-            medium = 144;
-        else if (gyrometre >= 162 && gyrometre < 198)
-            medium = 180;
-        else if (gyrometre >= 198 && gyrometre < 234)
-            medium = 216;
-        else if (gyrometre >= 234 && gyrometre < 270)
-            medium = 252;
-        else if (gyrometre >= 270 && gyrometre < 306)
-            medium = 288;
-        else if (gyrometre >= 306 && gyrometre < 342)
-            medium = 324;
-        return medium;
+        return (int)(gyrometre / 10) * 10.0f;
     }
 
     void CheckIfTargetReached()
     {
         if (Vector3.Distance(targetPosition, transform.position) < 0.1)
             reachedTarget = true;
-        else
+        if (Vector3.Distance(targetPosition, transform.position) > 0.7)
             reachedTarget = false;
     }
 
