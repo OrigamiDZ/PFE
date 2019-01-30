@@ -162,6 +162,8 @@ GameObject:
   - component: {fileID: 95345405927936184}
   - component: {fileID: 114688532289597552}
   - component: {fileID: 114248517362204932}
+  - component: {fileID: 82985241551004200}
+  - component: {fileID: 82001954232203778}
   m_Layer: 0
   m_Name: PrefabAvatar
   m_TagString: Bihou
@@ -259,7 +261,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4135205943893204}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.000015258788, y: 90.00001, z: -179.99998}
+  m_LocalEulerAnglesHint: {x: -0.000011382434, y: 138.13585, z: -179.99998}
 --- !u!4 &4135205943893204
 Transform:
   m_ObjectHideFlags: 1
@@ -286,7 +288,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4937830819406098}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.000015258788, y: 90.00001, z: -179.99998}
+  m_LocalEulerAnglesHint: {x: -0.0000038023725, y: 41.864132, z: -179.99998}
 --- !u!4 &4326190200618996
 Transform:
   m_ObjectHideFlags: 1
@@ -353,7 +355,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4770366070794142}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -0.00003050848, y: 0, z: -0}
+  m_LocalEulerAnglesHint: {x: -0.00003050848, y: 0, z: 0}
 --- !u!4 &4684044841098494
 Transform:
   m_ObjectHideFlags: 1
@@ -392,7 +394,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4770366070794142}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -0.00003050848, y: 0, z: -0}
+  m_LocalEulerAnglesHint: {x: -0.00003050848, y: 0, z: 0}
 --- !u!4 &4762825814800366
 Transform:
   m_ObjectHideFlags: 1
@@ -541,6 +543,196 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553086210597468}
   m_Mesh: {fileID: 4300008, guid: 34646e3114a614884b770d744f022063, type: 3}
+--- !u!82 &82001954232203778
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533173812206652}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fcbae1ef31dfc50429e4551e2bc82f8a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &82985241551004200
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533173812206652}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3707e5a6773b85a45bf586645cee9d79, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95345405927936184
 Animator:
   serializedVersion: 3
