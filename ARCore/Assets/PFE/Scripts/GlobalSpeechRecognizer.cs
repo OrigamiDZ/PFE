@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using AUP;
+using UnityEngine.SceneManagement;
 
 public class GlobalSpeechRecognizer : MonoBehaviour
 {
@@ -407,6 +408,22 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                         {
                             easterEggRaptor.Play();
                         }
+                    }
+                    else if (whatToSay.Contains("libre") || whatToSay.Contains("Libre"))
+                    {
+                        AppController.control.inSpeechRecoMode = false;
+                        SceneManager.LoadScene("Discovery");
+                    }
+                    else if (whatToSay.Contains("revoir") || whatToSay.Contains("Revoir"))
+                    {
+                        AppController.control.inSpeechRecoMode = false;
+                        Application.Quit();
+                    }
+                    else if (whatToSay.Contains("tutoriel") || whatToSay.Contains("Tutoriel"))
+                    {
+                        AppController.control.inSpeechRecoMode = false;
+                        AppController.control.tutorialDone = false;
+                        SceneManager.LoadScene("Tutorial");
                     }
                     else
                     {

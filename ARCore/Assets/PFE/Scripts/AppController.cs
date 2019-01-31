@@ -59,6 +59,11 @@ public class AppController : MonoBehaviour {
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
+
 
 
     public void Save()

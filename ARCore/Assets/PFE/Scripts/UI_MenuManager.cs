@@ -204,6 +204,13 @@ public class UI_MenuManager : MonoBehaviour {
     }
 
 
+    public void StartDiscovery()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Discovery");
+    }
+
+
     public void SoundOptionManager(Slider slider)
     {
         if(slider.value == 1)
@@ -241,5 +248,4 @@ public class UI_MenuManager : MonoBehaviour {
         alreadyInMainMenu = false;
         SpeechRecoPhase.GetComponent<GlobalSpeechRecognizer>().onResults(str);
     }
-
 }

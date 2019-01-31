@@ -36,6 +36,10 @@
 
         private int nbObjectiveDone = 0;
 
+        public GameObject endGameCanvas;
+        private bool endgame = false;
+        private int timer = 0;
+
 
 
         // Use this for initialization
@@ -122,11 +126,21 @@
                 UItext_objectiveNb.color = Color.green;
                 UItext_notification.text = "Evènement complété";
                 AppController.control.eventDone = true;
-                enabled = false;
+                endgame = true;
             }
             else
             {
                 UItext_objectiveNb.color = Color.red;
+            }
+
+
+            if (endgame)
+            {
+                timer++;
+                if(timer > 100)
+                {
+                    endGameCanvas.SetActive(true);
+                }
             }
 
         }
