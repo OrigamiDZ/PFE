@@ -1074,7 +1074,7 @@ MonoBehaviour:
   planesGenerator: {fileID: 1173821774}
   UI_slides: {fileID: 483079442}
   speechRecoPrefab: {fileID: 1242660196}
-  offsetBihou: {x: 0.2, y: -0.5, z: 0.5}
+  offsetBihou: {x: 0.02, y: -0.05, z: 0.02}
 --- !u!1 &875868495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,6 +2446,30 @@ Prefab:
     - target: {fileID: 4770366070794142, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105420784663600, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006062653838888, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284723508632534, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770366070794142, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770366070794142, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770366070794142, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8618edf0ba42e2418ab93767502386d, type: 2}

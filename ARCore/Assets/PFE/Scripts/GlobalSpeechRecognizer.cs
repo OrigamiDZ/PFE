@@ -38,7 +38,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
          "Un jour un bonhomme voit un canard mort au bord de la route. Il s'est dit que c'était un signe, mais en fait c'était un canard.",
          "C'est deux grains de sable qui discutent dans un désert. L'un dit à l'autre : \"Te retourne pas, je crois qu'on est suivis !\"",
          "Je n'ai pas compris votre question. Nan je rigole, c'était une blague !",
-         "Qu'est-ce qui fait toin toin ? Un tanard !"
+         "Qu'est-ce qui fait toin toin ? Un tanard !",
+         "Avec quoi ramasse-t-on la papaye ? Avec une foufourche !"
         };
 
     private int jokeID;
@@ -437,7 +438,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
 
     IEnumerator waiterBihouOutput()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         outputBihou.SetActive(false);
     }
 
