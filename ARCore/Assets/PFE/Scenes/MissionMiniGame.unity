@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86edcf8f75968743b5fb6a6ba2d312e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bihou: {fileID: 1694381270387830, guid: eb2087fe7440d7346b6a5c6455db30f5, type: 2}
+  Bihou: {fileID: 1533173812206652, guid: e8618edf0ba42e2418ab93767502386d, type: 2}
   UItext_notification: {fileID: 1678832241}
   deltaEnvironmentToGround: -1.2
   AugmentedImageVisualizerPrefab: {fileID: 114088105808334950, guid: 882bb0dfa46f71443a0bc3fe71ed3f13,
@@ -758,7 +758,7 @@ Prefab:
     - target: {fileID: 224051342882634102, guid: 53ddd890a4cdf964fb8595412b3095d5,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224051342882634102, guid: 53ddd890a4cdf964fb8595412b3095d5,
         type: 2}
@@ -773,12 +773,12 @@ Prefab:
     - target: {fileID: 224051342882634102, guid: 53ddd890a4cdf964fb8595412b3095d5,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224051342882634102, guid: 53ddd890a4cdf964fb8595412b3095d5,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224051342882634102, guid: 53ddd890a4cdf964fb8595412b3095d5,
         type: 2}
@@ -792,7 +792,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1159512371062980, guid: 53ddd890a4cdf964fb8595412b3095d5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53ddd890a4cdf964fb8595412b3095d5, type: 2}

@@ -11,6 +11,22 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1533173812206652}
   m_IsPrefabAsset: 1
+--- !u!1 &1072848797775048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4276731542244056}
+  - component: {fileID: 82272138183801724}
+  m_Layer: 0
+  m_Name: Audio Source Looping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1138201365385168
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +83,22 @@ GameObject:
   - component: {fileID: 4135205943893204}
   m_Layer: 0
   m_Name: WingBone_L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1231268751178164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4362445650189348}
+  - component: {fileID: 82904363845264640}
+  m_Layer: 0
+  m_Name: Audio Source Misunderstanding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,13 +248,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!1 &1633070766139012
+=======
+--- !u!1 &1601208016877050
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 4618112009764446}
   - component: {fileID: 82030776994277624}
   m_Layer: 0
@@ -243,6 +280,12 @@ GameObject:
   - component: {fileID: 82417450979191858}
   m_Layer: 0
   m_Name: AudioFlap
+=======
+  - component: {fileID: 4670474166019108}
+  - component: {fileID: 82879836373182210}
+  m_Layer: 0
+  m_Name: Audio Source Idle
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,15 +377,26 @@ Transform:
   m_Father: {fileID: 4937830819406098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.000015258788, y: 90.00001, z: -179.99998}
+<<<<<<< HEAD
 --- !u!4 &4322717810788094
+=======
+--- !u!4 &4276731542244056
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1190911219873822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 16.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_GameObject: {fileID: 1072848797775048}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_Children: []
   m_Father: {fileID: 4770366070794142}
   m_RootOrder: 13
@@ -388,6 +442,19 @@ Transform:
   m_Father: {fileID: 4770366070794142}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4362445650189348
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231268751178164}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_Children: []
+  m_Father: {fileID: 4770366070794142}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4599437733742272
 Transform:
   m_ObjectHideFlags: 1
@@ -414,11 +481,16 @@ Transform:
   m_Father: {fileID: 4770366070794142}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -0.00003050848, y: 0, z: -0}
+<<<<<<< HEAD
 --- !u!4 &4618112009764446
+=======
+--- !u!4 &4670474166019108
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1633070766139012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 16.2, z: 0}
@@ -435,6 +507,11 @@ Transform:
   m_GameObject: {fileID: 1904076385810868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 16.2, z: 0}
+=======
+  m_GameObject: {fileID: 1601208016877050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4770366070794142}
@@ -513,9 +590,15 @@ Transform:
   - {fileID: 4326957173486994}
   - {fileID: 4135205943893204}
   - {fileID: 4937830819406098}
+<<<<<<< HEAD
   - {fileID: 4659424280773978}
   - {fileID: 4618112009764446}
   - {fileID: 4322717810788094}
+=======
+  - {fileID: 4670474166019108}
+  - {fileID: 4362445650189348}
+  - {fileID: 4276731542244056}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
@@ -630,16 +713,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553086210597468}
   m_Mesh: {fileID: 4300008, guid: 34646e3114a614884b770d744f022063, type: 3}
+<<<<<<< HEAD
 --- !u!82 &82030776994277624
+=======
+--- !u!82 &82272138183801724
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1633070766139012}
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82b29c01f2a6e594d9e328d502e68bbd, type: 3}
+=======
+  m_GameObject: {fileID: 1072848797775048}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fcbae1ef31dfc50429e4551e2bc82f8a, type: 3}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -725,16 +820,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< HEAD
 --- !u!82 &82132183463975688
+=======
+--- !u!82 &82879836373182210
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1190911219873822}
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fcbae1ef31dfc50429e4551e2bc82f8a, type: 3}
+=======
+  m_GameObject: {fileID: 1601208016877050}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3707e5a6773b85a45bf586645cee9d79, type: 3}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -820,11 +927,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< HEAD
 --- !u!82 &82417450979191858
+=======
+--- !u!82 &82904363845264640
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1904076385810868}
   m_Enabled: 0
   serializedVersion: 4
@@ -834,6 +946,17 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+=======
+  m_GameObject: {fileID: 1231268751178164}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 82b29c01f2a6e594d9e328d502e68bbd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -945,9 +1068,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95345405927936184}
+<<<<<<< HEAD
   audioLooping: {fileID: 82132183463975688}
   audioIdle: {fileID: 82417450979191858}
   audioMisunderstand: {fileID: 82030776994277624}
+=======
+  audioLooping: {fileID: 82272138183801724}
+  audioIdle: {fileID: 82879836373182210}
+  audioMisunderstand: {fileID: 82904363845264640}
+>>>>>>> 9ababff644b346ab5766c50dd6f5ab52f0103834
   land: 0
   takeoff: 0
   confused: 0

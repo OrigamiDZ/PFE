@@ -186,16 +186,19 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void StartMission()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MissionMiniGame");
     }
 
     public void StartEvent()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("EventMiniGame");
     }
 
     public void StartTutorial()
     {
+        Time.timeScale = 1;
         AppController.control.tutorialDone = false;
         SceneManager.LoadScene("Tutorial");
     }
