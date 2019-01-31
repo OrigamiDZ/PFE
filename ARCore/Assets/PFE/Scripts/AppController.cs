@@ -36,6 +36,7 @@ public class AppController : MonoBehaviour {
         Load();
         //soundOff = true;
         if (soundOff) { AudioListener.volume = 0f; } else { AudioListener.volume = 1f; }
+        if(currentObjectiveDoneEvent == 0) { eventDone = false; }
         if (!tutorialDone)
         {
             SceneManager.LoadScene("Tutorial");

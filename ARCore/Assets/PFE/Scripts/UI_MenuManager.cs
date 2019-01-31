@@ -55,11 +55,13 @@ public class UI_MenuManager : MonoBehaviour {
             currentUI.SetActive(true);
         }
 
+        /*
         if (AppController.control.missionDone) { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(true); }
         else { MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(false); }
 
         if (AppController.control.eventDone) { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(true); }
         else { MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(false); }
+        */
 
     }
 
