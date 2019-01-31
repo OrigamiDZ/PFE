@@ -45,8 +45,17 @@
         // Use this for initialization
         void Start()
         {
+            int globalNbObjectives = AppController.control.currentObjectiveDoneEvent;
+            if(globalNbObjectives == 3)
+            {
+                nbObjectiveDone = 0;
+                AppController.control.currentObjectiveDoneEvent = 0;
+            }
+            else
+            {
+                nbObjectiveDone = AppController.control.currentObjectiveDoneEvent;
+            }
             UItext_notification.text = "Trouvez les objets dans les affiches";
-            //FitToScanOverlay.SetActive(true);
             UItext_objectiveNb.text = nbObjectiveDone.ToString() + " / " + nbObjective.ToString();
             UItext_objectiveNb.color = Color.red;
         }
@@ -124,7 +133,7 @@
             if (nbObjectiveDone == nbObjective)
             {
                 UItext_objectiveNb.color = Color.green;
-                UItext_notification.text = "Evènement complété";
+                UItext_notification.text = "Bien joué !";
                 AppController.control.eventDone = true;
                 endgame = true;
             }
@@ -137,7 +146,7 @@
             if (endgame)
             {
                 timer++;
-                if(timer > 100)
+                if(timer > 300)
                 {
                     endGameCanvas.SetActive(true);
                 }

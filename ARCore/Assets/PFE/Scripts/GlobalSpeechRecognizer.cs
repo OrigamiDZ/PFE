@@ -37,7 +37,6 @@ public class GlobalSpeechRecognizer : MonoBehaviour
          "Qu'est ce qui fait \"nioc nioc\" ? Un canard qui parle en verlan.",
          "Un jour un bonhomme voit un canard mort au bord de la route. Il s'est dit que c'était un signe, mais en fait c'était un canard.",
          "C'est deux grains de sable qui discutent dans un désert. L'un dit à l'autre : \"Te retourne pas, je crois qu'on est suivis !\"",
-         "Je n'ai pas compris votre question. Nan je rigole, c'était une blague !",
          "Qu'est-ce qui fait toin toin ? Un tanard !",
          "Avec quoi ramasse-t-on la papaye ? Avec une foufourche !"
         };
@@ -46,6 +45,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
     public AudioSource easterEggAutobus;
     public AudioSource easterEggRaptor;
     private GameObject sceneTheme = null;
+    private bool demoTerribleJoke = false;
 
     private void Awake()
     {
@@ -348,16 +348,26 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     }
                     else if (whatToSay.Contains("blague") || whatToSay.Contains("Blague"))
                     {
-                        int prevJokeID = jokeID;
-                        jokeID = UnityEngine.Random.Range(0, jokes.Length);
-                        while(prevJokeID == jokeID)
+                        if (!demoTerribleJoke)
                         {
-                            jokeID = UnityEngine.Random.Range(0, jokes.Length);
+                            demoTerribleJoke = true;
+                            outputBihou.SetActive(true);
+                            outputBihou.GetComponentInChildren<Text>().text = "Je n'ai pas compris votre question. Nan je rigole, c'était une blague !";
+                            StartCoroutine("waiterBihouOutput");
                         }
-                        outputBihou.SetActive(true);
-                        String str = jokes[jokeID];
-                        outputBihou.GetComponentInChildren<Text>().text = str;
-                        StartCoroutine("waiterBihouOutput");
+                        else
+                        {
+                            int prevJokeID = jokeID;
+                            jokeID = UnityEngine.Random.Range(0, jokes.Length);
+                            while (prevJokeID == jokeID)
+                            {
+                                jokeID = UnityEngine.Random.Range(0, jokes.Length);
+                            }
+                            outputBihou.SetActive(true);
+                            String str = jokes[jokeID];
+                            outputBihou.GetComponentInChildren<Text>().text = str;
+                            StartCoroutine("waiterBihouOutput");
+                        }
                     } 
                     else if (whatToSay.Contains("mission") || whatToSay.Contains("Mission"))
                     {

@@ -70,7 +70,7 @@ public class AppController : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        file = File.Create(Application.persistentDataPath + "/CIRA-Info.dat");
+        file = File.Create(Application.persistentDataPath + "/CIRA-demo.dat");
 
         PlayerData data = new PlayerData();
         data.tutorialDone = tutorialDone;
@@ -88,10 +88,10 @@ public class AppController : MonoBehaviour {
 
     public void Load()
     {
-        if(File.Exists(Application.persistentDataPath + "/CIRA-Info.dat"))
+        if(File.Exists(Application.persistentDataPath + "/CIRA-demo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/CIRA-Info.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/CIRA-demo.dat", FileMode.Open);
             PlayerData data = (PlayerData) bf.Deserialize(file);
 
             tutorialDone = data.tutorialDone;

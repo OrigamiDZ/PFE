@@ -156,6 +156,14 @@ public class UI_MenuManager : MonoBehaviour {
         }
         MissionPagesUI_array[id_page].SetActive(true);
         currentUI = MissionPagesUI_array[id_page];
+        if (id_page == 0 && !AppController.control.missionDone)
+        {
+            MissionPagesUI_array[0].transform.Find("Done").gameObject.SetActive(false);
+        }
+        if (id_page == 1 && !AppController.control.eventDone)
+        {
+            MissionPagesUI_array[1].transform.Find("Done").gameObject.SetActive(false);
+        }
     }
 
     public void OnClickToInfoPage(int id_page)
@@ -226,6 +234,7 @@ public class UI_MenuManager : MonoBehaviour {
 
     public void OnClickToListCommand()
     {
+        AppController.control.inSpeechRecoMode = false;
         if (!alreadyInMainMenu)
         {
             alreadyInMainMenu = true;
