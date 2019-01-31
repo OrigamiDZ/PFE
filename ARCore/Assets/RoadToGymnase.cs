@@ -58,7 +58,7 @@ public class RoadToGymnase : MonoBehaviour {
             //de target
             NextTarget();
         }
-        debug.text = "Target n°" + (8 - targetsLatLong.Count) + " : " + distance;
+        debug.text = "Target n°" + (8 - targetsLatLong.Count) + " : " + (distance*10);
 
     }
 }
