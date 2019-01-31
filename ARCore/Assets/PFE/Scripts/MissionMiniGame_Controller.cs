@@ -1,9 +1,12 @@
 ﻿namespace GoogleARCore.Examples.AugmentedImage
 {
     using System.Collections.Generic;
+    using System.Collections;
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
+
     public class MissionMiniGame_Controller : MonoBehaviour
     {
 
@@ -13,6 +16,8 @@
         Text UItext_notification;
         [SerializeField]
         float deltaEnvironmentToGround;
+        int timer = 0;
+        bool endgame = false;
 
         /// <summary>
         /// A prefab for visualizing an AugmentedImage.
@@ -60,8 +65,6 @@
                         visualizer = (MiniGameHnS_ImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchorEnvironment + new Vector3(0,deltaEnvironmentToGround,0), Quaternion.identity);
                         UItext_notification.text = "Trouvez Bihou !";
                         FitToScanOverlay.SetActive(false);
-                        //Bihou.SetActive(true);
-                        //Bihou.transform.position = objectHiding.transform.position + BihouDeltaHiding;
                         anchored = true;
                         return;
                     }
@@ -81,15 +84,25 @@
                         {
                             if (hit.collider.tag == "Bihou")
                             {
-                                Destroy(visualizer);
                                 UItext_notification.text = "Bien joué !";
-                                AppController.control.missionDone = true;
+                                endgame = true;
                             }
 
                         }
                     }
                 }
             }
+
+            if (endgame)
+            {
+                timer++;
+                if(timer > 250)
+                {
+                    AppController.control.missionDone = true;
+                    SceneManager.LoadScene("Discovery");
+                }
+            }
         }
+
     }
 }
