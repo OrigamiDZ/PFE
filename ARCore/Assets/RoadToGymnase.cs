@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Unity.Location;
+using UnityEngine.UI;
 
 public class RoadToGymnase : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class RoadToGymnase : MonoBehaviour {
     private List<Mapbox.Utils.Vector2d> targetsLatLong = new List<Mapbox.Utils.Vector2d>();
 
     public GameObject player;
+
+    public Text debug;
 
     private double latitude;
     private double longitude;
@@ -21,7 +24,6 @@ public class RoadToGymnase : MonoBehaviour {
             targetsLatLong.RemoveAt(0);
             latitude = targetsLatLong[0].x;
             longitude = targetsLatLong[0].y;
-
         }
         /*else
             SceneManager.LoadScene(nextScene);*/
@@ -56,5 +58,7 @@ public class RoadToGymnase : MonoBehaviour {
             //de target
             NextTarget();
         }
+        debug.text = "Target n°" + (8 - targetsLatLong.Count) + " : " + distance;
+
     }
 }

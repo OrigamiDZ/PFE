@@ -10,9 +10,39 @@ public class ScriptDebug : MonoBehaviour {
     public DeviceLocationProvider locationProvider;
     public GetDirection myDirection;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject DebugText1;
+    public GameObject DebugText2;
+
+    public Text buttonText;
+
+    private int tour;
+
+
+    // Use this for initialization
+    void Start () {
         //Input.location.Start();
+        tour = 0;
+    }
+    public void SwitchDebug()
+    {
+        switch (tour % 3)
+        {
+            case 0:
+                DebugText1.SetActive(true);
+                DebugText2.SetActive(false);
+                break;
+            case 1:
+                DebugText1.SetActive(false);
+                DebugText2.SetActive(true);
+                break;
+            case 2:
+                DebugText1.SetActive(false);
+                DebugText2.SetActive(false);
+                break;
+            default:
+                break;
+        }
+        tour++;
     }
 	
 	// Update is called once per frame
