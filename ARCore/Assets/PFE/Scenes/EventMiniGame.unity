@@ -189,7 +189,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1171705111}
-        m_MethodName: ResetDemoAndGoToDiscovery
+        m_MethodName: ResetAndGoToDiscovery
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -50,6 +50,7 @@
             {
                 nbObjectiveDone = 0;
                 AppController.control.currentObjectiveDoneEvent = 0;
+                AppController.control.eventDone = false;
             }
             else
             {
