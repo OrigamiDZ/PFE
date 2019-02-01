@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4942283335347240}
   m_Layer: 0
-  m_Name: LocGamePlayGround
+  m_Name: LocationMapPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,8 +655,8 @@ MonoBehaviour:
   _autoFireEvent: 1
   _updateInterval: 0.1
   _sendEvent: 0
-  initLatitude: 48.626704
-  initLongitude: 2.432356
+  initLatitude: 48.623889
+  initLongitude: 2.441184
 --- !u!114 &114225621836202804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -753,19 +753,19 @@ MonoBehaviour:
   _options:
     locationOptions:
       latitudeLongitude: 48.62489, 2.442973
-      zoom: 16
+      zoom: 17
     extentOptions:
-      extentType: 1
+      extentType: 0
       defaultExtents:
         cameraBoundsOptions:
           camera: {fileID: 0}
           visibleBuffer: 0
           disposeBuffer: 0
         rangeAroundCenterOptions:
-          west: 1
-          north: 1
-          east: 1
-          south: 1
+          west: 3
+          north: 3
+          east: 3
+          south: 3
         rangeAroundTransformOptions:
           targetTransform: {fileID: 4606757810357246}
           visibleBuffer: 0
