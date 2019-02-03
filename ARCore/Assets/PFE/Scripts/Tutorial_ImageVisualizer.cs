@@ -21,12 +21,10 @@
         /// </summary>
         public GameObject Egg;
 
-        /// <summary>
-        /// The Unity Update method.
-        /// </summary>
+
         public void Update()
         {
-            if (Image == null || Image.TrackingState != TrackingState.Tracking)
+            if ((Image == null || Image.TrackingState != TrackingState.Tracking))
             {
                 Egg.SetActive(false);
 

@@ -5,6 +5,7 @@
     using UnityEngine;
     using UnityEngine.UI;
     using UnityEngine.SceneManagement;
+    using System.Collections;
 
 
 
@@ -96,7 +97,9 @@
         [SerializeField]
         Vector3 offsetBihou;
 
-
+        //Button for lost flyer
+        [SerializeField]
+        GameObject flyerLostButton;
 
 
         private void Start()
@@ -106,6 +109,7 @@
             Bihou.SetActive(false);
             UI_slides.SetActive(false);
             FitToScanOverlay.SetActive(false);
+            flyerLostButton.SetActive(false);
         }
         public void Update()
         {
@@ -173,6 +177,7 @@
                     if (!flyerFound)
                     {
                         tutorialTestUIText = "Scannez le flyer";
+                        StartCoroutine("waiterButtonFlyerLost");
 
                         // Show the fit-to-scan overlay if there are no images that are Tracking.
                         foreach (var visualizer in m_Visualizers.Values)
@@ -340,6 +345,32 @@
                     toastObject.Call("show");
                 }));
             }
+        }
+
+
+        //Waiter for button 
+        IEnumerator waiterButtonFlyerLost()
+        {
+            yield return new WaitForSeconds(5);
+            if(stepTestUI == 2)
+            {
+                flyerLostButton.SetActive(true);
+            }
+        }
+
+        //I lost my flyer button function
+        public void OnClickILostMyFlyer()
+        {
+            Vector3 defaultPos = new Vector3(Screen.width / 2, Screen.height / 2, 0.7);
+            Vector3 targetPos = FirstPersonCamera.ScreenToWorldPoint(defaultPos);
+            Bihou.SetActive(true);
+            Bihou.GetComponent<AnimatorScript>().land = true;
+            Bihou.transform.position = targetPos;
+            Bihou.transform.LookAt(FirstPersonCamera.transform);
+            Bihou.transform.eulerAngles -= new Vector3(Bihou.transform.eulerAngles.x, 0, 0);
+            FitToScanOverlay.SetActive(false);
+            flyerLostButton.SetActive(false);
+            stepTestUI = 4;
         }
     }
 }
