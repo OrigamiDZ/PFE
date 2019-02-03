@@ -211,6 +211,7 @@
                 //Step 3 : augment the flyer
                 if (stepTestUI == 3)
                 {
+                    flyerLostButton.SetActive(false);
                     tutorialTestUIText = "Touchez l'oeuf pour faire apparaître Bihou";
                     Touch touch;
                     if (Input.touchCount > 0)
@@ -361,7 +362,7 @@
         //I lost my flyer button function
         public void OnClickILostMyFlyer()
         {
-            Vector3 defaultPos = new Vector3(Screen.width / 2, Screen.height / 2, 0.7);
+            Vector3 defaultPos = new Vector3(Screen.width / 2, Screen.height / 2, 0.7f);
             Vector3 targetPos = FirstPersonCamera.ScreenToWorldPoint(defaultPos);
             Bihou.SetActive(true);
             Bihou.GetComponent<AnimatorScript>().land = true;
