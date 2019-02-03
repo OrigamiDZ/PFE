@@ -240,7 +240,7 @@ public class UI_MenuManager : MonoBehaviour {
     public void StartMission()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MissionMiniGame");
+        SceneManager.LoadScene("GoToGymnase");
     }
 
 
@@ -248,7 +248,7 @@ public class UI_MenuManager : MonoBehaviour {
     public void StartEvent()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("EventMiniGame");
+        SceneManager.LoadScene("GoToENSIIE");
     }
 
 

@@ -25,6 +25,9 @@ public class Tutorial_SpeechRecognizer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
+            AndroidRuntimePermissions.RequestPermission("android.permission.RECORD_AUDIO");
+        }
         dispatcher = Dispatcher.GetInstance();
         // for accessing audio
         utilsPlugin = UtilsPlugin.GetInstance();
