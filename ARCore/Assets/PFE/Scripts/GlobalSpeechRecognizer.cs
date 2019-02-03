@@ -5,22 +5,39 @@ using System;
 using AUP;
 using UnityEngine.SceneManagement;
 
+
+//Speech recognizer class
 public class GlobalSpeechRecognizer : MonoBehaviour
 {
 
+    //Debugging tag
     private const string TAG = "[SpeechRecognizerDemo]: ";
 
+    //Speech recognition plugin
     private SpeechPlugin speechPlugin;
+
+    //Text canvas for speech recognition result
     public Text resultText;
+
+    //Text canavs for speech recognition partial result
     public Text partialResultText;
+
+    //Text canvas for speech recognition status
     public Text statusText;
+
+    //Canvas for avatar's output
     public GameObject outputBihou;
 
+    //Action dispatcher
     private Dispatcher dispatcher;
+
+    //Utils plugin
     private UtilsPlugin utilsPlugin;
 
+    //Avatar
     private GameObject Bihou;
 
+    //Avatar's (bad) humour database
     private String[] jokes =
         { "Quelle est la différence entre un pigeon ? Il ne sait ni voler !",
          "Quelle est la différence entre un pigeon ? Il a les 2 pattes de la même longueur, surtout la gauche !",
@@ -41,16 +58,30 @@ public class GlobalSpeechRecognizer : MonoBehaviour
          "Avec quoi ramasse-t-on la papaye ? Avec une foufourche !"
         };
 
+    //Current joke ID
     private int jokeID;
+
+    //Audio for the easter egg command "autobus"
     public AudioSource easterEggAutobus;
+
+    //Audio for the easter egg command "raptor"
     public AudioSource easterEggRaptor;
+
+    //Audio game object of the current scene music theme
     private GameObject sceneTheme = null;
+
+    //Has the first (terrible) joke been told yet
     private bool demoTerribleJoke = false;
 
+
+
+    //Dispatcher called on awake to assert manual commands work too
     private void Awake()
     {
         dispatcher = Dispatcher.GetInstance();
     }
+
+
     void Start()
     {
         if (AndroidRuntimePermissions.CheckPermission("android.permission.RECORD_AUDIO") != AndroidRuntimePermissions.Permission.Granted) {
@@ -79,15 +110,21 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         AddSpeechPluginListener();
     }
 
+
+
     private void OnEnable()
     {
         AddSpeechPluginListener();
     }
 
+
+
     private void OnDisable()
     {
         RemoveSpeechPluginListener();
     }
+
+
 
     private void AddSpeechPluginListener()
     {
@@ -102,6 +139,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
             speechPlugin.onPartialResults += onPartialResults;
         }
     }
+
+
 
     private void RemoveSpeechPluginListener()
     {
@@ -132,6 +171,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         }
     }
 
+
+    //Called by the "listening" button
     public void StartListening()
     {
         outputBihou.SetActive(false);
@@ -167,6 +208,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         }
     }
 
+
+
     public void StartListeningNoBeep()
     {
         bool isSupported = speechPlugin.CheckSpeechRecognizerSupport();
@@ -200,6 +243,9 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         }
     }
 
+
+
+
     //cancel speech
     public void CancelSpeech()
     {
@@ -216,6 +262,9 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         Debug.Log(TAG + " call CancelSpeech..  ");
     }
 
+
+
+
     public void StopListening()
     {
         if (speechPlugin != null)
@@ -224,6 +273,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         }
         Debug.Log(TAG + " StopListening...  ");
     }
+
+
 
     public void StopCancel()
     {
@@ -234,16 +285,22 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         Debug.Log(TAG + " StopCancel...  ");
     }
 
+
+
     private void DelayUnMute()
     {
         utilsPlugin.UnMuteBeep();
     }
+
+
 
     private void OnDestroy()
     {
         RemoveSpeechPluginListener();
         speechPlugin.StopListening();
     }
+
+
 
     private void UpdateStatus(string status)
     {
@@ -252,6 +309,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
             statusText.text = String.Format("Status: {0}", status);
         }
     }
+
+
 
     //SpeechRecognizer Events
     private void onReadyForSpeech(string data)
@@ -269,6 +328,9 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         );
     }
 
+
+
+
     private void onBeginningOfSpeech(string data)
     {
         dispatcher.InvokeAction(
@@ -282,6 +344,9 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         );
     }
 
+
+
+
     private void onEndOfSpeech(string data)
     {
         dispatcher.InvokeAction(
@@ -290,6 +355,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
             }
         );
     }
+
 
     private void onError(int data)
     {
@@ -309,6 +375,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
             }
         );
     }
+
+
 
     public void onResults(string data)
     {
@@ -336,16 +404,25 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
 
+
+                    //List of commands recognized
+                    // -> au revoir, autobus (easter egg), bonjour, blague, événement, info, mode libre, looping, mission, option, raptor (easter egg), retour, tutoriel
+
+                    //Avatar says hello back
                     if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
                     {
                         outputBihou.SetActive(true);
                         outputBihou.GetComponentInChildren<Text>().text = "Coucou !";
                         StartCoroutine("waiterBihouOutput");
                     }
+
+                    //Avatar does a looping
                     else if(whatToSay.Contains("looping") || whatToSay.Contains("Looping"))
                     {
                         Bihou.GetComponent<AnimatorScript>().looping = true;
                     }
+
+                    //Avatar tells a joke starting by a terrible one
                     else if (whatToSay.Contains("blague") || whatToSay.Contains("Blague"))
                     {
                         if (!demoTerribleJoke)
@@ -369,31 +446,43 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                             StartCoroutine("waiterBihouOutput");
                         }
                     } 
+
+                    //Shows the missions and events menu
                     else if (whatToSay.Contains("mission") || whatToSay.Contains("Mission"))
                     {
                         transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
                         AppController.control.inSpeechRecoMode = false;
                     }
+
+                    //Shows the missions and events menu
                     else if (whatToSay.Contains("événement") || whatToSay.Contains("Événement"))
                     {
                         transform.GetComponentInParent<UI_MenuManager>().OnClickToMissionMenu();
                         AppController.control.inSpeechRecoMode = false;
                     }
+
+                    //Gets back to the current scene
                     else if (whatToSay.Contains("retour") || whatToSay.Contains("Retour"))
                     {
                         transform.GetComponentInParent<UI_MenuManager>().BackToGame();
                         AppController.control.inSpeechRecoMode = false;
                     }
+
+                    //Shows the option menu
                     else if (whatToSay.Contains("option") || whatToSay.Contains("Option"))
                     {
                         transform.GetComponentInParent<UI_MenuManager>().OnClickToOptionMenu();
                         AppController.control.inSpeechRecoMode = false;
                     }
+
+                    //Shows the info menu
                     else if (whatToSay.Contains("info") || whatToSay.Contains("Info"))
                     {
                         transform.GetComponentInParent<UI_MenuManager>().OnClickToInfoMenu();
                         AppController.control.inSpeechRecoMode = false;
                     }
+
+                    //Best M.Simatic's interpretation of an autobus (easter egg)
                     else if (whatToSay.Contains("autobus") || whatToSay.Contains("Autobus"))
                     {
                         if (AppController.control.soundOff)
@@ -407,6 +496,8 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                             easterEggAutobus.Play();
                         }
                     }
+
+                    //Best interpretation of a raptor (possibly a trex tho) roar (easter egg)
                     else if (whatToSay.Contains("raptor") || whatToSay.Contains("Raptor"))
                     {
                         if (AppController.control.soundOff)
@@ -420,22 +511,30 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                             easterEggRaptor.Play();
                         }
                     }
+
+                    //Switch to discovery mode
                     else if (whatToSay.Contains("libre") || whatToSay.Contains("Libre"))
                     {
                         AppController.control.inSpeechRecoMode = false;
                         SceneManager.LoadScene("Discovery");
                     }
+
+                    //Quits the application
                     else if (whatToSay.Contains("revoir") || whatToSay.Contains("Revoir"))
                     {
                         AppController.control.inSpeechRecoMode = false;
                         Application.Quit();
                     }
+
+                    //Restarts the tutoriel
                     else if (whatToSay.Contains("tutoriel") || whatToSay.Contains("Tutoriel"))
                     {
                         AppController.control.inSpeechRecoMode = false;
                         AppController.control.tutorialDone = false;
                         SceneManager.LoadScene("Tutorial");
                     }
+
+                    //None of the above
                     else
                     {
                         resultText.text = string.Format("Result: {0}", whatToSay);
@@ -446,17 +545,22 @@ public class GlobalSpeechRecognizer : MonoBehaviour
         );
     }
 
+    //Waiter for avatar's written output
     IEnumerator waiterBihouOutput()
     {
         yield return new WaitForSeconds(8);
         outputBihou.SetActive(false);
     }
 
+    //Waiter for avatar's audio output
     IEnumerator waiterBihouOutputSound()
     {
         yield return new WaitForSeconds(8);
         AppController.control.soundOff = true;
     }
+
+
+
 
     private void onPartialResults(string data)
     {
@@ -484,6 +588,4 @@ public class GlobalSpeechRecognizer : MonoBehaviour
             }
         );
     }
-
-    //SpeechRecognizer Events
 }

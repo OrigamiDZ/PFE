@@ -7,9 +7,7 @@
     using GoogleARCoreInternal;
     using UnityEngine;
 
-    /// <summary>
-    /// Uses 4 frame corner objects to visualize an AugmentedImage.
-    /// </summary>
+    //Visualizer class for the event minigame scene
     public class Event_ImageVisualizer : MonoBehaviour
     {
         /// <summary>
@@ -27,6 +25,7 @@
         /// </summary>
         public void Update()
         {
+            //Displays the augmented object only of the augmented image has been found
             if (Image == null || Image.TrackingState != TrackingState.Tracking)
                 {
                     AugmentedObjectsList[Image.DatabaseIndex].SetActive(false);

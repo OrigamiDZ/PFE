@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//UI manager for the tutorial scene
 public class Tutorial_UImanager : MonoBehaviour {
 
+    //Explanation slides array
     [SerializeField]
     GameObject[] tutoSlides;
+
+    //GameObject for the testing part
     [SerializeField]
     GameObject testingPhaseGameobject;
 
-
+    //Current displayed slide
     private GameObject currentSlide;
+
+    //Current displayed slide ID
     private int currentSlideId;
 
     private void Start()
@@ -24,6 +31,8 @@ public class Tutorial_UImanager : MonoBehaviour {
         }
     }
 
+
+    //Next slide button function
     public void OnClickNextButton()
     {
         if(currentSlideId < tutoSlides.Length - 1)
@@ -35,6 +44,7 @@ public class Tutorial_UImanager : MonoBehaviour {
         }
     }
 
+    //Previous slide button function
     public void OnClickPreviousButton()
     {
         if (currentSlideId > 0)
@@ -46,6 +56,8 @@ public class Tutorial_UImanager : MonoBehaviour {
         }
     }
 
+
+    //Start the testing part button function
     public void OnClickStartTestingPhaseButton()
     {
         currentSlide.SetActive(false);

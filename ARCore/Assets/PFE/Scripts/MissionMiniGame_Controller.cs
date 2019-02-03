@@ -6,17 +6,27 @@
     using UnityEngine;
     using UnityEngine.UI;
     using UnityEngine.SceneManagement;
+    
 
+    //Controller class for the mission minigame (hide and seek minigame)
     public class MissionMiniGame_Controller : MonoBehaviour
     {
-
+        //Avatar
         [SerializeField]
         GameObject Bihou;
+
+        //Player notification text
         [SerializeField]
         Text UItext_notification;
+
+        //Offset for positionning augmented objects
         [SerializeField]
         float deltaEnvironmentToGround;
+
+        //Timer before endgame action
         int timer = 0;
+
+        //Has game ended
         bool endgame = false;
 
         /// <summary>
@@ -28,26 +38,35 @@
         /// The overlay containing the fit to scan user guide.
         /// </summary>
         public GameObject FitToScanOverlay;
+
+        ////Dictionary of <image indexes, augmented object visualizer associated>
         private Dictionary<int, MiniGameHnS_ImageVisualizer> m_Visualizers
            = new Dictionary<int, MiniGameHnS_ImageVisualizer>();
 
+        //List of augmented images
         private List<AugmentedImage> m_TempAugmentedImages = new List<AugmentedImage>();
 
+        //Environment anchor for augmented objects
         private Vector3 anchorEnvironment;
+
+        //Is the augmented object anchored
         private bool anchored = false;
+
+        //Augmented object visualizer
         private MiniGameHnS_ImageVisualizer visualizer = null;
-        private bool HnS_found = false;
     
 
 
-        // Use this for initialization
+
+        
         void Start()
         {
             UItext_notification.text = "Trouvez l'affiche cachée";
             FitToScanOverlay.SetActive(true);
         }
+        
 
-        // Update is called once per frame
+
         void Update()
         {
             // Get updated augmented images for this frame.
@@ -72,6 +91,7 @@
             }
             else
             {
+                //Checks if player touches the avatar on screen
                 Touch touch;
                 if (Input.touchCount > 0)
                 {
@@ -93,6 +113,7 @@
                 }
             }
 
+            //Endgame sequence
             if (endgame)
             {
                 timer++;

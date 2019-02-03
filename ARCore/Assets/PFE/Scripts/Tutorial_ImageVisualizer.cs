@@ -7,9 +7,8 @@
     using GoogleARCoreInternal;
     using UnityEngine;
 
-    /// <summary>
-    /// Uses 4 frame corner objects to visualize an AugmentedImage.
-    /// </summary>
+
+    //Visualizer class for the mission tutorial scene
     public class Tutorial_ImageVisualizer : MonoBehaviour
     {
         /// <summary>
@@ -33,10 +32,6 @@
 
                 return;
             }
-
-            //float halfWidth = Image.ExtentX / 2;
-            //float halfHeight = Image.ExtentZ / 2;
-            //Egg.transform.localPosition = (halfWidth * Vector3.left) + (halfHeight *Vector3.back);
 
             Egg.SetActive(true);
         }

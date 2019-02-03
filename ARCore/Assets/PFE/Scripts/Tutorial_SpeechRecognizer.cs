@@ -4,6 +4,8 @@ using System.Collections;
 using System;
 using AUP;
 
+
+//Speech recognizer for the tutorial class
 public class Tutorial_SpeechRecognizer : MonoBehaviour
 {
 
@@ -293,7 +295,8 @@ public class Tutorial_SpeechRecognizer : MonoBehaviour
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
 
-                    if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
+                    //Only understands "bonjour" and its variations
+                    if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour") || whatToSay.Contains("salut") || whatToSay.Contains("Salut") || whatToSay.Contains("coucou") || whatToSay.Contains("Coucou"))
                         hello = true;
                     else
                         resultText.text = string.Format("Result: {0}", whatToSay);
