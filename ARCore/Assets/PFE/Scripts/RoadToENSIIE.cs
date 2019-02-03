@@ -16,16 +16,16 @@ public class RoadToENSIIE : MonoBehaviour {
 
     private void NextTarget() {
         if (targetsLatLong.Count > 1) {
-            Debug.Log("erase");
             targetsLatLong.RemoveAt(0);
             latitude = targetsLatLong[0].x;
             longitude = targetsLatLong[0].y;
 
         }
-        /*else
-            SceneManager.LoadScene(nextScene);*/
+        else
+            SceneManager.LoadScene(nextScene);
     }
-
+    //il faut mettre la demande de permission du GPS dans le Awake pour y avoir acces ensuite dans la scene, sinon il faudrait
+    //redemarrer l application
     void Awake() {
         if (AndroidRuntimePermissions.CheckPermission("android.permission.ACCESS_FINE_LOCATION") != AndroidRuntimePermissions.Permission.Granted) {
             AndroidRuntimePermissions.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
@@ -54,8 +54,6 @@ public class RoadToENSIIE : MonoBehaviour {
         transform.localPosition = map.GeoToWorldPosition(coord); 
 
         float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.z - transform.localPosition.z, 2) + Mathf.Pow(player.transform.position.x - transform.localPosition.x, 2));
-        Debug.Log(distance);
-        Debug.Log(targetsLatLong.Count);
         if (distance < distTrigger && distance != 0) {//la distance est nulle pdt l initialisation et l on ne veut pas que ca change
             //de target
             NextTarget();
