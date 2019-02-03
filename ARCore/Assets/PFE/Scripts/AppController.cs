@@ -7,6 +7,10 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/* The controller for the app.
+ * Only one instance of it.
+ * Used for data persistence, states, audio.
+ */
 public class AppController : MonoBehaviour {
 
     public static AppController control;
@@ -20,6 +24,7 @@ public class AppController : MonoBehaviour {
 
     void Awake () {
         //1st time running app
+        //Provides only one instance of the AppController gameObject
         if(control == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -33,10 +38,16 @@ public class AppController : MonoBehaviour {
 
     public void Start()
     {
+        //Load game data
         Load();
-        //soundOff = true;
+
+        //Mute sound if needed
         if (soundOff) { AudioListener.volume = 0f; } else { AudioListener.volume = 1f; }
+
+        //State of the event
         if(currentObjectiveDoneEvent == 0) { eventDone = false; }
+
+        //State of the tutorial
         if (!tutorialDone)
         {
             SceneManager.LoadScene("Tutorial");
@@ -49,9 +60,12 @@ public class AppController : MonoBehaviour {
 
     private void Update()
     {
+        //Mute sound during the game
         if (soundOff) { AudioListener.volume = 0f; } else { AudioListener.volume = 1f; }
     }
 
+
+    //On Android device, OnApplicationQuit isn't always called. It's advised to use OnApplicationPause instead.
     private void OnApplicationPause(bool pause)
     {
         if (pause)
@@ -60,6 +74,8 @@ public class AppController : MonoBehaviour {
         }
     }
 
+
+    //Used for the vocal command "au revoir"
     private void OnApplicationQuit()
     {
         Save();
@@ -67,6 +83,7 @@ public class AppController : MonoBehaviour {
 
 
 
+    //Save game data in CIRA.dat
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -87,6 +104,7 @@ public class AppController : MonoBehaviour {
 
 
 
+    //Load game data from CIRA.dat
     public void Load()
     {
         if(File.Exists(Application.persistentDataPath + "/CIRA-demo.dat"))
@@ -109,7 +127,7 @@ public class AppController : MonoBehaviour {
 
 
 
-
+//The serializable class for data serialization
 [Serializable]
 class PlayerData
 {

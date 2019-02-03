@@ -7,9 +7,8 @@
     using UnityEngine.SceneManagement;
 
 
-    /// <summary>
-    /// Controls the HelloAR example.
-    /// </summary>
+
+    //Controller class for the tutorial scene
     public class Tutorial_controller : MonoBehaviour
     {
         /// <summary>
@@ -38,10 +37,13 @@
         /// </summary>
         private bool m_IsQuitting = false;
 
-
+        //Avatar
         public GameObject Bihou;
+
+        //Text canvas for player notification
         private string tutorialTestUIText;
 
+        //ID of the tutorial step
         private int stepTestUI = 0;
 
         /// <summary>
@@ -54,27 +56,45 @@
         /// </summary>
         public GameObject FitToScanOverlay;
 
+        //Dictionary of <image indexes, augmented object visualizer associated>
         private Dictionary<int, Tutorial_ImageVisualizer> m_Visualizers
             = new Dictionary<int, Tutorial_ImageVisualizer>();
 
+        //List of augmented images
         private List<AugmentedImage> m_TempAugmentedImages = new List<AugmentedImage>();
 
+        //Is the flyer found
+        private bool flyerFound = false;
+
+        //Timer for the UI delay
+        private int timerUI = 0;
+
+        //Anchor for egg augmented object
+        private Anchor anchorEgg;
+
+        //Timer for switching scene
+        private int timerSwitch = 0;
+
+
+        //Point cloud visualizer
         [SerializeField]
         GameObject pointsCloud;
+
+        //Plane visualizer
         [SerializeField]
         GameObject planesGenerator;
+
+        //Tutorial explanation slides
         [SerializeField]
         GameObject UI_slides;
+
+        //Prefab for speech recognition 
         [SerializeField]
         GameObject speechRecoPrefab;
+
+        //Offset for avatar spawning position
         [SerializeField]
         Vector3 offsetBihou;
-
-
-        private bool flyerFound = false;
-        private int timerUI = 0;
-        private Anchor anchorEgg;
-        private int timerSwitch = 0;
 
 
 
@@ -145,6 +165,8 @@
                     }
                 }
 
+
+                //Step 2 : scan the flyer)
 
                 if (stepTestUI == 2)
                 {

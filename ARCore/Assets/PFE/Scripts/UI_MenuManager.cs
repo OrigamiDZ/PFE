@@ -5,37 +5,63 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
+
+//UI manager for the UI menu prefab
 public class UI_MenuManager : MonoBehaviour {
 
+    //Default in-game UI
     [SerializeField]
     GameObject InGameUI;
+
+    //Main menu UI
     [SerializeField]
     GameObject MainMenuUI;
+
+    //Mission menu UI
     [SerializeField]
     GameObject MissionMenuUI;
+
+    //Info menu UI
     [SerializeField]
     GameObject InfoMenuUI;
+
+    //Option menu UI
     [SerializeField]
     GameObject OptionMenuUI;
+
+    //Speech recognition prefab 
     [SerializeField]
     GameObject SpeechRecoPhase;
+
+    //Commands list UI
     [SerializeField]
     GameObject ListCommandUI;
 
+    //Mission pages UI
     [SerializeField]
     GameObject[] MissionPagesUI_array;
     //page 0 -> mission
     //page 1 -> event
+
+    //Info pages UI
     [SerializeField]
     GameObject[] InfoPagesUI_array;
 
+    //Main music theme for the menu
     [SerializeField]
     AudioSource MenuMainTheme;
+
+    //Slider controlling the sound (on/off)
     [SerializeField]
     Slider soundSlider;
 
+    //Is the player already in the menus
     private bool alreadyInMainMenu = false;
+
+    //Current displayed UI
     private GameObject currentUI = null;
+
+    //Scene music theme
     private GameObject sceneTheme = null;
 
 
@@ -65,6 +91,8 @@ public class UI_MenuManager : MonoBehaviour {
 
     }
 
+
+    //Return to main game (current scene)
     public void BackToGame()
     {
         MenuMainTheme.Stop();
@@ -75,10 +103,12 @@ public class UI_MenuManager : MonoBehaviour {
         }
         currentUI = InGameUI;
         Time.timeScale = 1;
+        AppController.control.inSpeechRecoMode = false;
         if (sceneTheme != null) { sceneTheme.GetComponent<AudioSource>().Play(); }
     }
 
 
+    //To main menu button function
     public void OnClickToMainMenu()
     {
         if (!alreadyInMainMenu)
@@ -96,6 +126,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = MainMenuUI;
     }
 
+
+    //To mission menu button function
     public void OnClickToMissionMenu()
     {
         if (!alreadyInMainMenu)
@@ -113,6 +145,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = MissionMenuUI;
     }
 
+
+    //To info menu button function
     public void OnClickToInfoMenu()
     {
         if (!alreadyInMainMenu)
@@ -130,6 +164,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = InfoMenuUI;
     }
 
+
+    //To option menu button function
     public void OnClickToOptionMenu()
     {
         if (AppController.control.soundOff) { soundSlider.value = 0; } else { soundSlider.value = 1; }
@@ -148,6 +184,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = OptionMenuUI;
     }
 
+
+    //To mission page no [id_page] button function
     public void OnClickToMissionPage(int id_page)
     {
         Assert.AreNotEqual(MissionPagesUI_array.Length, 0);
@@ -168,6 +206,8 @@ public class UI_MenuManager : MonoBehaviour {
         }
     }
 
+
+    //To mission page no [id_page] button function
     public void OnClickToInfoPage(int id_page)
     {
         Assert.AreNotEqual(InfoPagesUI_array.Length, 0);
@@ -180,6 +220,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = InfoPagesUI_array[id_page];
     }
 
+
+    //To speech recognition mode button function
     public void OnClickToSpeechRecoPhase()
     {
         Time.timeScale = 1;
@@ -194,18 +236,23 @@ public class UI_MenuManager : MonoBehaviour {
     }
 
 
+    //Start mission button function
     public void StartMission()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MissionMiniGame");
     }
 
+
+    //Start event button function
     public void StartEvent()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("EventMiniGame");
     }
 
+
+    //Start tutorial button function
     public void StartTutorial()
     {
         Time.timeScale = 1;
@@ -214,6 +261,7 @@ public class UI_MenuManager : MonoBehaviour {
     }
 
 
+    //Start discovery button function
     public void StartDiscovery()
     {
         Time.timeScale = 1;
@@ -221,6 +269,7 @@ public class UI_MenuManager : MonoBehaviour {
     }
 
 
+    //Sound slider manager (on/off)
     public void SoundOptionManager(Slider slider)
     {
         if(slider.value == 1)
@@ -234,6 +283,7 @@ public class UI_MenuManager : MonoBehaviour {
     }
     
 
+    //To commands list button function
     public void OnClickToListCommand()
     {
         AppController.control.inSpeechRecoMode = false;
@@ -252,6 +302,8 @@ public class UI_MenuManager : MonoBehaviour {
         currentUI = ListCommandUI;
     }
 
+
+    //Trigger command [str] button function
    public void OnClickButtonListCommand(string str)
     {
         OnClickToSpeechRecoPhase();

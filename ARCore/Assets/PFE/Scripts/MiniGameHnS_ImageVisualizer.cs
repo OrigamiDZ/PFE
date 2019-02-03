@@ -6,6 +6,8 @@
     using GoogleARCore;
     using GoogleARCoreInternal;
     using UnityEngine;
+
+    //Visualizer class for the mission minigame scene
     public class MiniGameHnS_ImageVisualizer : MonoBehaviour
     {
 

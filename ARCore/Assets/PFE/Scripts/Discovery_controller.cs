@@ -7,9 +7,8 @@
     using UnityEngine.SceneManagement;
 
 
-    /// <summary>
-    /// Controls the HelloAR example.
-    /// </summary>
+
+    //Controller class for the discovery scene
     public class Discovery_controller : MonoBehaviour
     {
         /// <summary>
@@ -28,33 +27,11 @@
         /// </summary>
         private bool m_IsQuitting = false;
 
-        /// <summary>
-        /// A prefab for visualizing an AugmentedImage.
-        /// </summary>
-        //public Tutorial_ImageVisualizer AugmentedImageVisualizerPrefab;
 
-
-
-        private Dictionary<int, Tutorial_ImageVisualizer> m_Visualizers
-            = new Dictionary<int, Tutorial_ImageVisualizer>();
-
-        private List<AugmentedImage> m_TempAugmentedImages = new List<AugmentedImage>();
-
-
-
-        //public GameObject Bihou;
-
-        /*
-        [SerializeField]
-        GameObject UI_slides;
-        [SerializeField]
-        GameObject speechRecoPrefab;
-        */
+        //Text canvas used for visual debugging
         [SerializeField]
         Text debugText;
 
-
-        int timer = 0;
 
 
         private void Start()
@@ -63,9 +40,10 @@
         }
         public void Update()
         {
+            //ARCore function that updates the lyfe cycle
             _UpdateApplicationLifecycle();
 
-            // Step 1 : find a plane
+            //Finds a plane
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
             for (int i = 0; i < m_AllPlanes.Count; i++)
             {
