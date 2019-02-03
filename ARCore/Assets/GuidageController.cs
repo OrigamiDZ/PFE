@@ -120,7 +120,7 @@ public class GuidageController : MonoBehaviour {
     void Start () {
         lastPosition = cameraPlayer.transform.position;
         bihouPrefab.SetActive(false);
-        initialisationCanvas.SetActive(true);
+        //initialisationCanvas.SetActive(true);
         orderInDictionnary = new List<float>();
         cameraOffsets = new List<float>();
         dictionary = new Dictionary<float, Vector3>();
