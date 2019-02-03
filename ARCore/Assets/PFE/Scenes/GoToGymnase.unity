@@ -162,6 +162,11 @@ Prefab:
       propertyPath: nextScene
       value: MissionMiniGame
       objectReference: {fileID: 0}
+    - target: {fileID: 114182114063824734, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c,
+        type: 2}
+      propertyPath: directionMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb723a63670c0fb48aee574d99ad98d9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
   m_IsPrefabAsset: 0

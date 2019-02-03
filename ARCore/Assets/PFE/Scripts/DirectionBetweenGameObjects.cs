@@ -16,8 +16,9 @@ public class DirectionBetweenGameObjects : MonoBehaviour {
 
         LineRenderer line = gameObject.AddComponent<LineRenderer>();
         line.material = new Material(directionMaterial);
-        line.widthMultiplier = 0.5f;
+        line.widthMultiplier = 0.8f;
         line.positionCount = 2;
+        line.sortingOrder = 1;
     }
 
     public float GetAngle () {
