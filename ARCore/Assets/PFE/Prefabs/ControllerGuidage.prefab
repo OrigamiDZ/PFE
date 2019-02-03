@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1030787610214066}
+  m_RootGameObject: {fileID: 1550100062502568}
   m_IsPrefabAsset: 1
---- !u!1 &1030787610214066
+--- !u!1 &1550100062502568
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4649162194334516}
-  - component: {fileID: 114089510877640500}
+  - component: {fileID: 4224572209261562}
+  - component: {fileID: 114447815237179964}
   m_Layer: 0
-  m_Name: ExampleController
+  m_Name: ControllerGuidage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4649162194334516
+--- !u!4 &4224572209261562
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030787610214066}
+  m_GameObject: {fileID: 1550100062502568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,16 +40,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114089510877640500
+--- !u!114 &114447815237179964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030787610214066}
+  m_GameObject: {fileID: 1550100062502568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e39110b6a6a6bd4eb34e11360ff137d, type: 3}
+  m_Script: {fileID: 11500000, guid: f97d41042054d4f45b7a3adc8b9395f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AugmentedImageVisualizerPrefab: {fileID: 0}
-  FitToScanOverlay: {fileID: 0}
+  cameraPlayer: {fileID: 0}
+  debugText1: {fileID: 0}
+  debugText2: {fileID: 0}
+  deviceLocationProvider: {fileID: 0}
+  bihouPrefab: {fileID: 0}
+  initialisationCanvas: {fileID: 0}
