@@ -54,8 +54,8 @@ namespace GoogleARCore.Examples.AugmentedImage
                 return;
             }
 
-            float halfWidth = Image.ExtentX / 2;
-            float halfHeight = Image.ExtentZ / 2;
+            //float halfWidth = Image.ExtentX / 2;
+            //float halfHeight = Image.ExtentZ / 2;
             //Logo.transform.localPosition = (halfWidth * Vector3.left) + (halfHeight *Vector3.back);
             
             Logo.SetActive(true);
