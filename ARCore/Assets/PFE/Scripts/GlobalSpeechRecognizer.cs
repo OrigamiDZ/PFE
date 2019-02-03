@@ -408,8 +408,19 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                     //List of commands recognized
                     // -> au revoir, autobus (easter egg), bonjour, blague, événement, info, mode libre, looping, mission, option, raptor (easter egg), retour, tutoriel
 
+                    //cheat words
+                    if ((whatToSay.Contains("Mission") || whatToSay.Contains("mission")) &&
+                    (whatToSay.Contains("Soutenance") || whatToSay.Contains("soutenance"))) {
+                        SceneManager.LoadScene("MissionMiniGame");
+                    }
+
+                    else if ((whatToSay.Contains("Event") || whatToSay.Contains("event")) &&
+                    (whatToSay.Contains("Soutenance") || whatToSay.Contains("soutenance"))) {
+                        SceneManager.LoadScene("EventMiniGame");
+                    }
+
                     //Avatar says hello back
-                    if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
+                    else if (whatToSay.Contains("bonjour") || whatToSay.Contains("Bonjour"))
                     {
                         outputBihou.SetActive(true);
                         outputBihou.GetComponentInChildren<Text>().text = "Coucou !";

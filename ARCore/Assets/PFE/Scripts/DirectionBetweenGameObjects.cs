@@ -16,6 +16,7 @@ public class DirectionBetweenGameObjects : MonoBehaviour {
 
         LineRenderer line = gameObject.AddComponent<LineRenderer>();
         line.material = new Material(directionMaterial);
+        line.material.color = new Color(60/254, 215/254, 191/254);
         line.widthMultiplier = 0.8f;
         line.positionCount = 2;
         line.sortingOrder = 1;
@@ -28,13 +29,12 @@ public class DirectionBetweenGameObjects : MonoBehaviour {
     void Update () {
 		if (target != null) {
             LineRenderer line = GetComponent<LineRenderer>();
-            line.SetPosition(0, player.transform.position);
-            line.SetPosition(1, target.transform.position);
+            line.SetPosition(0, player.transform.position + new Vector3(0, 1, 0));
+            line.SetPosition(1, target.transform.position + new Vector3(0, 1, 0));
             float normLine = Mathf.Sqrt(
                 Mathf.Pow((target.transform.position.z - player.transform.position.z), 2)
                 + Mathf.Pow((target.transform.position.x - player.transform.position.x), 2));
             angle = Mathf.Acos(1 * (target.transform.position.z - player.transform.position.z) / normLine) * 180 / Mathf.PI;
-            Debug.Log(angle);
         }
 	}
 }

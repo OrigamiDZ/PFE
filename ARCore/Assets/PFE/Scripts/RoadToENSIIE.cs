@@ -21,8 +21,11 @@ public class RoadToENSIIE : MonoBehaviour {
             longitude = targetsLatLong[0].y;
 
         }
-        else
+        else {
+            Debug.Log("next scene");
             SceneManager.LoadScene(nextScene);
+        }
+            
     }
     //il faut mettre la demande de permission du GPS dans le Awake pour y avoir acces ensuite dans la scene, sinon il faudrait
     //redemarrer l application
@@ -54,6 +57,7 @@ public class RoadToENSIIE : MonoBehaviour {
         transform.localPosition = map.GeoToWorldPosition(coord); 
 
         float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.z - transform.localPosition.z, 2) + Mathf.Pow(player.transform.position.x - transform.localPosition.x, 2));
+        Debug.Log("distance " + distance);
         if (distance < distTrigger && distance != 0) {//la distance est nulle pdt l initialisation et l on ne veut pas que ca change
             //de target
             NextTarget();
