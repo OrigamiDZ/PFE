@@ -338,7 +338,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
                 UpdateStatus(data.ToString());
                 if (resultText != null)
                 {
-                    resultText.text = data.ToString(); //"Status: incoming words";
+                    //resultText.text = data.ToString(); //"Status: incoming words";
                 }
             }
         );
@@ -583,7 +583,7 @@ public class GlobalSpeechRecognizer : MonoBehaviour
 
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
-                    partialResultText.text = string.Format("Partial Result: {0}", whatToSay);
+                    partialResultText.text = whatToSay;
                 }
             }
         );
