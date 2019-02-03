@@ -54,9 +54,6 @@
 
         //Augmented object visualizer
         private MiniGameHnS_ImageVisualizer visualizer = null;
-
-        //Has the avatar been found
-        private bool HnS_found = false;
     
 
 

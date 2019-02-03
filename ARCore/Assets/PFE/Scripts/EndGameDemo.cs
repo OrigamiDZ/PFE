@@ -16,7 +16,7 @@ public class EndGameDemo : MonoBehaviour {
         //SceneManager.LoadScene("Discovery");
 
         //Normal version -> switches to discovery mode
-        //SceneManager.LoadScene("Discovery");
+        SceneManager.LoadScene("Discovery");
     }
 
 }
