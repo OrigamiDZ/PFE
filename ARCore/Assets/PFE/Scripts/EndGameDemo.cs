@@ -10,10 +10,10 @@ public class EndGameDemo : MonoBehaviour {
 	public void ResetAndGoToDiscovery()
     {
         //Demo presentation PFE -> resets both the tutorial and the event to their "not done yet" state + switches to discovery mode
-        AppController.control.tutorialDone = false;
-        AppController.control.eventDone = false;
-        AppController.control.currentObjectiveDoneEvent = 0;
-        SceneManager.LoadScene("Discovery");
+        //AppController.control.tutorialDone = false;
+        //AppController.control.eventDone = false;
+        //AppController.control.currentObjectiveDoneEvent = 0;
+        //SceneManager.LoadScene("Discovery");
 
         //Normal version -> switches to discovery mode
         //SceneManager.LoadScene("Discovery");
