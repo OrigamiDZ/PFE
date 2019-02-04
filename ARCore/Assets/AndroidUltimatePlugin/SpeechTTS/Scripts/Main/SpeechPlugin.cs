@@ -489,7 +489,7 @@ public class SpeechPlugin : MonoBehaviour
 
     public string[] GetExtraLanguage()
     {
-        return Utils.DeepCopy<string[]>(extraLanguage);
+        return AUP.Utils.DeepCopy<string[]>(extraLanguage);
     }
 
     public int GetExtraLanguageLength()
