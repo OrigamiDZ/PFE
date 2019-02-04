@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tuto_AugmentedObject
+  - Bihou
+  - Minigame_HnS
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Bihou
+  - MinigameHnS
   - 
   - 
   - 

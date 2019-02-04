@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/ProjectSettings/ProjectSettings.asset
 
 # Visual Studio cache directory
 .vs/
@@ -34,3 +35,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+ARCore/ProjectSettings/EditorBuildSettings.asset
+ARCore/ProjectSettings/ProjectSettings.asset
+*.asset
