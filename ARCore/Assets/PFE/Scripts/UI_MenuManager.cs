@@ -55,6 +55,10 @@ public class UI_MenuManager : MonoBehaviour {
     [SerializeField]
     Slider soundSlider;
 
+    //Slider controlling the guidage type (RA/Plan)
+    [SerializeField]
+    Slider guidageSlider;
+
     //Is the player already in the menus
     private bool alreadyInMainMenu = false;
 
@@ -240,7 +244,10 @@ public class UI_MenuManager : MonoBehaviour {
     public void StartMission()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("GoToGymnase");
+        if (string.Equals("Plan", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToGymnase");
+        if (string.Equals("RA", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToGymnaseRA");
     }
 
 
@@ -248,7 +255,10 @@ public class UI_MenuManager : MonoBehaviour {
     public void StartEvent()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("GoToENSIIE");
+        if (string.Equals("Plan", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToENSIIE");
+        if (string.Equals("RA", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToENSIIERA");
     }
 
 
@@ -281,7 +291,20 @@ public class UI_MenuManager : MonoBehaviour {
             AppController.control.soundOff = true;
         }
     }
-    
+
+    //Guidage slider manager (RA/Plan)
+    public void GuidageOptionManager(Slider slider)
+    {
+        if (slider.value == 0)
+        {
+            PlayerPrefs.SetString("GuidageMode","RA");
+        }
+        else if (slider.value == 1)
+        {
+            PlayerPrefs.SetString("GuidageMode", "Plan");
+        }
+    }
+
 
     //To commands list button function
     public void OnClickToListCommand()
