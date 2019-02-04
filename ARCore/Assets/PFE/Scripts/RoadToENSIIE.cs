@@ -54,8 +54,8 @@ public class RoadToENSIIE : MonoBehaviour {
         transform.localPosition = map.GeoToWorldPosition(coord); 
 
         float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.z - transform.localPosition.z, 2) + Mathf.Pow(player.transform.position.x - transform.localPosition.x, 2));
-        if (distance < distTrigger && distance != 0) {//la distance est nulle pdt l initialisation et l on ne veut pas que ca change
-            //de target
+        //la distance est nulle pdt l initialisation et l on ne veut pas que ca change de target
+        if (distance < distTrigger && distance != 0) {
             NextTarget();
         }
     }

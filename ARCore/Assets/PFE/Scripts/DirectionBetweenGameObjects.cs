@@ -28,8 +28,8 @@ public class DirectionBetweenGameObjects : MonoBehaviour {
     void Update () {
 		if (target != null) {
             LineRenderer line = GetComponent<LineRenderer>();
-            line.SetPosition(0, player.transform.position);
-            line.SetPosition(1, target.transform.position);
+            line.SetPosition(0, player.transform.position + new Vector3(0, 1, 0));
+            line.SetPosition(1, target.transform.position + new Vector3(0, 1, 0));
             float normLine = Mathf.Sqrt(
                 Mathf.Pow((target.transform.position.z - player.transform.position.z), 2)
                 + Mathf.Pow((target.transform.position.x - player.transform.position.x), 2));
