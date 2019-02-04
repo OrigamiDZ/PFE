@@ -173,6 +173,7 @@ public class UI_MenuManager : MonoBehaviour {
     public void OnClickToOptionMenu()
     {
         if (AppController.control.soundOff) { soundSlider.value = 0; } else { soundSlider.value = 1; }
+        if (string.Equals(PlayerPrefs.GetString("GuidageMode"), "AR")) { guidageSlider.value = 0; } else { guidageSlider.value = 1; }
         if (!alreadyInMainMenu)
         {
             alreadyInMainMenu = true;
@@ -246,8 +247,8 @@ public class UI_MenuManager : MonoBehaviour {
         Time.timeScale = 1;
         if (string.Equals("Plan", PlayerPrefs.GetString("GuidageMode")))
             SceneManager.LoadScene("GoToGymnase");
-        if (string.Equals("RA", PlayerPrefs.GetString("GuidageMode")))
-            SceneManager.LoadScene("GoToGymnaseRA");
+        if (string.Equals("AR", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToGymnaseAR");
     }
 
 
@@ -257,8 +258,8 @@ public class UI_MenuManager : MonoBehaviour {
         Time.timeScale = 1;
         if (string.Equals("Plan", PlayerPrefs.GetString("GuidageMode")))
             SceneManager.LoadScene("GoToENSIIE");
-        if (string.Equals("RA", PlayerPrefs.GetString("GuidageMode")))
-            SceneManager.LoadScene("GoToENSIIERA");
+        if (string.Equals("AR", PlayerPrefs.GetString("GuidageMode")))
+            SceneManager.LoadScene("GoToENSIIEAR");
     }
 
 
@@ -297,7 +298,7 @@ public class UI_MenuManager : MonoBehaviour {
     {
         if (slider.value == 0)
         {
-            PlayerPrefs.SetString("GuidageMode","RA");
+            PlayerPrefs.SetString("GuidageMode","AR");
         }
         else if (slider.value == 1)
         {
