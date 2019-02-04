@@ -949,9 +949,6 @@ MonoBehaviour:
   distanceToPlayerInterval:
     min: 0.5
     max: 5
-  bihouSpeedInterval:
-    min: 0.25
-    max: 1
   cameraPlayer: {fileID: 0}
   bihouSpeed: 0.8
   distToCamOrigin: 2

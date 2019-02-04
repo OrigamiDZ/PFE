@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4644534611214588}
   - component: {fileID: 114821452420501812}
   m_Layer: 0
-  m_Name: LocationForGuidage
+  m_Name: LocationForGuidageAR_ENSIIE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,11 +117,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572768782241826}
-  - component: {fileID: 114842953179279092}
-  - component: {fileID: 114884419380353620}
-  - component: {fileID: 114187560576182376}
+  - component: {fileID: 114958881930013936}
   m_Layer: 0
-  m_Name: Target
+  m_Name: TargetToENSIIE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,21 +768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _measurements: 2
   _smoothingFactor: 0.009999999776482582
---- !u!114 &114187560576182376
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1230666712417946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f623a6ea85906374091b1185a83f27a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextScene: Discovery
-  player: {fileID: 1306770352512804}
-  debug: {fileID: 0}
-  distTrigger: 4.5
 --- !u!114 &114322217038865960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -928,17 +911,6 @@ MonoBehaviour:
   player: {fileID: 1306770352512804}
   target: {fileID: 1230666712417946}
   cameraPlayer: {fileID: 0}
---- !u!114 &114842953179279092
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1230666712417946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c46d4d9588238d419afd2b700bb1070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114856371738615018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -952,17 +924,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updateDistanceInMeters: 0.5
   _updateTimeInMilliSeconds: 500
---- !u!114 &114884419380353620
+--- !u!114 &114958881930013936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1230666712417946}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dcd6f1e7f2e59b42b25b3b7de25447f, type: 3}
+  m_Script: {fileID: 11500000, guid: 93eff2ad8838fc044bc246a686f1bd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Discovery
-  targetsLatLong: []
-  distTrigger: 5
+  nextScene: EventMiniGame
+  targetsLatLong:
+  - x: 48.62676423476452
+    y: 2.432224343500252
+  player: {fileID: 1306770352512804}
+  distTrigger: 20

@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Unity.Location;
 using UnityEngine.SceneManagement;
 
 public class RoadToENSIIE : MonoBehaviour {
+
     public string nextScene = "Discovery";
 
     public List<Mapbox.Utils.Vector2d> targetsLatLong = new List<Mapbox.Utils.Vector2d>();
+
     private GameObject player;
 
     private double latitude;

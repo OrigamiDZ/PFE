@@ -4,37 +4,66 @@ using UnityEngine;
 
 public class BihouGuidage : MonoBehaviour {
 
+    // controller which calculate the offset
     [SerializeField]
     private GuidageController controller;
+
+    // distance minimum between player and Bihou for him to teleport
     [SerializeField]
     private float distanceToTeleport;
+
+    // boundaries of distance between Bihou and the player
     [SerializeField]
     private Interval distanceToPlayerInterval;
+
+    // bihou's speed interval
     [SerializeField]
     private Interval bihouSpeedInterval;
+
+    // first person camera
     [SerializeField]
     private Camera cameraPlayer;
+
+    // Bihou's speed
     [SerializeField]
     private float bihouSpeed;
+
+    // distance to place Bihou when he's launched
     [SerializeField]
     private float distToCamOrigin;
+
+    // margin for Bihou to decide if he has reached its target
     [SerializeField]
     private float marginTarget;
+
+    // depth coefficient
     [SerializeField]
     private float coefDepth;
+
+    // to get the angle direction
     [SerializeField]
-    private GetDirection GPS;
+    private GetDirectionFromMap GPS;
+
+    // the time to update the direction vector
     [SerializeField]
     private float directionChangeTime;
 
+    // current distance between the player camera and Bihou
+    private float BihouDistanceToPlayer;
 
-    private float dirx = 0, diry = 0, dirz = 0;
-
-    private float BihouDistanceToPlayer; // we calculate it
+    // last time bihou changed direction
     private float latestDirectionChangeTime;
+
+    // direction vector normalized
     private Vector3 movementDirection;
+
+    // direction vector with speed
     private Vector3 movementPerSecond;
+
+    // position targeted by bihou at any moment
     private Vector3 targetPosition;
+
+    // if bihou has reached or not his target
     private bool reachedTarget;
 
     void Start()
@@ -47,19 +76,21 @@ public class BihouGuidage : MonoBehaviour {
         CalculateNewMovementVector();
     }
 
+    // calculate the dircetion vector and the movement per seconds vector 
     void CalculateNewMovementVector()
     {
-        dirx = 0; diry = 0; dirz = 0;
+        float dirx = 0; float diry = 0; float dirz = 0;
         if (transform.position.x >= targetPosition.x + marginTarget) { dirx = -1; }
         if (transform.position.x <= targetPosition.x - marginTarget) { dirx = 1; }
         if (transform.position.y >= targetPosition.y + marginTarget) { diry = -1; }
         if (transform.position.y <= targetPosition.y - marginTarget) { diry = 1; }
         if (transform.position.z >= targetPosition.z + marginTarget) { dirz = -1 * coefDepth; }
         if (transform.position.z <= targetPosition.z - marginTarget) { dirz = 1 * coefDepth; }
-        movementDirection = new Vector3(dirx, diry, dirz);
+        movementDirection = new Vector3(dirx, diry, dirz).normalized;
         movementPerSecond = movementDirection * bihouSpeed;
     }
 
+    // check if Bihou is not out of boundaries
     void CheckNotOutofBoundary()
     {
         BihouDistanceToPlayer = Mathf.Sqrt(
@@ -74,19 +105,22 @@ public class BihouGuidage : MonoBehaviour {
         }
     }
 
+    // teleport Bihou forward the player if he went too far away
     void TeleportForwardPlayer()
     {
         transform.position = cameraPlayer.transform.position + cameraPlayer.transform.forward * 2;
         transform.LookAt(cameraPlayer.transform);
     }
 
+    // calculate the target in the space 
     public void CalculateTarget()
     {
-        float angle = ReturnMedium(GPS.GetAngle()) + controller.GetCameraOffset();
+        float angle = ReturnMedium(GPS.GetAngle() + controller.GetCameraOffset());
         Vector3 direction = new Vector3(Mathf.Cos(angle * Mathf.PI / 180), 0, Mathf.Sin(angle * Mathf.PI / 180));
         targetPosition = cameraPlayer.transform.position + direction * distanceToPlayerInterval.max;
     }
 
+    // adjust speed according to the distance left from the final target point
     public void AdjustSpeed()
     {
         if (Vector3.Distance(targetPosition, transform.position) >= 5 )
@@ -98,11 +132,13 @@ public class BihouGuidage : MonoBehaviour {
                 bihouSpeed -= 0.01f;
     }
 
+    // return the rounded power of 10 of the given value
     private float ReturnMedium(float gyrometre)
     {
         return (int)(gyrometre / 10) * 10.0f;
     }
 
+    // check if Bihou target in the space is reached, to make it wait for us if it is
     void CheckIfTargetReached()
     {
         if (Vector3.Distance(targetPosition, transform.position) < 0.1)
@@ -111,6 +147,7 @@ public class BihouGuidage : MonoBehaviour {
             reachedTarget = false;
     }
 
+    // teleport if Bihou is too far
     void TeleportIfTooFar()
     {
         BihouDistanceToPlayer = Mathf.Sqrt(

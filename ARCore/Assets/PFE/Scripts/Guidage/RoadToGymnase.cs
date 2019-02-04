@@ -2,6 +2,7 @@
 using UnityEngine;
 using Mapbox.Unity.Location;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RoadToGymnase : MonoBehaviour {
 
@@ -25,10 +26,19 @@ public class RoadToGymnase : MonoBehaviour {
             latitude = targetsLatLong[0].x;
             longitude = targetsLatLong[0].y;
         }
-        /*else
-            SceneManager.LoadScene(nextScene);*/
+        else
+            SceneManager.LoadScene(nextScene);
     }
 
+    //il faut mettre la demande de permission du GPS dans le Awake pour y avoir acces ensuite dans la scene, sinon il faudrait
+    //redemarrer l application
+    void Awake()
+    {
+        if (AndroidRuntimePermissions.CheckPermission("android.permission.ACCESS_FINE_LOCATION") != AndroidRuntimePermissions.Permission.Granted)
+        {
+            AndroidRuntimePermissions.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
+        }
+    }
 
 
     void Start()

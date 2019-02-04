@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -113,60 +113,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &326570704
+--- !u!1001 &464138946
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4031379380095222, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
+    - target: {fileID: 4562609859988302, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114389428805681808, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c,
+    - target: {fileID: 114041425452729792, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c,
         type: 2}
-      propertyPath: distTrigger
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389428805681808, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c,
-        type: 2}
-      propertyPath: nextScene
-      value: MissionMiniGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 114182114063824734, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c,
-        type: 2}
-      propertyPath: directionMaterial
+      propertyPath: player
       value: 
-      objectReference: {fileID: 2100000, guid: bb723a63670c0fb48aee574d99ad98d9, type: 2}
+      objectReference: {fileID: 773819131}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1ac2ce2ef0a8a84b91c6a9fdbb5145c, type: 2}
   m_IsPrefabAsset: 0
@@ -463,6 +453,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91946a45aa137434fbe9ce142e5da6f3, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &773819131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1901187497588082, guid: 91946a45aa137434fbe9ce142e5da6f3,
+    type: 2}
+  m_PrefabInternal: {fileID: 773819130}
 --- !u!1 &893339930
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,28 +6,31 @@ using UnityEngine;
 using Mapbox.Unity.Location;
 using UnityEngine.UI;
 
-
+// this script was created in order to calculate the offset between the camera's forward vector and the vector heading towards north
 public class GuidageController : MonoBehaviour {
 
+    // first person camera
     public Camera cameraPlayer;
+
+    // Vector of the last position, to calculate the direction's vector
     private Vector3 lastPosition;
 
-    public Text debugText1;
-    public Text debugText2;
-
-
+    // dictionary with the offsets and the vector associated
     private Dictionary<float, Vector3> dictionary;
+
+    // in order to not use OrderedDictionnary (because it's have a greater complexity while adding and removing object, the order the value got in
     private List<float> orderInDictionnary;
 
+    // to get the location of the device  
     public DeviceLocationProvider deviceLocationProvider;
 
-    private string debug2 = "";
-
+    // the list of camera offsets, to create a medium
     private List<float> cameraOffsets;
 
+    // Bihou, the one and only
     public GameObject bihouPrefab;
-    public GameObject initialisationCanvas;
 
+    // calculate the medium form the list cameraOffsets
     public float GetCameraOffset()
     {
         float medium = 0;
@@ -42,11 +45,11 @@ public class GuidageController : MonoBehaviour {
             return medium;
     }
 
+    // sort the camera offsets by removing the value that is the farest from the others
     private void SortCameraOffsets()
     {
         int farestValueIndex = 0;
         int highestDistance = 0;
-        string debug = "";
 
         for (int i = 0; i < cameraOffsets.Count; i++)
         {
@@ -62,13 +65,12 @@ public class GuidageController : MonoBehaviour {
             {
                 farestValueIndex = i;
             }
-            debug = debug + cameraOffsets[i] + "\n";
         }
         cameraOffsets.RemoveAt(farestValueIndex);
-        debug = debug + "Valeur enlevée : " + cameraOffsets[farestValueIndex];
-        debugText2.text = debug;
+
     }
 
+    // add new value to the dictionnary : the calculated direction vector and the heading 
     void AddValuesToDictionary()
     {
         if (deviceLocationProvider.CurrentLocation.IsLocationServiceEnabled)
@@ -76,33 +78,30 @@ public class GuidageController : MonoBehaviour {
             if (deviceLocationProvider.CurrentLocation.IsUserHeadingUpdated)
             {
                 Vector3 directionVector = cameraPlayer.transform.position - lastPosition;
-                debug2 = debug2 + "directionVector.sqrMagnitude = " + directionVector.sqrMagnitude + "\n";
                 if (directionVector.sqrMagnitude > 0.001f)
                 {
                     dictionary.Add(deviceLocationProvider.CurrentLocation.UserHeading, Vector3.Normalize(directionVector));
                     orderInDictionnary.Add(deviceLocationProvider.CurrentLocation.UserHeading);
-                    debug2 = debug2 + "Vector added, " + dictionary.Count + " vectors in total" + "\n";
                 }
                 lastPosition = cameraPlayer.transform.position;
             }
         }
-        debugText1.text = debug2;
     }
 
+    // try to find a value with the distance between two points being small enought
     void TryToFindInterestingValue()
     {
-        //string debug = "";
         foreach (KeyValuePair<float, Vector3> item in dictionary)
         {
             foreach (KeyValuePair<float, Vector3> itembis in dictionary)
             {
                 if (item.Key != itembis.Key)
                 {
-                    float distanceBetweenItemAndItembis = Mathf.Abs(item.Key - itembis.Key) + 5 * Mathf.Sqrt(
+                    // the 5 * is to give more weight to the distance between the vector than the heading value
+                    float distanceBetweenItemAndItembis = Mathf.Abs(item.Key - itembis.Key) + 5 * Mathf.Sqrt( 
                         Mathf.Pow(item.Value.x - itembis.Value.x, 2) +
                         Mathf.Pow(item.Value.y - itembis.Value.y, 2) +
                         Mathf.Pow(item.Value.z - itembis.Value.z, 2));
-                    //debug = debug + "La distance entre " + item.Key + " et " + itembis.Key + " est " + distanceBetweenItemAndItembis + " et les vecteur sont "+ item.Value + " et " + itembis.Value + "\n";
                     if (distanceBetweenItemAndItembis < 0.5)
                     {
                         cameraOffsets.Add(item.Key + (Mathf.Acos(item.Value.z) * 180 / Mathf.PI));
@@ -112,7 +111,6 @@ public class GuidageController : MonoBehaviour {
         }
         dictionary.Remove(orderInDictionnary[0]);
         orderInDictionnary.RemoveAt(0);
-        //debugText2.text = debug;
     }
 
 
@@ -120,7 +118,6 @@ public class GuidageController : MonoBehaviour {
     void Start () {
         lastPosition = cameraPlayer.transform.position;
         bihouPrefab.SetActive(false);
-        //initialisationCanvas.SetActive(true);
         orderInDictionnary = new List<float>();
         cameraOffsets = new List<float>();
         dictionary = new Dictionary<float, Vector3>();

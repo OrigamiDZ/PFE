@@ -1,30 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GetDirection : MonoBehaviour {
+public class GetDirectionFromMap : MonoBehaviour {
 
+    // player gameobject on the map
     public GameObject player;
+
+    // target gameobject on the map
     public GameObject target;
+
+    // first person camera
     public Camera cameraPlayer;
+
+    // angle between the target and the player
     private float angle = 0;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
+    // getter for the angle var
     public float GetAngle()
     {
         return angle;
     }
 
-    public void CalculateCameraOffSet()
-    {
-
-    }
-
+    // calculate the angle between the target and the player
     public void CalculateAngle()
     {
         float normLine = Mathf.Sqrt(

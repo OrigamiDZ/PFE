@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// this scripts prevent the mesh of the map, the player and all from being turned on
 public class TurnOffRenderer : MonoBehaviour {
 
     private MeshRenderer[] meshs;
